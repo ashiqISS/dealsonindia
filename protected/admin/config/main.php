@@ -15,7 +15,7 @@ return array(
     'runtimePath' => $admin . '/runtime',
     'controllerPath' => $admin . '/controllers',
     'viewPath' => $admin . '/views',
-    'name' => 'NewGen Shopping | Admin',
+    'name' => 'Deals On India | Admin',
     // preloading 'log' component
     'preload' => array('log', 'booster'),
     // autoloading model and component classes
