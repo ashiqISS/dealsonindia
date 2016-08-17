@@ -1,18 +1,18 @@
 <?php
-/* @var $this ProductsController */
-/* @var $model Products */
+/* @var $this MastersSizeController */
+/* @var $model MastersSize */
 ?>
 
 <section class="content-header" style="margin-bottom: .5em">
         <h1>
-                Products        <small>Create</small>
+                MastersSize        <small>Create</small>
         </h1>
         <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>Products</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i>MastersSize</a></li>
                 <li class="active">Create</li>
         </ol>
 </section>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo Yii::app()->request->baseurl . '/admin.php/products/products/admin'; ?>" class='btn  btn-laksyah manage'>Manage Products</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo Yii::app()->request->baseurl . '/admin.php/masters/mastersSize/admin'; ?>" class='btn  btn-laksyah manage'>Manage MastersSize</a>
 <section class="content">
 
         <div class="box box-info">

@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <title><?php echo Yii::app()->name; ?></title>
                 <!-- Tell the browser to be responsive to screen width -->
-                <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;          ?>/css/admin.css">-->
+                <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                 ?>/css/admin.css">-->
                 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                 <!-- Bootstrap 3.3.5 -->
 
@@ -195,7 +195,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $action18 = "active";
                                                         $actionn5 = "active";
                                                         break;
-
+                                                case "Brand":
+                                                        $action19 = "active";
+                                                        $actionn5 = "active";
+                                                        break;
+                                                case "Size":
+                                                        $action20 = "active";
+                                                        $actionn5 = "active";
+                                                        break;
+                                                case "Advertisement":
+                                                        $action21 = "active";
+                                                        $actionn6 = "active";
+                                                        break;
                                                 case "site":
                                                         if (Yii::app()->controller->action->id == "home") {
                                                                 $action18 = "active";
@@ -264,17 +275,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <li class="<?php echo $action12 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Countries/admin"><i class="fa fa-circle-o"></i> Countries</a></li>
                                                                         <li class="<?php echo $action13 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Districts/admin"><i class="fa fa-circle-o"></i> Districts</a></li>
                                                                         <li class="<?php echo $action14 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/States/admin"><i class="fa fa-circle-o"></i> States</a></li>
+                                                                        <li class="<?php echo $action19 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MastersSize/admin"><i class="fa fa-circle-o"></i> Size</a></li>
+                                                                        <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MastersBrand/admin"><i class="fa fa-circle-o"></i> Brand</a></li>
+
                                                                 </ul>
                                                         </li>
 
                                                 <?php } ?>
+                                                <?php if (isset(Yii::app()->session['post']['masters']) && Yii::app()->session['post']['masters'] == 1) { ?>
+                                                        <li class="<?php echo $actionn6 ?> treeview">
+                                                                <a href="#"><i class="fa fa-database"></i> <span>Advertisement</span> <i class="fa fa-angle-left pull-right"></i></a>
+                                                                <ul class="treeview-menu">
+                                                                        <li class="<?php echo $action7 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/masterAdLocation/admin"><i class="fa fa-circle-o"></i>Ad Position,prize and size</a></li>
+                                                                        <li class="<?php echo $action8 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/Ad/adPayment/admin"><i class="fa fa-circle-o"></i>Ad Payment</a></li>
+                                                                </ul>
+                                                        </li>
 
+                                                <?php } ?>
                                         </ul><!-- /.sidebar-menu -->
                                 </section>
                                 <!-- /.sidebar -->
                         </aside>
 
-                        <!-- Content Wrapper. Contains page content -->
                         <div class="content-wrapper">
                                 <!-- Content Header (Page header) -->
 

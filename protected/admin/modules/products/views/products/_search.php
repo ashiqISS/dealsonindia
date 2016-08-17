@@ -32,13 +32,18 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'product_type'); ?>
+		<?php echo $form->textField($model,'product_type',array('size'=>50,'maxlength'=>50,'class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'brand_id'); ?>
 		<?php echo $form->textField($model,'brand_id',array('class' => 'form-control')); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'merchant_id'); ?>
-		<?php echo $form->textField($model,'merchant_id',array('class' => 'form-control')); ?>
+		<?php echo $form->label($model,'merchant'); ?>
+		<?php echo $form->textField($model,'merchant',array('class' => 'form-control')); ?>
 	</div>
 
 	<div class="row">
@@ -72,6 +77,16 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'vendor'); ?>
+		<?php echo $form->textField($model,'vendor',array('class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'deal_location'); ?>
+		<?php echo $form->textField($model,'deal_location',array('size'=>60,'maxlength'=>150,'class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'meta_title'); ?>
 		<?php echo $form->textField($model,'meta_title',array('size'=>60,'maxlength'=>225,'class' => 'form-control')); ?>
 	</div>
@@ -99,6 +114,16 @@
 	<div class="row">
 		<?php echo $form->label($model,'display_category_name'); ?>
 		<?php echo $form->textField($model,'display_category_name',array('class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'brand'); ?>
+		<?php echo $form->textField($model,'brand',array('class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'size'); ?>
+		<?php echo $form->textField($model,'size',array('class' => 'form-control')); ?>
 	</div>
 
 	<div class="row">
@@ -132,6 +157,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'deal_price'); ?>
+		<?php echo $form->textField($model,'deal_price',array('class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'quantity'); ?>
 		<?php echo $form->textField($model,'quantity',array('class' => 'form-control')); ?>
 	</div>
@@ -139,6 +169,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'requires_shipping'); ?>
 		<?php echo $form->textField($model,'requires_shipping',array('class' => 'form-control')); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'shipping_rate'); ?>
+		<?php echo $form->textField($model,'shipping_rate',array('class' => 'form-control')); ?>
 	</div>
 
 	<div class="row">

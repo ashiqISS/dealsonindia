@@ -21,19 +21,23 @@
 	<?php echo CHtml::encode($data->product_code); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('product_type')); ?>:</b>
+	<?php echo CHtml::encode($data->product_type); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('brand_id')); ?>:</b>
 	<?php echo CHtml::encode($data->brand_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('merchant_id')); ?>:</b>
-	<?php echo CHtml::encode($data->merchant_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('merchant')); ?>:</b>
+	<?php echo CHtml::encode($data->merchant); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('merchant_type')); ?>:</b>
 	<?php echo CHtml::encode($data->merchant_type); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
@@ -52,6 +56,14 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('canonical_name')); ?>:</b>
 	<?php echo CHtml::encode($data->canonical_name); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('vendor')); ?>:</b>
+	<?php echo CHtml::encode($data->vendor); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('deal_location')); ?>:</b>
+	<?php echo CHtml::encode($data->deal_location); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('meta_title')); ?>:</b>
@@ -78,6 +90,14 @@
 	<?php echo CHtml::encode($data->display_category_name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('brand')); ?>:</b>
+	<?php echo CHtml::encode($data->brand); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('size')); ?>:</b>
+	<?php echo CHtml::encode($data->size); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('price')); ?>:</b>
 	<?php echo CHtml::encode($data->price); ?>
 	<br />
@@ -102,12 +122,20 @@
 	<?php echo CHtml::encode($data->discount_rate); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('deal_price')); ?>:</b>
+	<?php echo CHtml::encode($data->deal_price); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('quantity')); ?>:</b>
 	<?php echo CHtml::encode($data->quantity); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('requires_shipping')); ?>:</b>
 	<?php echo CHtml::encode($data->requires_shipping); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('shipping_rate')); ?>:</b>
+	<?php echo CHtml::encode($data->shipping_rate); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('enquiry_sale')); ?>:</b>
