@@ -25,4 +25,28 @@ class ProductsController extends Controller {
                 }
         }
 
+        public function actionCoupons() {
+                $this->render('coupons');
+        }
+
+        public function actionDailyDeals() {
+                $this->render('dailydeals');
+        }
+
+        public function actionFlsahDeals() {
+                $this->render('flashdeals');
+        }
+
+        public function actionSubmitDeal() {
+                $this->render('submitdeal');
+        }
+
+        public function actionHotDeal() {
+                $this->render('hotdeal');
+        }
+
+        public function actionSalesReport() {
+                $this->render('salesreport');
+        }
+
 }
