@@ -26,10 +26,68 @@
                             'filter' => $model,
                             'columns' => array(
                                 // 'id',
-                                'category_id',
                                 'product_name',
+                                array(
+                                    'name' => 'category_id',
+                                    'value' => function($data) {
+                                            $cats = explode(',', $data->category_id);
+                                            $catt = '';
+                                            foreach ($cats as $cat) {
+                                                    unset($_SESSION['category']);
+                                                    $category = ProductCategory::model()->findByPk($cat);
+                                                    $catt .= Yii::app()->category->selectCategories($category) . ', ';
+                                            }
+                                            return $catt;
+                                    },
+                                ),
                                 'product_code',
-                                'product_type',
+                                'quantity',
+                                array(
+                                    'name' => 'main_image',
+                                    'value' => function($data) {
+                                            if ($data->main_image == "") {
+                                                    return;
+                                            } else {
+                                                    $folder = Yii::app()->Upload->folderName(0, 1000, $data->id);
+                                                    return '<img width="100" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $data->id . '/main.' . $data->main_image . '" />';
+                                            }
+                                    },
+                                    'type' => 'raw'
+                                ),
+                                array(
+                                    'name' => 'merchant',
+                                    'value' => function($data) {
+                                            if ($data->merchant == 0) {
+                                                    return 'Admin';
+                                            } else {
+                                                    //return $data->merchant;
+                                                    $marchent_name = Merchant::model()->findByPk($data->merchant);
+                                                    if ($marchent_name->merchant_type == 2) {
+                                                            $marchent_type = "Wholesaler";
+                                                    } else if ($marchent_name->merchant_type == 3) {
+                                                            $marchent_type = "Retailer";
+                                                    } else {
+                                                            $marchent_type = "Default";
+                                                    }
+                                                    return $marchent_name->fullname . '(' . $marchent_type . ')';
+                                            }
+                                    },
+                                    'type' => 'raw'
+                                ),
+                                'price',
+                                array(
+                                    'name' => 'is_admin_approved',
+                                    'value' => function($data) {
+
+                                            if ($data->is_admin_approved == 0) {
+                                                    return "<span style='color:red; font-weight:bold;'>Not Approved Admin</span>";
+                                            } else {
+                                                    return "<span style='color:green; font-weight:bold;'>Approved by Admin</span>";
+                                            }
+                                    },
+                                    'type' => 'raw'
+                                ),
+//                                'product_type',
                                 //'brand_id',
                                 /*
                                   'merchant',
@@ -103,6 +161,22 @@
                                     'htmlOptions' => array('nowrap' => 'nowrap'),
                                     'class' => 'booster.widgets.TbButtonColumn',
                                     'template' => '{view}',
+                                ),
+                                array(
+                                    'header' => '<font color="#61625D">Clone</font>',
+                                    'htmlOptions' => array('nowrap' => 'nowrap'),
+                                    'class' => 'booster.widgets.TbButtonColumn',
+                                    'template' => '{approval}',
+                                    'buttons' => array(
+                                        'approval' => array(
+                                            'url' => 'Yii::app()->request->baseUrl."/admin.php/products/products/clone/id/".$data->id',
+                                            'label' => '<i class="fa fa-clone" aria-hidden="true"></i>',
+                                            'options' => array(
+                                                'data-toggle' => 'tooltip',
+                                                'title' => 'Clone the Product',
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                         ));

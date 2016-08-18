@@ -79,11 +79,11 @@ class UploadFile extends CApplicationComponent {
                                                 mkdir(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id);
                                         chmod(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/', 0777);
                                 }
-                                if ($uploadfile->saveAs(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/' . $id . '.' . $uploadfile->extensionName)) {
-                                        chmod(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/' . $id . '.' . $uploadfile->extensionName, 0777);
+                                if ($uploadfile->saveAs(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/main.' . $uploadfile->extensionName)) {
+                                        chmod(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/main.' . $uploadfile->extensionName, 0777);
                                         //$this->WaterMark(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/' . $id . '.' . $uploadfile->extensionName, '/../images/watermark.png');
 
-                                        $file = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/' . $id . '.' . $uploadfile->extensionName;
+                                        $file = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/main.' . $uploadfile->extensionName;
                                         $path = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id;
                                         if (!empty($dimensions)) {
                                                 foreach ($dimensions as $dimension) {
@@ -212,7 +212,7 @@ class UploadFile extends CApplicationComponent {
 //                var_dump($file);
 ////                exit;
                 $resize = new EasyImage($file);
-                $resize->resize($width, $height);
+                $resize->resize($width, $height, EasyImage::RESIZE_NONE);
                 $resize->save($path . '/' . $name . '.' . $extension);
         }
 

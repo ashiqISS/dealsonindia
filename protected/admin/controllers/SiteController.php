@@ -143,6 +143,29 @@ class SiteController extends Controller {
                 }
         }
 
+        public function actionLocationTag() {
+
+                if (Yii::app()->request->isAjaxRequest) {
+
+                        $criteria = new CDbCriteria();
+                        $criteria->addSearchCondition('category_tag', $_REQUEST['tag'], 'AND');
+
+                        //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
+                        if ($_REQUEST['taged'] != '') {
+
+                                $arrs = explode(',', $_REQUEST['taged']);
+                                $criteria->addNotInCondition('category_tag', $arrs, 'AND');
+                        }
+                        $tags = MasterCategoryTags::model()->findAll($criteria);
+                        foreach ($tags as $tag) {
+                                if ($_REQUEST['type'] == 'category') {
+
+                                }
+                                echo '<div class="' . $_REQUEST['type'] . '_tag-sub">' . $tag->category_tag . '</div>';
+                        }
+                }
+        }
+
         public function actionProductTagAdd() {
 
                 if (Yii::app()->request->isAjaxRequest) {
@@ -206,6 +229,35 @@ class SiteController extends Controller {
 
                                 }
                                 echo '<div class="' . $_REQUEST['type'] . '_tag-sub" id="' . $tag->id . '">' . $cat_parent . '</div>';
+                        }
+                }
+        }
+
+        public function actionLocationCat() {
+
+                if (Yii::app()->request->isAjaxRequest) {
+
+                        $criteria = new CDbCriteria();
+                        $criteria->addSearchCondition('district_name', $_REQUEST['tag'], 'AND');
+
+                        //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
+                        if ($_REQUEST['taged'] != '') {
+
+                                $arrs = explode(',', $_REQUEST['taged']);
+                                $criteria->addNotInCondition('district_name', $arrs, 'AND');
+                        }
+                        $tags = Districts::model()->findAll($criteria);
+                        $options = array();
+                        $_SESSION['location'][0] = '';
+                        foreach ($tags as $tag) {
+                                unset($_SESSION['location']);
+                                //$cat_parent = $this->findParent(ProductCategory::model()->findByPk($tag->id));
+                                //echo $cat_parent;
+
+                                if ($_REQUEST['type'] == 'location') {
+
+                                }
+                                echo '<div class="' . $_REQUEST['type'] . '_tag-sub" id="' . $tag->id . '">' . $tag->district_name . '</div>';
                         }
                 }
         }

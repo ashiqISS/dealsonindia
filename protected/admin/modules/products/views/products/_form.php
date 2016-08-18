@@ -60,10 +60,22 @@
                         <?php echo $form->labelEx($model, 'product_name'); ?>
                 </div>
                 <div class="col-sm-10">
-                        <?php echo $form->textField($model, 'product_name', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control')); ?>
+                        <?php echo $form->textField($model, 'product_name', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control slug')); ?>
                         <?php echo $form->error($model, 'product_name'); ?>
                 </div>
         </div>
+
+
+        <div class="form-group">
+                <div class="col-sm-2 control-label">
+                        <?php echo $form->labelEx($model, 'canonical_name'); ?>
+                </div>
+                <div class="col-sm-10">
+                        <?php echo $form->textField($model, 'canonical_name', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control')); ?>
+                        <?php echo $form->error($model, 'canonical_name'); ?>
+                </div>
+        </div>
+
 
         <div class="form-group">
                 <div class="col-sm-2 control-label">
@@ -90,7 +102,7 @@
                         <?php echo $form->labelEx($model, 'merchant'); ?>
                 </div>
                 <div class="col-sm-10">
-                        <?php echo CHtml::activeDropDownList($model, 'merchant', CHtml::listData(Merchant::model()->findAll(), 'id', 'fullname'), array('empty' => '--Select--', 'class' => 'form-control')); ?>
+                        <?php echo CHtml::activeDropDownList($model, 'merchant', CHtml::listData(Merchant::model()->findAll(), 'id', 'fullname'), array('empty' => 'Admin', 'class' => 'form-control')); ?>
                         <?php echo $form->error($model, 'merchant'); ?>
                 </div>
         </div>
@@ -100,71 +112,83 @@
                         <?php echo $form->labelEx($model, 'merchant_type'); ?>
                 </div>
                 <div class="col-sm-10">
-                        <?php echo $form->dropDownList($model, 'merchant_type', array('1' => "Wholesale", '0' => "Retail", '2' => "Default"), array('empty' => 'Select', 'class' => 'form-control')); ?>
+                        <?php echo $form->dropDownList($model, 'merchant_type', array('1' => "Admin", '2' => "Wholesale", '3' => "Retail", '4' => "Default"), array('class' => 'form-control')); ?>
                         <?php echo $form->error($model, 'merchant_type'); ?>
                 </div>
         </div>
 
         <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'description'); ?>
-                </div>
+                <?php echo $form->labelEx($model, 'description', array('class' => 'col-sm-2 control-label')); ?>
                 <div class="col-sm-10">
-                        <?php echo $form->textArea($model, 'description', array('rows' => 6, 'cols' => 50, 'class' => 'form-control')); ?>
+                        <?php
+                        $this->widget('application.admin.extensions.eckeditor.ECKEditor', array(
+                            'model' => $model,
+                            'attribute' => 'description',
+                        ));
+                        ?>
                         <?php echo $form->error($model, 'description'); ?>
                 </div>
         </div>
 
         <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'main_image'); ?>
+                <?php echo $form->labelEx($model, 'Main Image ( image size : 250 X 141 )', array('class' => 'col-sm-2 control-label')); ?>
+                <div class="col-sm-10"><?php echo $form->fileField($model, 'main_image', array('size' => 60, 'maxlength' => 100, 'class' => 'form-control')); ?>
+                        <?php
+                        if ($model->main_image != '' && $model->id != "") {
+                                $folder = Yii::app()->Upload->folderName(0, 1000, $model->id);
+                                echo '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/small' . '.' . $model->main_image . '" />';
+                        }
+                        ?>
                 </div>
-                <div class="col-sm-10">
-                        <?php echo $form->fileField($model, 'main_image', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'main_image'); ?>
-                </div>
+                <?php echo $form->error($model, 'main_image'); ?>
         </div>
+
 
         <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'gallery_images'); ?>
-                </div>
+                <?php echo $form->labelEx($model, 'Gallery Images ( image size : 1508 X 2015 )', array('class' => 'col-sm-2 control-label')); ?>
                 <div class="col-sm-10">
-                        <?php echo $form->fileField($model, 'gallery_images', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'gallery_images'); ?>
-                </div>
-        </div>
+                        <?php
+                        $this->widget('CMultiFileUpload', array(
+                            'name' => 'gallery_images',
+                            'accept' => 'jpeg|jpg|gif|png', // useful for verifying files
+                            'duplicate' => 'Duplicate file!', // useful, i think
+                            'denied' => 'Invalid file type', // useful, i think
+                        ));
+                        ?>
 
-        <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'hover_image'); ?>
-                </div>
-                <div class="col-sm-10">
-                        <?php echo $form->fileField($model, 'hover_image', array('size' => 60, 'maxlength' => 150, 'class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'hover_image'); ?>
-                </div>
-        </div>
+                        <?php
+                        if (!$model->isNewRecord) {
+                                $folder = Yii::app()->Upload->folderName(0, 1000, $model->id);
 
-        <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'canonical_name'); ?>
-                </div>
-                <div class="col-sm-10">
-                        <?php echo $form->textField($model, 'canonical_name', array('size' => 60, 'maxlength' => 200, 'class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'canonical_name'); ?>
-                </div>
-        </div>
+                                // $path = Yii::getPathOfAlias('webroot') . '/uploads/products/' . $folder . '/' . $model->id . '/gallery/big';
 
-        <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'vendor'); ?>
-                </div>
-                <div class="col-sm-10">
-                        <?php echo CHtml::activeDropDownList($model, 'vendor', CHtml::listData(BuyerDetails::model()->findAll(), 'id', 'first_name'), array('empty' => '--Select--', 'class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'vendor'); ?>
-                </div>
-        </div>
+                                $path = Yii::getPathOfAlias('webroot') . '/uploads/products/' . $folder . '/' . $model->id . '/gallery/big';
 
+
+                                $path2 = Yii::getPathOfAlias('webroot') . '/uploads/products/' . $folder . '/' . $model->id . '/gallery/';
+
+
+                                foreach (glob("{$path}/*") as $file) {
+
+                                        $info = pathinfo($file);
+                                        $file_name = basename($file, '.' . $info['basename']);
+
+                                        //  var_dump($file_name);
+
+
+
+                                        if ($file != '') {
+                                                $arry = explode('/', $file);
+                                                echo '<div style="float:left;margin:5px;position:relative;">'
+                                                . '<a style="position:absolute;top:43%;left:40%;color:red;" href="' . Yii::app()->baseUrl . '/admin.php/products/products/NewDelete?id=' . $model->id . '&path=' . $file_name . '"><i class="glyphicon glyphicon-trash"></i></a>'
+                                                . ' <img style="width:100px;height:100px;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/gallery/' . end($arry) . '"> </div>';
+                                        }
+                                }
+                        }
+                        ?>
+                </div>
+                <?php echo $form->error($model, 'gallery_images'); ?>
+        </div>
         <div class="form-group">
                 <div class="col-sm-2 control-label">
                         <?php echo $form->labelEx($model, 'deal_location'); ?>
@@ -600,15 +624,7 @@
                 </div>
         </div>
 
-        <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'exchange'); ?>
-                </div>
-                <div class="col-sm-10">
-                        <?php echo $form->dropDownList($model, 'exchange', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'exchange'); ?>
-                </div>
-        </div>
+
 
         <div class="form-group">
                 <div class="col-sm-2 control-label">
@@ -664,15 +680,6 @@
                 </div>
         </div>
 
-        <div class="form-group">
-                <div class="col-sm-2 control-label">
-                        <?php echo $form->labelEx($model, 'is_available'); ?>
-                </div>
-                <div class="col-sm-10">
-                        <?php echo $form->dropDownList($model, 'is_available', array('1' => "Yes", '0' => "No"), array('class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'is_available'); ?>
-                </div>
-        </div>
 
         <div class="form-group">
                 <div class="col-sm-2 control-label">
@@ -705,3 +712,22 @@
         <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script>
+        $(document).ready(function () {
+                $('.slug').keyup(function () {
+                        $('#Products_canonical_name').val(slug($(this).val()));
+                });
+
+
+        });
+        var slug = function (str) {
+                var $slug = '';
+                var trimmed = $.trim(str);
+                $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
+                        replace(/-+/g, '-').
+                        replace(/^-|-$/g, '');
+                return $slug.toLowerCase();
+        };
+
+</script>

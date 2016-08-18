@@ -18,6 +18,24 @@ class ProductsController extends Controller {
                 );
         }
 
+        public function actionNewDelete() {
+                $image = $_GET['path'];
+                $id = $_GET['id'];
+                $model = $this->loadModel($id);
+                $folder = Yii::app()->Upload->folderName(0, 1000, $model->id);
+
+                if (is_dir(Yii::app()->basePath . '/../uploads/products/' . $folder)) {
+                        $big = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/gallery/big/' . $image;
+                        $small = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/gallery/small/' . $image;
+                        $zoom = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/gallery/zoom/' . $image;
+//                        $this->imageDelete($path);
+                        unlink($big);
+                        unlink($small);
+                        unlink($zoom);
+                        $this->redirect(Yii::app()->request->urlReferrer);
+                }
+        }
+
         /**
          * Specifies the access control rules.
          * This method is used by the 'accessControl' filter.
@@ -26,7 +44,7 @@ class ProductsController extends Controller {
         public function accessRules() {
                 return array(
                     array('allow', // allow - all users to perform 'index' and 'view' actions
-                        'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
+                        'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete', 'newdelete', 'clone'),
                         'users' => array('*'),
                     ),
                     array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -51,6 +69,37 @@ class ProductsController extends Controller {
                 $this->render('view', array(
                     'model' => $this->loadModel($id),
                 ));
+        }
+
+        public function recurse_copy($src, $dst) {
+                $dir = opendir($src);
+                @mkdir($dst);
+                while (false !== ( $file = readdir($dir))) {
+                        if (( $file != '.' ) && ( $file != '..' )) {
+                                if (is_dir($src . '/' . $file)) {
+                                        $this->recurse_copy($src . '/' . $file, $dst . '/' . $file);
+                                } else {
+                                        copy($src . '/' . $file, $dst . '/' . $file);
+                                }
+                        }
+                }
+                closedir($dir);
+        }
+
+        public function actionClone($id) {
+
+                $model = new Products;
+
+                $model1 = Products::model()->findByPk($id);
+                $model->attributes = $model1->attributes;
+
+                if ($model->save()) {
+                        $folder = Yii::app()->Upload->folderName(0, 1000, $model->id) . '/';
+                        $src = yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/';
+                        $dst = yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $model->id;
+                        $this->recurse_copy($src, $dst);
+                        $this->redirect(array('admin'));
+                }
         }
 
         /**
@@ -139,7 +188,7 @@ class ProductsController extends Controller {
                                         if ($image != "") {
                                                 $id = $model->id;
                                                 $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
-                                                $dimension[1] = array('width' => '322', 'height' => '500', 'name' => 'medium');
+                                                $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
                                                 $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
                                                 $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
                                                 Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
@@ -155,6 +204,7 @@ class ProductsController extends Controller {
                                                 $id = $model->id;
                                                 $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
                                                 $dimension[1] = array('width' => '580', 'height' => '775', 'name' => 'big');
+                                                $dimension[2] = array('width' => '250', 'height' => '141', 'name' => 'medium');
                                                 $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
                                                 Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
                                         }
@@ -269,7 +319,7 @@ class ProductsController extends Controller {
                         if ($image != "") {
                                 $id = $model->id;
                                 $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
-                                $dimension[1] = array('width' => '322', 'height' => '500', 'name' => 'medium');
+                                $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
                                 $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
                                 $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
                                 Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
@@ -289,7 +339,8 @@ class ProductsController extends Controller {
                         if ($images != "") {
                                 $id = $model->id;
                                 $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
-                                $dimension[1] = array('width' => '580', 'height' => '775', 'name' => 'big');
+                                $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
+                                $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
                                 $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
                                 Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
                         } else {

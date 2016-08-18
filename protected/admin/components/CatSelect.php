@@ -22,6 +22,6 @@ class CatSelect extends CWidget {
         public function run() {
 
                 $this->render('cats');
-
         }
+
 }
