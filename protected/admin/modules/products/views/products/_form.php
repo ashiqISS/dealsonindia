@@ -9,7 +9,7 @@
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'products-form',
-            'htmlOptions' => array('class' => 'form-horizontal'),
+            'htmlOptions' => array('class' => 'form-horizontal', 'enctype' => 'multipart/form-data'),
             // Please note: When you enable ajax validation, make sure the corresponding
             // controller action is handling ajax validation correctly.
             // There is a call to performAjaxValidation() commented in generated controller code.
@@ -214,7 +214,7 @@
                         <?php echo $form->labelEx($model, 'brand'); ?>
                 </div>
                 <div class="col-sm-10">
-                        <?php echo $form->textField($model, 'brand', array('class' => 'form-control')); ?>
+                        <?php echo CHtml::activeDropDownList($model, 'brand', CHtml::listData(MastersBrand::model()->findAll(), 'id', 'brand'), array('empty' => '--Select--', 'class' => 'form-control')); ?>
                         <?php echo $form->error($model, 'brand'); ?>
                 </div>
         </div>
@@ -224,7 +224,7 @@
                         <?php echo $form->labelEx($model, 'size'); ?>
                 </div>
                 <div class="col-sm-10">
-                        <?php echo $form->textField($model, 'size', array('class' => 'form-control')); ?>
+                        <?php echo CHtml::activeDropDownList($model, 'size', CHtml::listData(MastersSize::model()->findAll(), 'id', 'size'), array('empty' => '--Select--', 'class' => 'form-control')); ?>
                         <?php echo $form->error($model, 'size'); ?>
                 </div>
         </div>
