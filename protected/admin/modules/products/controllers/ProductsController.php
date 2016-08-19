@@ -122,6 +122,7 @@ class ProductsController extends Controller {
                         $model->new_to = $_POST['Products']['new_to'];
                         $model->sale_from = $_POST['Products']['sale_from'];
                         $model->sale_to = $_POST['Products']['sale_to'];
+                        $model->deal_link = $_POST['Products']['deal_link'];
                         $model->special_price_from = $_POST['Products']['special_price_from'];
                         $model->special_price_to = $_POST['Products']['special_price_to'];
                         $model->DOC = $_POST['Products']['DOC'];
@@ -184,6 +185,8 @@ class ProductsController extends Controller {
 
 
                                 if ($model->save()) {
+                                        $model->canonical_name = $model->canonical_name . '-' . $model->id;
+                                        $model->save();
 
                                         if ($image != "") {
                                                 $id = $model->id;
@@ -263,6 +266,7 @@ class ProductsController extends Controller {
                         $model->new_to = $_POST['Products']['new_to'];
                         $model->sale_from = $_POST['Products']['sale_from'];
                         $model->sale_to = $_POST['Products']['sale_to'];
+                        $model->deal_link = $_POST['Products']['deal_link'];
                         $model->special_price_from = $_POST['Products']['special_price_from'];
                         $model->special_price_to = $_POST['Products']['special_price_to'];
                         $model->DOC = $doc;
@@ -349,7 +353,8 @@ class ProductsController extends Controller {
 
                         if ($model->validate()) {
                                 if ($model->save(false)) {
-
+//                                        $model->canonical_name = $model->canonical_name . '-' . $model->id;
+//                                        $model->save();
 //                    if ($video != "") {
 //
 //                        $id = $model->id;

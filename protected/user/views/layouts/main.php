@@ -18,8 +18,28 @@
 
                 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
                 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,400italic,700,100italic,300italic,700italic,900' rel='stylesheet' type='text/css'>
-                <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
+
+
+                <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
+                <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
+                <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
                 <script src="<?= Yii::app()->baseUrl ?>/js/slick.min.js"></script>
+                <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
+                <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
+                <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
+                <script>
+                        //            this script is for solving error : "Cannot read property 'msie' of undefined"
+
+                        jQuery.browser = {};
+                        (function () {
+                                jQuery.browser.msie = false;
+                                jQuery.browser.version = 0;
+                                if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                                        jQuery.browser.msie = true;
+                                        jQuery.browser.version = RegExp.$1;
+                                }
+                        })();
+                </script>
                 <style>
                         .dropup {
                                 position: fixed !important;
@@ -510,12 +530,12 @@
         <script src="<?= Yii::app()->baseUrl ?>/js/paradise_slider_min.js"></script>
 
         <script>
-                var selectIds = $('#panel1,#panel2,#panel3,#panel4,#panel5,#panel6,#panel7,#panel8,#panel9,#panel10,#panel11,#panel12,#panel13,#panel14');
-                $(function ($) {
-                        selectIds.on('show.bs.collapse hidden.bs.collapse', function () {
-                                $(this).prev().find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                        var selectIds = $('#panel1,#panel2,#panel3,#panel4,#panel5,#panel6,#panel7,#panel8,#panel9,#panel10,#panel11,#panel12,#panel13,#panel14');
+                        $(function ($) {
+                                selectIds.on('show.bs.collapse hidden.bs.collapse', function () {
+                                        $(this).prev().find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                                });
                         });
-                });
 
 
         </script>

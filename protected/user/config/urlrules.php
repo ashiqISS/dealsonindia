@@ -8,6 +8,7 @@ return array(
     'daily-deals' => 'products/DailyDeals',
     'flash-deals' => 'products/FlsahDeals',
     'submit-deals' => 'products/SubmitDeal',
+    'products' => 'products/Detail',
     'merchant-registration' => 'registration/merchantDetails/create',
 //    'merchant-activation' => 'registration/merchantDetails/UserActivation',
 //    'login' => 'site/login',

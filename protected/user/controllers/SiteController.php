@@ -24,11 +24,28 @@ class SiteController extends Controller {
          * This is the default 'index' action that is invoked
          * when an action is not explicitly requested by users.
          */
+        public function init() {
+                date_default_timezone_set('Asia/Kolkata');
+        }
+
         public function actionIndex() {
-//                $this->layout = 'test';
-//        $this->render('index');
-                $this->layout = '//layouts/main';
-                $this->render('index');
+                // $model = Products::model()->findAll();
+
+                $criteria = new CDbCriteria;
+                $total = Products::model()->count();
+
+                $pages = new CPagination($total);
+                $pages->pageSize = 8;
+                $pages->applyLimit($criteria);
+                $date = date('Y-m-d');
+                $criteria->addCondition("status = 1 AND is_admin_approved = 1 AND '" . $date . "' >= new_from AND  '" . $date . "' <= new_to ");
+                $products = Products::model()->findAll($criteria);
+
+                $this->render('index', array(
+                    'products' => $products,
+                    'pages' => $pages,
+                    'total' => $total,
+                ));
         }
 
         public function actionHome() {

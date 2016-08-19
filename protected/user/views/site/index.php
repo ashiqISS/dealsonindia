@@ -112,1030 +112,883 @@
         <div class="container">
                 <div class="row">
                         <h1>latest Deals</h1>
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d2.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
-
-
-                                </div>
-                                <div class="visible-sm visible-xs clearfix"></div>
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-
-
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
-
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d2.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-
-
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
-
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d2.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-
-
-                        <div class="rows">
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
-
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
-                                        <div class="deals-effect">
-                                                <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
-                                                <div class="overlay"></div>
-                                                <div class="buy">
-                                                        <a class="buybtn" href="#">Buy Now</a>
-                                                </div>
-                                        </div>
-
-
-
-                                        <h2>Big Rock CouponsFlat 35% OFF
-                                                on Shared Hosting</h2>
-                                        <div class="star">
-                                                <ul>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                        <li><i class="fa stars fa-star-o"></i></li>
-                                                </ul>
-                                        </div>
-
-
-                                        <div class="blocked">
-                                                <div class="social">
-                                                        <ul>
-                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                        </ul>
-                                                </div>
-
-                                                <div class="price">
-                                                        <h3>249.00</h3>
-                                                </div>
-                                        </div>
-                                </div>
-
-
-                                <div class="visible-sm visible-xs clearfix"></div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <button class="ripple">Load More</button>
+                        <?php
+                        // $this->widget('user.widgets.Products', array(
+                        //   'products' => $products));
+                        ?>
+                        <?php
+                        echo $this->renderPartial('_latest_deal', array('products' => $products));
+                        ?>
+
+                        <?php
+                        $this->widget('application.user.extensions.yiinfinite-scroll.YiinfiniteScroller', array(
+                            'contentSelector' => '#products',
+                            'itemSelector' => 'div.product',
+                            'loadingText' => 'Loading...',
+                            'donetext' => '<div class="clearfix"></div><button class="ripple">Loading Complete</button>',
+                            'pages' => $pages,
+                        ));
+                        ?>
+
+                        <!--                        <div class="rows">
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
+
+
+                                                        </div>
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                </div>
+
+
+                                                <div class="rows">
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
+
+
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                </div>
+
+                                                <div class="rows">
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d2.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                </div>
+
+
+                                                <div class="rows">
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
+
+
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                </div>
+
+                                                <div class="rows">
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d1.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d2.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                </div>
+
+
+                                                <div class="rows">
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d4.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d5.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <img class="img-responsive adz" src="<?= Yii::app()->baseUrl ?>/images/sd.jpg">
+
+
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 col-xs-6 mob deals-effects">
+                                                                <div class="deals-effect">
+                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl ?>/images/d3.jpg">
+                                                                        <div class="overlay"></div>
+                                                                        <div class="buy">
+                                                                                <a class="buybtn" href="#">Buy Now</a>
+                                                                        </div>
+                                                                </div>
+
+
+
+                                                                <h2>Big Rock CouponsFlat 35% OFF
+                                                                        on Shared Hosting</h2>
+                                                                <div class="star">
+                                                                        <ul>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                                <li><i class="fa stars fa-star-o"></i></li>
+                                                                        </ul>
+                                                                </div>
+
+
+                                                                <div class="blocked">
+                                                                        <div class="social">
+                                                                                <ul>
+                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                </ul>
+                                                                        </div>
+
+                                                                        <div class="price">
+                                                                                <h3>249.00</h3>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+
+
+                                                        <div class="visible-sm visible-xs clearfix"></div>
+                                                </div>-->
+                        <!--<div class="clearfix"></div>-->
+                        <!--<button class="ripple">Load More</button>-->
 
 
                 </div>

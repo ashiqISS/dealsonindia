@@ -22,6 +22,7 @@ return array(
         'user.controllers.*',
         'user.views.*',
         'user.extensions.yii-mail.*',
+        'user.extensions.yiinfinite-scroll.YiinfiniteScroller',
     ),
     'modulePath' => $user . '/modules/',
     'modules' => array(
