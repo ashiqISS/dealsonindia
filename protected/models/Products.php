@@ -93,7 +93,7 @@ class Products extends CActiveRecord {
                     array('hover_image, deal_location, video', 'length', 'max' => 150),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
-                    array('id, category_id, product_name, product_code, product_type, brand_id, merchant, merchant_type, description, main_image, gallery_images, hover_image, canonical_name, vendor, deal_location, meta_title, meta_description, meta_keywords, header_visibility, sort_order, display_category_name, brand, size, price, wholesale_price, is_discount_available, discount, discount_type, discount_rate, deal_price, quantity, requires_shipping, shipping_rate, enquiry_sale, new_from, new_to, sale_from, sale_to, special_price_from, special_price_to, tax, gift_option, stock_availability, video_link, video, weight, weight_class, status, exchange, search_tag, related_products, is_cod_available, is_available, is_featured, is_admin_approved, CB, UB, DOC, DOU', 'safe', 'on' => 'search'),
+                    array('id, category_id, product_name, product_code, product_type, brand_id, merchant, merchant_type, description, main_image, gallery_images, hover_image, canonical_name, vendor, deal_location, meta_title, meta_description, meta_keywords, header_visibility, sort_order, display_category_name, brand, size, price, wholesale_price, is_discount_available, discount, discount_type, discount_rate, deal_price, quantity, requires_shipping, shipping_rate, enquiry_sale, new_from, new_to, sale_from, sale_to, special_price_from, special_price_to, tax, gift_option, stock_availability, video_link, video, weight, weight_class, status, exchange, search_tag, related_products, is_cod_available, is_available, is_featured, is_admin_approved, CB, UB, DOC, DOU ,deal_link', 'safe', 'on' => 'search'),
                 );
         }
 
@@ -121,6 +121,7 @@ class Products extends CActiveRecord {
                     'product_type' => 'Product Type',
                     'brand_id' => 'Brand',
                     'merchant' => 'Merchant',
+                    'deal_link' => 'Deal Link',
                     'merchant_type' => 'Merchant Type',
                     'description' => 'Description',
                     'main_image' => 'Main Image',
@@ -197,6 +198,7 @@ class Products extends CActiveRecord {
                 $criteria->compare('category_id', $this->category_id, true);
                 $criteria->compare('product_name', $this->product_name, true);
                 $criteria->compare('product_code', $this->product_code, true);
+                $criteria->compare('deal_link', $this->deal_link, true);
                 $criteria->compare('product_type', $this->product_type, true);
                 $criteria->compare('brand_id', $this->brand_id);
                 $criteria->compare('merchant', $this->merchant);
