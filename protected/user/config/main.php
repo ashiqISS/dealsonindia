@@ -39,6 +39,8 @@ return array(
     'components' => array(
         'Upload' => array('class' => 'UploadFile'),
         'category' => array('class' => 'selectCategory'),
+        'Currency' => array('class' => 'Converter'),
+        'Discount' => array('class' => 'DiscountPrice'),
         'Menu' => array('class' => 'MenuCategory'),
         'user' => array(
             // enable cookie-based authentication

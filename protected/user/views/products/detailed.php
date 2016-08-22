@@ -1,66 +1,131 @@
 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl; ?>/css/jquery.fancybox.css">
-
-
+<style>
+        .product_thumb ul li {
+                width: 88px;
+                height: 88px;
+                border: 1px solid #ccc;
+                background-color: #f7f7f7;
+                margin-bottom: 5px;
+        }
+</style>
+<script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
+<?php
+$folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
+?>
 <section class="product-view">
         <div class="container">
                 <div class="row">
                         <div class="col-xs-12">
-                                <h2>Mi 4i (White, 16GB)</h2>
+                                <h2><?php echo $products->product_name; ?></h2>
 
                         </div>
-
-
-
+                        <div class="col-xs-12">
+                                <?php if (Yii::app()->user->hasFlash('success')): ?>
+                                        <div class="alert alert-success mesage">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong>Success!</strong> <?php echo Yii::app()->user->getFlash('success'); ?>
+                                        </div>
+                                <?php endif; ?>
+                                <?php if (Yii::app()->user->hasFlash('error')): ?>
+                                        <div class="alert alert-danger mesage">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong>sorry!</strong><?php echo Yii::app()->user->getFlash('error'); ?>
+                                        </div>
+                                <?php endif; ?>
+                        </div>
                         <div class="col-xs-5 col-sm-12 col-md-5 for-mob">
-
                                 <div class="pro">
-
                                         <div class="product_thumb hidden-xs">
                                                 <ul id="gal1">
-                                                        <li>
-                                                                <a href="#" data-image="<?= Yii::app()->baseUrl; ?>/images/m2.jpg" data-zoom-image="<?= Yii::app()->baseUrl; ?>/images/m3.jpg" class="">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/m1.jpg" alt=""> </a>
-                                                        </li>
-                                                        <li>
-                                                                <a href="#" data-image="<?= Yii::app()->baseUrl; ?>/images/k2.jpg" data-zoom-image="<?= Yii::app()->baseUrl; ?>/images/k3.jpg" class="">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/k1.jpg" alt=""> </a>
-                                                        </li>
+                                                        <?php
+                                                        //  $folder = Yii::app()->Upload->folderName(0, 1000, $product->id);
+                                                        $big = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $products->id . '/gallery/big';
+                                                        $bigg = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $products->id . '/gallery/big/';
+                                                        $thu = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $products->id . '/gallery/small';
+                                                        $thumbs = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $products->id . '/gallery/small/';
+                                                        $zoo = Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $products->id . '/gallery/zoom';
+                                                        $zoom = Yii::app()->request->baseUrl . '/uploads/products/' . $folder . '/' . $products->id . '/gallery/zoom/';
+                                                        $file_display = array('jpg', 'jpeg', 'png', 'gif');
+                                                        if (file_exists($big) == false) {
 
-                                                        <li>
-                                                                <a href="#" data-image="<?= Yii::app()->baseUrl; ?>/images/l2.jpg" data-zoom-image="<?= Yii::app()->baseUrl; ?>/images/l3.jpg" class="">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/l1.jpg" alt=""> </a>
-                                                        </li>
-                                                        <li>
-                                                                <a href="#" data-image="<?= Yii::app()->baseUrl; ?>/images/m2.jpg" data-zoom-image="<?= Yii::app()->baseUrl; ?>/images/m3.jpg" class="">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/m1.jpg" alt=""> </a>
-                                                        </li>
+                                                        } else {
+                                                                $dir_contents = scandir($big);
+                                                                $i = 0;
+                                                                foreach ($dir_contents as $file) {
+                                                                        $file_type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                                                        if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true) {
+                                                                                ?>
+                                                                                <li>
+                                                                                        <a href="#" data-image="<?php echo $bigg . $file; ?>" data-zoom-image="<?php echo $zoom . $file; ?>" class="">
+                                                                                                <img src="<?php echo $thumbs . $file; ?>" alt=""> </a>
+                                                                                </li>
+                                                                                <?php
+                                                                        }
+                                                                        ?>
+
+
+
+                                                                        <?php
+                                                                }
+                                                                $i++;
+                                                        }
+                                                        ?>
+
                                                 </ul>
                                         </div>
+                                        <?php
+                                        $folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
+                                        ?>
 
-                                        <div class="product_big_image hidden-xs">
-                                                <img src="<?= Yii::app()->baseUrl; ?>/images/m2.jpg" id="laksyah_zoom" data-zoom-image="<?= Yii::app()->baseUrl; ?>/images/m3.jpg" alt=""/>
-                                        </div>
+                                        <?php
+                                        if (!empty($dir_contents)) {
+
+                                                foreach ($dir_contents as $file1) {
+
+                                                }
+                                                ?>
+                                                <div class="product_big_image hidden-xs"> <img src="<?php echo $bigg . $file1; ?>" id="laksyah_zoom" data-zoom-image="<?php echo $zoom . $file1; ?>" alt=""/>
+
+                                                </div>
+                                        <?php } else { ?>
+
+                                                <div class="product_big_image"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $products->id ?>/big.<?= $products->main_image ?>" id="laksyah_zoom" data-zoom-image="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $products->id ?>/zoom.<?= $products->main_image ?>" alt=""/>
+                                                </div>
+                                        <?php } ?>
+
+
                                         <div class="clearfix"></div>
 
                                         <div class="visible-xs">
                                                 <div class="gallery">
-                                                        <div class="item">
-                                                                <div class="main">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/m2.jpg">
-                                                                </div>
-                                                        </div>
+                                                        <?php if (file_exists($big) == false) { ?>
+                                                                <div class = "item"> <img src = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $products->id ?>/big.<?= $products->main_image ?>" id = "laksyah_zoom" data-zoom-image = "<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?= $folder ?>/<?= $product->id ?>/big.<?= $product->main_image ?>"></div>
+                                                                <?php
+                                                        } else {
+                                                                $dir_contents = scandir($big);
+                                                                $i = 0;
+                                                                foreach ($dir_contents as $file) {
+                                                                        $file_type = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                                                        if ($file !== '.' && $file !== '..' && in_array($file_type, $file_display) == true) {
+                                                                                ?>
+                                                                                <div class="item">
+                                                                                        <div class="main">
+                                                                                                <img src="<?php echo $bigg . $file; ?>"  >
 
-                                                        <div class="item">
-                                                                <div class="main">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/k2.jpg">
-                                                                </div>
-                                                        </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                                <?php
+                                                                        }
+                                                                        ?>
 
-                                                        <div class="item">
-                                                                <div class="main">
-                                                                        <img src="<?= Yii::app()->baseUrl; ?>/images/l2.jpg">
-                                                                </div>
-                                                        </div>
+
+
+                                                                        <?php
+                                                                }
+                                                                $i++;
+                                                        }
+                                                        ?>
+
                                                 </div>
 
                                         </div>
@@ -75,8 +140,7 @@
                         <div class="col-xs-7 col-sm-12 col-md-7 for-mob">
                                 <div class="soon">
                                         <img class="exp sd" src="<?= Yii::app()->baseUrl; ?>/images/soon.png">
-                                        <h5>Mi 4i (White, 16GB)</h5>
-
+                                        <h5><?php echo $products->product_name; ?></h5>
                                         <div class="detail">
                                                 <div class="detail-1">
                                                         <span class="sans">Product Code</span>
@@ -86,7 +150,7 @@
                                                         <span class="sans">:</span>
                                                 </div>
                                                 <div class="detail-3">
-                                                        <span class="sansz">123456789</span>
+                                                        <span class="sansz"><?php echo $products->product_code; ?></span>
                                                 </div>
 
                                         </div>
@@ -99,7 +163,7 @@
                                                         <span class="sans">:</span>
                                                 </div>
                                                 <div class="detail-3">
-                                                        <span class="sansz">10 min ago</span>
+                                                        <span class="sansz"><?php echo $time; ?></span>
                                                 </div>
 
                                         </div>
@@ -114,7 +178,7 @@
                                                         <span class="sans">:</span>
                                                 </div>
                                                 <div class="detail-3">
-                                                        <span class="sans3">11,999</span>
+                                                        <span class="sans3"><?php echo Yii::app()->Discount->Discount($products); ?></span>
                                                 </div>
 
                                         </div>
@@ -122,8 +186,9 @@
                                         <div class="clearfix"></div>
                                         <div class="wishlist">
                                                 <ul>
-                                                        <li><a class="cart1" href="#">Add to cart</a></li>
-                                                        <li><a class="cart2" href="#">Add to wish list</a></li>
+                                                        <input type = "hidden" value = "<?= $products->canonical_name; ?>" id="cano_name_<?= $products->id; ?>" name="cano_name">
+                                                        <li><a class="cart1 add_to_cart"  id="<?= $products->id; ?>">Add to cart</a></li>
+                                                        <li><a class="cart2 add_to_wishlist" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products/Wishlist/id/<?= $products->id; ?>">Add to wish list</a></li>
                                                 </ul>
                                         </div>
 
@@ -162,9 +227,7 @@
                 <div class="row">
                         <div class="col-xs-12">
                                 <h1>Product Description</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                                        est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium </p>
+                                <p><?php echo $products->description; ?></p>
 
 
                         </div>
@@ -335,278 +398,61 @@
 
                                 <h4>You may also like</h4>
                                 <div class="moreproducts">
-                                        <div class="item lak">
-                                                <div class="main">
-                                                        <div class="mob deals-effects">
-                                                                <div class="deals-effect">
-                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl; ?>/images/d5.jpg">
-                                                                        <div class="overlay"></div>
-                                                                        <div class="buy">
-                                                                                <a class="buybtn" href="#">Buy Now</a>
+
+                                        <?php
+                                        $i = 1;
+                                        foreach ($you_may_also_like as $product) {
+                                                ?>
+                                                <div class="item lak">
+                                                        <div class="main">
+                                                                <div class="mob deals-effects">
+                                                                        <div class="deals-effect">
+                                                                                <?php if ($product->main_image != "") { ?>
+                                                                                        <img class="zoom"  src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php
+                                                                                        echo Yii::app()->Upload->folderName(0, 1000, $product->id)
+                                                                                        ?>/<?php echo $product->id; ?>/main.<?php echo $product->hover_image; ?>" alt=""/>
+                                                                                     <?php } ?>
+                                                                                <div class="overlay"></div>
+                                                                                <div class="buy">
+                                                                                        <?php if ($product->product_type == 2) { ?>
+                                                                                                <?php echo CHtml::link('Buy Now', array('products/Detail/', 'name' => $product->canonical_name), array('class' => 'buybtn')); ?>
+                                                                                        <?php } else { ?>
+                                                                                                <a class="buybtn" target="_blank" href="<?php echo $product->deal_link; ?>">Buy Now</a>
+                                                                                        <?php } ?>
+                                                                                </div>
                                                                         </div>
-                                                                </div>
-
-
-
-                                                                <h2>Big Rock CouponsFlat 35% OFF
-                                                                        on Shared Hosting</h2>
-                                                                <div class="star">
-                                                                        <ul>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                        </ul>
-                                                                </div>
-
-
-                                                                <div class="blocked">
-                                                                        <div class="social">
+                                                                        <h2><?php echo $product->product_name; ?></h2>
+                                                                        <div class="star">
                                                                                 <ul>
-                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                        <li><i class="fa stars fa-star"></i></li>
+                                                                                        <li><i class="fa stars fa-star"></i></li>
+                                                                                        <li><i class="fa stars fa-star"></i></li>
+                                                                                        <li><i class="fa stars fa-star-o"></i></li>
+                                                                                        <li><i class="fa stars fa-star-o"></i></li>
                                                                                 </ul>
                                                                         </div>
+                                                                        <div class="blocked">
+                                                                                <div class="social">
+                                                                                        <ul>
+                                                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                                                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                                                                        </ul>
+                                                                                </div>
 
-                                                                        <div class="price">
-                                                                                <h3>249.00</h3>
+                                                                                <div class="price">
+                                                                                        <h3><?php echo $product->price; ?></h3>
+                                                                                </div>
                                                                         </div>
                                                                 </div>
+
+
                                                         </div>
-
-
                                                 </div>
-                                        </div>
 
-                                        <div class="item lak">
-                                                <div class="main">
-                                                        <div class="mob deals-effects">
-                                                                <div class="deals-effect">
-                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl; ?>/images/d5.jpg">
-                                                                        <div class="overlay"></div>
-                                                                        <div class="buy">
-                                                                                <a class="buybtn" href="#">Buy Now</a>
-                                                                        </div>
-                                                                </div>
+                                        <?php } ?>
 
 
-
-                                                                <h2>Big Rock CouponsFlat 35% OFF
-                                                                        on Shared Hosting</h2>
-                                                                <div class="star">
-                                                                        <ul>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                        </ul>
-                                                                </div>
-
-
-                                                                <div class="blocked">
-                                                                        <div class="social">
-                                                                                <ul>
-                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                                                </ul>
-                                                                        </div>
-
-                                                                        <div class="price">
-                                                                                <h3>249.00</h3>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-
-
-                                                </div>
-                                        </div>
-
-                                        <div class="item lak">
-                                                <div class="main">
-                                                        <div class="mob deals-effects">
-                                                                <div class="deals-effect">
-                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl; ?>/images/d5.jpg">
-                                                                        <div class="overlay"></div>
-                                                                        <div class="buy">
-                                                                                <a class="buybtn" href="#">Buy Now</a>
-                                                                        </div>
-                                                                </div>
-
-
-
-                                                                <h2>Big Rock CouponsFlat 35% OFF
-                                                                        on Shared Hosting</h2>
-                                                                <div class="star">
-                                                                        <ul>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                        </ul>
-                                                                </div>
-
-
-                                                                <div class="blocked">
-                                                                        <div class="social">
-                                                                                <ul>
-                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                                                </ul>
-                                                                        </div>
-
-                                                                        <div class="price">
-                                                                                <h3>249.00</h3>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-
-
-                                                </div>
-                                        </div>
-
-
-                                        <div class="item lak">
-                                                <div class="main">
-                                                        <div class="mob deals-effects">
-                                                                <div class="deals-effect">
-                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl; ?>/images/d5.jpg">
-                                                                        <div class="overlay"></div>
-                                                                        <div class="buy">
-                                                                                <a class="buybtn" href="#">Buy Now</a>
-                                                                        </div>
-                                                                </div>
-
-
-
-                                                                <h2>Big Rock CouponsFlat 35% OFF
-                                                                        on Shared Hosting</h2>
-                                                                <div class="star">
-                                                                        <ul>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                        </ul>
-                                                                </div>
-
-
-                                                                <div class="blocked">
-                                                                        <div class="social">
-                                                                                <ul>
-                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                                                </ul>
-                                                                        </div>
-
-                                                                        <div class="price">
-                                                                                <h3>249.00</h3>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-
-
-                                                </div>
-                                        </div>
-
-
-                                        <div class="item lak">
-                                                <div class="main">
-                                                        <div class="mob deals-effects">
-                                                                <div class="deals-effect">
-                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl; ?>/images/d5.jpg">
-                                                                        <div class="overlay"></div>
-                                                                        <div class="buy">
-                                                                                <a class="buybtn" href="#">Buy Now</a>
-                                                                        </div>
-                                                                </div>
-
-
-
-                                                                <h2>Big Rock CouponsFlat 35% OFF
-                                                                        on Shared Hosting</h2>
-                                                                <div class="star">
-                                                                        <ul>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                        </ul>
-                                                                </div>
-
-
-                                                                <div class="blocked">
-                                                                        <div class="social">
-                                                                                <ul>
-                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                                                </ul>
-                                                                        </div>
-
-                                                                        <div class="price">
-                                                                                <h3>249.00</h3>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-
-
-                                                </div>
-                                        </div>
-
-
-                                        <div class="item lak">
-                                                <div class="main">
-                                                        <div class="mob deals-effects">
-                                                                <div class="deals-effect">
-                                                                        <img class="zoom" src="<?= Yii::app()->baseUrl; ?>/images/d5.jpg">
-                                                                        <div class="overlay"></div>
-                                                                        <div class="buy">
-                                                                                <a class="buybtn" href="#">Buy Now</a>
-                                                                        </div>
-                                                                </div>
-
-
-
-                                                                <h2>Big Rock CouponsFlat 35% OFF
-                                                                        on Shared Hosting</h2>
-                                                                <div class="star">
-                                                                        <ul>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                                <li><i class="fa stars fa-star-o"></i></li>
-                                                                        </ul>
-                                                                </div>
-
-
-                                                                <div class="blocked">
-                                                                        <div class="social">
-                                                                                <ul>
-                                                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                                                                </ul>
-                                                                        </div>
-
-                                                                        <div class="price">
-                                                                                <h3>249.00</h3>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-
-
-                                                </div>
-                                        </div>
 
                                 </div>
                         </div>
@@ -692,7 +538,6 @@
 
 </script>
 
-<script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
 
 <script src="<?= Yii::app()->baseUrl; ?>/js/jquery.fancybox.pack.js"></script>
 
@@ -709,4 +554,50 @@
         });
 
 
+</script>
+
+
+<script>
+
+        $(".add_to_cart").click(function () {
+
+                var id = $(this).attr('id');
+                var canname = $("#cano_name_" + id).val();
+                var qty = 1;
+                var option_color = 0;
+                var option_size = 0;
+                var master_option = 0;
+                addtocart(canname, qty, option_color = null, option_size = null, master_option = null);
+        });
+        function addtocart(canname, qty, option_color, option_size, master_option) {
+
+                if (option_color === undefined) {
+                        option_color = null;
+                }
+                if (option_size === undefined) {
+                        option_size = null;
+                }
+                if (master_option === undefined) {
+                        master_option = null;
+                }
+                $.ajax({
+                        type: "POST",
+                        url: baseurl + 'cart/Buynow',
+                        data: {cano_name: canname, qty: qty, option_color: option_color, option_size: option_size, master_option: master_option}
+                }).done(function (data) {
+                        if (data == 9) {
+
+                                $('.option_errors').html('<p>Invalid Product.Please try again</p>').show();
+                        } else {
+
+                                $('.option_errors').html("").hide();
+//                                getcartcount();
+//                                getcarttotal();
+                                $(".cart_box").show();
+                                $(".cart_box").html(data);
+                                $("html, body").animate({scrollTop: 0}, "slow");
+                        }
+                        hideLoader();
+                });
+        }
 </script>

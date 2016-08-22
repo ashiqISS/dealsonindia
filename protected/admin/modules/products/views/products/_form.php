@@ -3,7 +3,14 @@
 /* @var $model Products */
 /* @var $form CActiveForm */
 ?>
-
+<style>
+        .featured_details{
+                margin-bottom: 25px;
+        }
+        .bot{
+                margin-bottom: 25px;
+        }
+</style>
 <div class="form">
 
         <?php
@@ -136,6 +143,77 @@
                         <?php echo $form->error($model, 'description'); ?>
                 </div>
         </div>
+        <div class="form-group">
+                <div class="col-sm-2 control-label">
+                        <label for="Products_category_id" >Product Features </label> </div>
+                <div class="col-xs-12 col-sm-8">
+                        <div class="row">
+                                <?php if (!$model->isNewRecord) { ?>
+                                        <?php $prod_features = ProductFeatures::model()->findAllByAttributes(array('product_id' => $model->id)); ?>
+                                        <?php if (!empty($prod_features)) { ?>
+                                                <?php
+                                                $i = 1;
+                                                foreach ($prod_features as $prod_feature) {
+                                                        ?>
+                                                        <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
+                                                        <?php
+                                                        $i++;
+                                                }
+                                        } else {
+                                                ?>
+                                                <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
+
+                                                <?php
+                                        }
+                                } else {
+                                        ?>
+                                        <div class = "featured_details" id = "f1"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"></textarea></div></div>
+                                <?php } ?>
+                                <div class="" id="file_tools"> </div>
+                        </div>
+                </div>
+                <div class="col-sm-2 col-xs-12 ">
+                        <i class="fa fa-plus-circle" id="add_file" style="font-size: 18px; margin-top: 20px; cursor: pointer;"></i>
+                        <i class="fa fa-minus-circle " id="del_file" style="font-size: 18px; margin-top: 20px; cursor: pointer;"></i>
+                </div>
+                <script>
+<?php
+if (!$model->isNewRecord) {
+        if (count($prod_features) > 1) {
+                ?>
+                                        var counter = <?php echo count($prod_features); ?>;
+
+        <?php } else {
+                ?>
+                                        var counter = 2;
+                <?php
+        }
+} else {
+        ?>
+                                var counter = 2;
+<?php } ?>
+
+                        //$('#del_file').hide();
+                        $('#add_file').click(function () {
+                                if (counter < 50)
+                                {
+                                        $('#file_tools').before('<div class="featured_details" id="f' + counter + '"><div class="col-sm-6 col-xs-12 "><input size="60" maxlength="150" class="form-control" name="ProductFeatures[feature_heading][]" placeholder="Feature Heading" id="Products_deal_location" type="text"></div><div class="col-sm-6 col-xs-12 bot"><textarea rows="2" cols="50" class="form-control" name="ProductFeatures[feature_disc][]" placeholder="Feature Descritpion" id="Products_meta_description"></textarea></div></div>');
+                                        $('#del_file').fadeIn(0);
+                                        counter++;
+                                }
+                        });
+                        $('#del_file').click(function () {
+                                if (counter == 2) {
+                                        $('#del_file').hide();
+                                }
+
+
+                                counter--;
+                                $('#f' + counter).remove();
+                        });
+                </script>
+
+        </div>
 
         <div class="form-group">
                 <?php echo $form->labelEx($model, 'Main Image ( image size : 250 X 141 )', array('class' => 'col-sm-2 control-label')); ?>
@@ -162,7 +240,7 @@
                             'denied' => 'Invalid file type', // useful, i think
                         ));
                         ?>
-
+                        <br />
                         <?php
                         if (!$model->isNewRecord) {
                                 $folder = Yii::app()->Upload->folderName(0, 1000, $model->id);
@@ -188,14 +266,17 @@
                                                 $arry = explode('/', $file);
                                                 echo '<div style="float:left;margin:5px;position:relative;">'
                                                 . '<a style="position:absolute;top:43%;left:40%;color:red;" href="' . Yii::app()->baseUrl . '/admin.php/products/products/NewDelete?id=' . $model->id . '&path=' . $file_name . '"><i class="glyphicon glyphicon-trash"></i></a>'
-                                                . ' <img style="width:100px;height:100px;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/gallery/' . end($arry) . '"> </div>';
+                                                . ' <img style="width:75px; height:125px;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/gallery/' . end($arry) . '"> </div>';
                                         }
                                 }
                         }
                         ?>
+
                 </div>
+
                 <?php echo $form->error($model, 'gallery_images'); ?>
         </div>
+        <br />
         <div class="form-group">
                 <div class="col-sm-2 control-label">
                         <?php echo $form->labelEx($model, 'deal_location'); ?>

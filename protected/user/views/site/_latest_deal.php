@@ -54,7 +54,7 @@
                                         </div>
 
                                         <div class="price">
-                                                <h3><?php echo $product->price; ?></h3>
+                                                <h3><?php echo Yii::app()->Discount->Discount($product); ?></h3>
                                         </div>
                                 </div>
                         </div>

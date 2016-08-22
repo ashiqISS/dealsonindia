@@ -92,8 +92,11 @@ class ProductsController extends Controller {
 
                 $model1 = Products::model()->findByPk($id);
                 $model->attributes = $model1->attributes;
+                $model->DOC = date('Y-m-d H:i:s');
 
                 if ($model->save()) {
+                        $model->canonical_name = str_replace(" ", "-", $model->product_name) . '-' . $model->id;
+                        $model->save();
                         $folder = Yii::app()->Upload->folderName(0, 1000, $model->id) . '/';
                         $src = yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/';
                         $dst = yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $model->id;
@@ -108,9 +111,11 @@ class ProductsController extends Controller {
          */
         public function actionCreate() {
                 $model = new Products;
+                $features = new ProductFeatures;
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
+
 
                 if (isset($_POST['Products'])) {
 
@@ -127,6 +132,7 @@ class ProductsController extends Controller {
                         $model->special_price_to = $_POST['Products']['special_price_to'];
                         $model->DOC = $_POST['Products']['DOC'];
                         $model->DOU = $_POST['Products']['DOU'];
+                        $model->DOC = date('Y-m-d H:i:s');
 //            print_r($model->attributes);
 
 
@@ -177,38 +183,52 @@ class ProductsController extends Controller {
 
                         $model->CB = Yii::app()->session['admin']['id'];
                         $model->UB = Yii::app()->session['admin']['id'];
-                        $model->DOC = date('Y-m-d');
-                        $model->DOU = date('Y-m-d');
+                        $model->DOC = date('Y-m-d H:i:s');
+//                        $model->DOU = date('Y-m-d');
 
 
                         if ($model->validate()) {
 
 
                                 if ($model->save()) {
+                                        if (isset($_POST['ProductFeatures'])) {
+                                                if (isset($_POST['ProductFeatures'])) {
+                                                        $desc = $_POST['ProductFeatures']['feature_disc'];
+                                                        $heading = $_POST['ProductFeatures']['feature_heading'];
+                                                        for ($i = 0; $i < count($desc); $i++) {
+                                                                $features = new ProductFeatures;
+                                                                $features->product_id = $model->id;
+                                                                $features->feature_disc = $desc[$i];
+                                                                $features->feature_heading = $heading[$i];
+                                                                $features->save(false);
+                                                        }
+                                                }
+                                        }
+
                                         $model->canonical_name = $model->canonical_name . '-' . $model->id;
                                         $model->save();
 
                                         if ($image != "") {
                                                 $id = $model->id;
-                                                $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                                $dimension[0] = array('width' => '38', 'height' => '75', 'name' => 'small');
                                                 $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
-                                                $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
-                                                $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                                $dimension[2] = array('width' => '159', 'height' => '312', 'name' => 'big');
+                                                $dimension[3] = array('width' => '635', 'height' => '1248', 'name' => 'zoom');
                                                 Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
                                         }
 
                                         if ($hover_image != "") {
                                                 $id = $model->id;
-                                                $dimensions[0] = array('width' => '322', 'height' => '500', 'name' => 'hover');
+                                                $dimensions[0] = array('width' => '250', 'height' => '141', 'name' => 'hover');
                                                 Yii::app()->Upload->uploadHoverImage($hover_image, $id, true, $dimensions);
                                         }
 
                                         if ($images != "") {
                                                 $id = $model->id;
-                                                $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
-                                                $dimension[1] = array('width' => '580', 'height' => '775', 'name' => 'big');
-                                                $dimension[2] = array('width' => '250', 'height' => '141', 'name' => 'medium');
-                                                $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                                $dimension[0] = array('width' => '38', 'height' => '75', 'name' => 'small');
+                                                $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
+                                                $dimension[2] = array('width' => '159', 'height' => '312', 'name' => 'big');
+                                                $dimension[3] = array('width' => '635', 'height' => '1248', 'name' => 'zoom');
                                                 Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
                                         }
 //                    if ($video != "") {
@@ -228,6 +248,7 @@ class ProductsController extends Controller {
 
                 $this->render('create', array(
                     'model' => $model,
+                    'features' => $features,
                 ));
         }
 
@@ -239,7 +260,7 @@ class ProductsController extends Controller {
         public function actionUpdate($id) {
                 $model = $this->loadModel($id);
                 $model->setScenario('update');
-
+                $features = new ProductFeatures;
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 //        if (isset($_POST['Products'])) {
@@ -319,13 +340,13 @@ class ProductsController extends Controller {
 //            $model->CB = Yii::app()->session['admin']['id'];
                         $model->UB = Yii::app()->session['admin']['id'];
 //            $model->DOC = date('Y-m-d');
-                        $model->DOU = date('Y-m-d');
+//                        $model->DOU = date('Y-m-d H:i:s');
                         if ($image != "") {
                                 $id = $model->id;
-                                $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                $dimension[0] = array('width' => '38', 'height' => '75', 'name' => 'small');
                                 $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
-                                $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
-                                $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                $dimension[2] = array('width' => '159', 'height' => '312', 'name' => 'big');
+                                $dimension[3] = array('width' => '635', 'height' => '1248', 'name' => 'zoom');
                                 Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
                         } else {
                                 $model->main_image = $image1;
@@ -342,10 +363,10 @@ class ProductsController extends Controller {
 
                         if ($images != "") {
                                 $id = $model->id;
-                                $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                $dimension[0] = array('width' => '38', 'height' => '75', 'name' => 'small');
                                 $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
-                                $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
-                                $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                $dimension[2] = array('width' => '159', 'height' => '312', 'name' => 'big');
+                                $dimension[3] = array('width' => '635', 'height' => '1248', 'name' => 'zoom');
                                 Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
                         } else {
                                 $model->gallery_images = $image0;
@@ -353,6 +374,25 @@ class ProductsController extends Controller {
 
                         if ($model->validate()) {
                                 if ($model->save(false)) {
+                                        if (isset($_POST['ProductFeatures'])) {
+                                                $desc = $_POST['ProductFeatures']['feature_disc'];
+                                                $heading = $_POST['ProductFeatures']['feature_heading'];
+                                                for ($i = 0; $i < count($desc); $i++) {
+                                                        $features = new ProductFeatures;
+                                                        $features->feature_disc = $desc[$i];
+                                                        $features->product_id = $model->id;
+                                                        $features->feature_heading = $heading[$i];
+                                                        $exfeature = ProductFeatures::model()->findByAttributes(array('feature_heading' => $heading[$i], 'feature_disc' => $desc[$i], 'product_id' => $model->id));
+
+                                                        if (!empty($exfeature)) {
+                                                                $exfeature->product_id = $model->id;
+                                                                $exfeature->feature_heading = $heading[$i];
+                                                                $exfeature->save(flase);
+                                                        } else {
+                                                                $features->save(false);
+                                                        }
+                                                }
+                                        }
 //                                        $model->canonical_name = $model->canonical_name . '-' . $model->id;
 //                                        $model->save();
 //                    if ($video != "") {

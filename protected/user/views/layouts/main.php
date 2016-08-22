@@ -19,11 +19,15 @@
                 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
                 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,400italic,700,100italic,300italic,700italic,900' rel='stylesheet' type='text/css'>
 
-
+                <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
+                <script>
+                        var baseurl = "<?php print Yii::app()->request->baseUrl . "/index.php/"; ?>";
+                        var basepath = "<?php print Yii::app()->basePath; ?>";
+                </script>
                 <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
                 <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
                 <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
-                <script src="<?= Yii::app()->baseUrl ?>/js/slick.min.js"></script>
+
                 <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
                 <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
                 <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
@@ -203,35 +207,34 @@
                                                         </div>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6">
+
+
+
+
                                                         <div class="signs">
-                                                                <div class="sign-1 clickme">
+                                                                <div class="sign-1 clickme  ">
 
                                                                         <a class="sg" href="#"><i class="fa fa-shopping-bag"></i>Bag</a>
-                                                                        <div class="target">
-                                                                                <div class="item-1">
-                                                                                        <img src="<?= Yii::app()->baseUrl ?>/images/p4.jpg" alt = "jQuery" />
-                                                                                        <h1>Product Name</h1>
-                                                                                        <h2>Price</h2>
-                                                                                        <h2>Lorem Lispum</h2>
+
+                                                                        <div class="target cart_box">
+                                                                                <div class="drop_cart">
+                                                                                        <div class="item-1">
+                                                                                                <img src="<?= Yii::app()->baseUrl ?>/images/p4.jpg" alt = "jQuery" />
+                                                                                                <h1>Product Name</h1>
+                                                                                                <h2>Price</h2>
+                                                                                                <h2>Lorem Lispum</h2>
+                                                                                        </div>
+
+                                                                                        <div class="item-1">
+                                                                                                <img src="<?= Yii::app()->baseUrl ?>/images/p4.jpg" alt = "jQuery" />
+                                                                                                <h1>Product Name</h1>
+                                                                                                <h2>Price</h2>
+                                                                                                <h2>Lorem Lispum</h2>
+                                                                                        </div>
+
+
+
                                                                                 </div>
-
-                                                                                <div class="item-1">
-                                                                                        <img src="<?= Yii::app()->baseUrl ?>/images/p4.jpg" alt = "jQuery" />
-                                                                                        <h1>Product Name</h1>
-                                                                                        <h2>Price</h2>
-                                                                                        <h2>Lorem Lispum</h2>
-                                                                                </div>
-
-
-                                                                                <div class="clearfix"></div>
-
-
-                                                                                <div class="subtotal-1">
-                                                                                        <span class="subs-1">subtotal</span>
-                                                                                </div>
-                                                                                <div class="subtotal-2"><span class="subs-2"> Rs.20000</span></div>
-
-                                                                                <button type="submit" class="btn proceed-cart btn-default">My Shopping Bag / Checkout</button>
                                                                         </div>
                                                                 </div>
                                                                 <div class="sign-2 hidden-xs hidden-sm">
@@ -522,8 +525,9 @@
 
 
         </footer>
+        <script src="<?= Yii::app()->baseUrl ?>/js/slick.min.js"></script>
 
-
+        <script src="<?= Yii::app()->baseUrl ?>/js/custom.js"></script>
         <script src="<?= Yii::app()->baseUrl ?>/js/bootstrap.min.js"></script>
 
         <script src="<?= Yii::app()->baseUrl ?>/js/jquery.touchSwipe.min.js"></script>
