@@ -17,7 +17,7 @@ $(document).ready(function () {
 
         /*                  * cart remove funciton . remove individual item from cart
          */
-        $("#cart_box").on("click", ".drop_cart>.cart_item>.remove_item", function () {
+        $("body").on("click", ".drop_cart>.item-1>.remove_item", function () {
 
                 var cartid = $(this).attr('cartid');
                 var canname = $(this).attr('canname');

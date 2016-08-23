@@ -6,6 +6,42 @@ class ProductsController extends Controller {
                 date_default_timezone_set('Asia/Kolkata');
         }
 
+        public function actionDaily() {
+                $criteria = new CDbCriteria;
+                $total = Products::model()->count();
+
+                $pages = new CPagination($total);
+                $pages->pageSize = 8;
+                $pages->applyLimit($criteria);
+                $date = date('Y-m-d');
+                $criteria->addCondition("status = 1 AND is_admin_approved = 1 AND '" . $date . "' >= special_price_from AND  '" . $date . "' <= special_price_to ");
+                $products = Products::model()->findAll($criteria);
+
+                $this->render('deals', array(
+                    'products' => $products,
+                    'pages' => $pages,
+                    'total' => $total,
+                ));
+        }
+
+        public function actionHot() {
+                $criteria = new CDbCriteria;
+                $total = Products::model()->count();
+
+                $pages = new CPagination($total);
+                $pages->pageSize = 8;
+                $pages->applyLimit($criteria);
+                $date = date('Y-m-d');
+                $criteria->addCondition("status = 1 AND is_admin_approved = 1 AND is_featured = 1 AND '" . $date . "' >= special_price_from AND  '" . $date . "' <= special_price_to ");
+                $products = Products::model()->findAll($criteria);
+
+                $this->render('hot', array(
+                    'products' => $products,
+                    'pages' => $pages,
+                    'total' => $total,
+                ));
+        }
+
         public function actionCategory($name) {
                 $parent = ProductCategory::model()->findByAttributes(array('canonical_name' => $name));
                 if (empty($parent)) {
@@ -69,8 +105,9 @@ class ProductsController extends Controller {
                 $condition = trim($condition, " OR ");
                 $time = $this->time_elapsed_string($prduct->DOC, false);
                 $you_may_also_like = Products::model()->findAll(array('condition' => 'status = 1 AND is_admin_approved = 1 AND (' . $condition . ')'));
+                $product_features = ProductFeatures::model()->findAllByAttributes(array('product_id' => $prduct->id));
                 if (!empty($prduct)) {
-                        $this->render('detailed', array('time' => $time, 'products' => $prduct, 'you_may_also_like' => $you_may_also_like));
+                        $this->render('detailed', array('time' => $time, 'products' => $prduct, 'you_may_also_like' => $you_may_also_like, 'product_features' => $product_features));
                 } else {
                         $this->redirect(array('Site/Error'));
                 }

@@ -1,3 +1,19 @@
+<script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
+<script src="<?= Yii::app()->baseUrl ?>/js/jquery.infinitescroll.min.js"></script>
+<?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
+<?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
+<?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
+<script> //            this script is for solving error : "Cannot read property 'msie' of undefined"
+        jQuery.browser = {};
+        (function () {
+                jQuery.browser.msie = false;
+                jQuery.browser.version = 0;
+                if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                        jQuery.browser.msie = true;
+                        jQuery.browser.version = RegExp.$1;
+                }
+        })();
+</script>
 <style>
         .product {
                 border-bottom: 1px solid #ccc;
@@ -17,7 +33,7 @@
                                         <?php if ($product->main_image != "") { ?>
                                                 <img class="zoom"  src="<?php echo Yii::app()->request->baseUrl; ?>/uploads/products/<?php
                                                 echo Yii::app()->Upload->folderName(0, 1000, $product->id)
-                                                ?>/<?php echo $product->id; ?>/main.<?php echo $product->hover_image; ?>" alt=""/>
+                                                ?>/<?php echo $product->id; ?>/main.<?php echo $product->main_image; ?>" alt=""/>
                                              <?php } ?>
 
                                         <div class="overlay"></div>

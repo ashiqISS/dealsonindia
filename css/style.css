@@ -1927,7 +1927,7 @@ i.fa.rupee.fa-rupee {
         margin-bottom: 10px;
 }
 .shoppingcart h4 {
-        font-size: 23px;
+        font-size: 21px;
         font-weight: 600;
         font-family: 'Lato', sans-serif;
         text-align: center;
@@ -3319,7 +3319,7 @@ a.hd:hover {
         position: absolute;
         top: 56px !important;
         width: 290px;
-        min-height: 298px;
+        /*        min-height: 298px;*/
         background-color: #fdfbfb;
         right: 99px;
         box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.45);
@@ -4070,8 +4070,8 @@ i.fa.fa-youtube:hover {
         -webkit-transition-delay: .2s;
 }
 .rows {
-        border-bottom: 1px solid #ccc;
-        float: left;
+        /*border-bottom: 1px solid #ccc;*/
+        /*float: left;*/
         padding-bottom: 40px;
         padding-top: 40px;
 }
@@ -4473,7 +4473,7 @@ a.buybtn:hover {
                 position: absolute;
                 top: 48px !important;
                 width: 290px;
-                min-height: 298px;
+                /*min-height: 298px;*/
                 background-color: #fdfbfb;
         }
         .dropup img.main-logo {
@@ -4490,7 +4490,7 @@ a.buybtn:hover {
                 position: absolute;
                 top: 14px !important;
                 width: 290px;
-                min-height: 298px;
+                /*min-height: 298px;*/
                 background-color: #fdfbfb;
                 right: 99px;
                 box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.45);
@@ -4865,7 +4865,7 @@ a.buybtn:hover {
                 position: absolute;
                 top: 48px !important;
                 width: 290px;
-                min-height: 298px;
+                /*min-height: 298px;*/
                 background-color: #fdfbfb;
         }
         .dropup img.main-logo {
@@ -4882,7 +4882,7 @@ a.buybtn:hover {
                 position: absolute;
                 top: 14px !important;
                 width: 290px;
-                min-height: 298px;
+                /*min-height: 298px;*/
                 background-color: #fdfbfb;
                 right: 99px;
                 box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.45);
@@ -5216,7 +5216,7 @@ a.buybtn:hover {
                 position: absolute;
                 top: 14px !important;
                 width: 290px;
-                min-height: 298px;
+                /*min-height: 298px;*/
                 background-color: #fdfbfb;
                 right: 14px;
                 box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.45);

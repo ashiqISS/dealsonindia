@@ -14,6 +14,20 @@ class DiscountPrice extends CApplicationComponent {
                 }
         }
 
+        public function DiscountCart($model, $qty) {
+
+                //discount rate value not equal to null//
+
+                if ($model->is_discount_available == 1) {
+                        $value = $this->DiscountType($model);
+                        $newvalue = $value * $qty;
+                        return Yii::app()->Currency->convert($newvalue);
+                } else {
+                        $newvalue = $model->price * $qty;
+                        return Yii::app()->Currency->convert($model->price);
+                }
+        }
+
         public function DiscountAmount($model) {
 
                 //discount rate value not equal to null//

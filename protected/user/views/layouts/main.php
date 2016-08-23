@@ -10,6 +10,7 @@
                 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/jquery-ui.min.css">
 
                 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/style.css">
+                <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/custom.css">
                 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/full_width_animated_layers_004.css">
                 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/full_width_animated_layers_001.css">
                 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/slick.css">
@@ -20,6 +21,7 @@
                 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,400italic,700,100italic,300italic,700italic,900' rel='stylesheet' type='text/css'>
 
                 <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
+                <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
                 <script>
                         var baseurl = "<?php print Yii::app()->request->baseUrl . "/index.php/"; ?>";
                         var basepath = "<?php print Yii::app()->basePath; ?>";
@@ -28,9 +30,7 @@
                 <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
                 <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
 
-                <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
-                <?php Yii::app()->clientscript->scriptMap['jquery.min.js'] = $jquery; ?>
-                <?php Yii::app()->clientscript->scriptMap['jquery.js'] = $jquery; ?>
+
                 <script>
                         //            this script is for solving error : "Cannot read property 'msie' of undefined"
 
@@ -218,21 +218,6 @@
 
                                                                         <div class="target cart_box">
                                                                                 <div class="drop_cart">
-                                                                                        <div class="item-1">
-                                                                                                <img src="<?= Yii::app()->baseUrl ?>/images/p4.jpg" alt = "jQuery" />
-                                                                                                <h1>Product Name</h1>
-                                                                                                <h2>Price</h2>
-                                                                                                <h2>Lorem Lispum</h2>
-                                                                                        </div>
-
-                                                                                        <div class="item-1">
-                                                                                                <img src="<?= Yii::app()->baseUrl ?>/images/p4.jpg" alt = "jQuery" />
-                                                                                                <h1>Product Name</h1>
-                                                                                                <h2>Price</h2>
-                                                                                                <h2>Lorem Lispum</h2>
-                                                                                        </div>
-
-
 
                                                                                 </div>
                                                                         </div>

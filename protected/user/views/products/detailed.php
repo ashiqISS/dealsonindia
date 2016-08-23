@@ -238,112 +238,16 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
                         <div class="col-xs-12">
                                 <h1>Technical Details</h1>
                         </div>
-                        <div class="col-xs-12 col-sm-6">
-                                <div class="ink">
-                                        <div class="ins1">OS</div>
-                                        <div class="ins2">Android, Lollipop</div>
-                                </div>
-
-
-                                <div class="ink">
-                                        <div class="ins1">RAM</div>
-                                        <div class="ins2">2 GB</div>
-                                </div>
-
-                                <div class="ink">
-                                        <div class="ins1">Item Weight</div>
-                                        <div class="ins2">132 gm</div>
-                                </div>
-
-
-                                <div class="ink">
-                                        <div class="ins1">Product Dimensions</div>
-                                        <div class="ins2">13.8 x 0.8 x 7 cm</div>
-                                </div>
-
-
-
-
-                                <div class="ink">
-                                        <div class="ins1">Item model number</div>
-                                        <div class="ins2">MZB4299IN</div>
-                                </div>
-
-
-
-                                <div class="ink">
-                                        <div class="ins1">Wireless
-                                                communication technologies</div>
-                                        <div class="ins2">Bluetooth</div>
-                                </div>
-
-
-                                <div class="ink">
-                                        <div class="ins1">Connectivity technologies</div>
-                                        <div class="ins2">GSM, (850/900/1800/1900 MHz), 3G,
-                                                WCDMA, (850/900/1900/2100 MHz),
-                                                4G LTE, GPRS, EDGE,
-                                                WiFi 802.11 a/b/g/n/ac
+                        <?php foreach ($product_features as $product_feature) { ?>
+                                <div class="col-xs-12 col-sm-6">
+                                        <div class="ink">
+                                                <div class="ins1"><?php echo $product_feature->feature_heading; ?></div>
+                                                <div class="ins2"><?php echo $product_feature->feature_disc; ?></div>
                                         </div>
                                 </div>
+                        <?php } ?>
 
 
-                        </div>
-
-                        <div class="col-xs-12 col-sm-6">
-                                <div class="ink">
-                                        <div class="ins1">Special features	</div>
-                                        <div class="ins2">Video Calls, Dual SIM, GPS, Music Player,
-                                                Video Player, FM Radio, Gyroscope,
-                                                Accelerometer,eCompass, Light sensor,
-                                                Proximity sensor, E-mail</div>
-                                </div>
-
-
-                                <div class="ink">
-                                        <div class="ins1">RAM</div>
-                                        <div class="ins2">2 GB</div>
-                                </div>
-
-                                <div class="ink">
-                                        <div class="ins1">Item Weight</div>
-                                        <div class="ins2">132 gm</div>
-                                </div>
-
-
-                                <div class="ink">
-                                        <div class="ins1">Product Dimensions</div>
-                                        <div class="ins2">13.8 x 0.8 x 7 cm</div>
-                                </div>
-
-
-
-
-                                <div class="ink">
-                                        <div class="ins1">Item model number</div>
-                                        <div class="ins2">MZB4299IN</div>
-                                </div>
-
-
-
-                                <div class="ink">
-                                        <div class="ins1">Wireless
-                                                communication technologies</div>
-                                        <div class="ins2">Bluetooth</div>
-                                </div>
-
-
-                                <div class="ink">
-                                        <div class="ins1">Connectivity technologies</div>
-                                        <div class="ins2">GSM, (850/900/1800/1900 MHz), 3G,
-                                                WCDMA, (850/900/1900/2100 MHz),
-                                                4G LTE, GPRS, EDGE,
-                                                WiFi 802.11 a/b/g/n/ac
-                                        </div>
-                                </div>
-
-
-                        </div>
                 </div>
 
 
@@ -596,6 +500,9 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
                                 $(".cart_box").show();
                                 $(".cart_box").html(data);
                                 $("html, body").animate({scrollTop: 0}, "slow");
+                                setInterval(function () {
+                                        $(".cart_box").hide("slow");
+                                }, 1000);
                         }
                         hideLoader();
                 });
