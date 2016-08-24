@@ -31,6 +31,7 @@
 class Users extends CActiveRecord {
 
         public $confirm_password;
+        public $verifyCode;
 
         /**
          * @return string the associated database table name
@@ -46,19 +47,21 @@ class Users extends CActiveRecord {
                 // NOTE: you should only define rules for those attributes that
                 // will receive user inputs.
                 return array(
-//            array('user_type, email, phone_number, password, activation_link, verification_code, user_status, bad_attempts, last_login, DOC, DOU, CB, UB, field1', 'required'),
-                    array('user_type, email, phone_number, password, confirm_password, user_status', 'required', 'on' => 'admin_create'),
-                    array('user_type, email, phone_number, password, confirm_password', 'required', 'on' => 'user_create'),
-                    array('confirm_password', 'compare', 'compareAttribute' => 'password', 'message' => 'Password and confirm password does not match', 'on' => 'admin_create'),
-                    array('email', 'unique'),
-                    array('user_type, phone_number, activation_link, verification_code, user_status, bad_attempts, CB, UB, field1', 'numerical', 'integerOnly' => true),
-                    array('email', 'length', 'max' => 320),
-                    array('email', 'email'),
-                    array('password, confirm_password', 'length', 'min' => 6, 'max' => 40),
-                    // The following rule is used by search().
-                    // @todo Please remove those attributes that should not be searched.
-                    array('id, user_type, email, phone_number, password, activation_link, verification_code, user_status, bad_attempts, last_login, DOC, DOU, CB, UB, field1', 'safe', 'on' => 'search'),
+                    array('user_type, email, phone_number, activation_link, verification_code, user_status, bad_attempts, last_login, DOC, DOU, CB, UB, field1', 'required'),
+//                    array('user_type, email, phone_number, password, confirm_password, user_status', 'required', 'on' => 'admin_create'),
+//                    array('user_type, email, phone_number, password, confirm_password', 'required', 'on' => 'user_create'),
+//                    array('confirm_password', 'compare', 'compareAttribute' => 'password', 'message' => 'Password and confirm password does not match', 'on' => 'admin_create'),
+//                    array('email', 'unique'),
+//                    array('user_type, phone_number, activation_link, verification_code, user_status, bad_attempts, CB, UB, field1', 'numerical', 'integerOnly' => true),
+//                    array('email', 'length', 'max' => 320),
+//                    array('email', 'email'),
+//                    array('password, confirm_password', 'length', 'min' => 6, 'max' => 40),
+//                    // The following rule is used by search().
+//                    // @todo Please remove those attributes that should not be searched.
+                    array('id, user_type, email, phone_number, activation_link, verification_code, user_status, bad_attempts, last_login, DOC, DOU, CB, UB, field1', 'safe', 'on' => 'search'),
+                    array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements()),
                 );
+//                array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements());
         }
 
         /**
@@ -68,12 +71,12 @@ class Users extends CActiveRecord {
                 // NOTE: you may need to adjust the relation name and the related
                 // class name for the relations automatically generated below.
                 return array(
-                    'buyerDetails' => array(self::HAS_MANY, 'BuyerDetails', 'user_id'),
-                    'makeProductPayments' => array(self::HAS_MANY, 'MakeProductPayment', 'userid'),
-                    'merchantDetails' => array(self::HAS_MANY, 'MerchantDetails', 'user_id'),
-                    'orders' => array(self::HAS_MANY, 'Order', 'user_id'),
-                    'userAddresses' => array(self::HAS_MANY, 'UserAddress', 'userid'),
-                    'walletHistories' => array(self::HAS_MANY, 'WalletHistory', 'user_id'),
+//                    'buyerDetails' => array(self::HAS_MANY, 'BuyerDetails', 'user_id'),
+//                    'makeProductPayments' => array(self::HAS_MANY, 'MakeProductPayment', 'userid'),
+//                    'merchantDetails' => array(self::HAS_MANY, 'MerchantDetails', 'user_id'),
+//                    'orders' => array(self::HAS_MANY, 'Order', 'user_id'),
+//                    'userAddresses' => array(self::HAS_MANY, 'UserAddress', 'userid'),
+//                    'walletHistories' => array(self::HAS_MANY, 'WalletHistory', 'user_id'),
                 );
         }
 
@@ -83,17 +86,17 @@ class Users extends CActiveRecord {
         public function attributeLabels() {
                 return array(
                     'id' => 'ID',
-                    'user_type' => 'User Type',
-//			'user_type' => '1= buyer , 2= merchant',
-                    'email' => 'Email',
-                    'phone_number' => 'Phone Number 1',
-                    'password' => 'Password',
-                    'confirm_password' => 'Confirm Password',
-//			'activation_link' => 'for email verification',
-                    'activation_link' => 'Activation Link',
-                    'verification_code' => 'Verification Code',
-//			'verification_code' => 'for mobile verification',
-                    'user_status' => 'User Status',
+//                    'user_type' => 'User Type',
+////			'user_type' => '1= buyer , 2= merchant',
+//                    'email' => 'Email',
+//                    'phone_number' => 'Phone Number 1',
+//                    'password' => 'Password',
+//                    'confirm_password' => 'Confirm Password',
+////			'activation_link' => 'for email verification',
+//                    'activation_link' => 'Activation Link',
+//                    'verification_code' => 'Verification Code',
+////			'verification_code' => 'for mobile verification',
+//                    'user_status' => 'User Status',
 //			'user_status' => '1 = activation pending, 2 = payment pending, 3 = enabled, 4 = disabled',
                     'bad_attempts' => 'Bad Attempts',
                     'last_login' => 'Last Login',
@@ -126,7 +129,6 @@ class Users extends CActiveRecord {
                 $criteria->compare('user_type', $this->user_type);
                 $criteria->compare('email', $this->email, true);
                 $criteria->compare('phone_number', $this->phone_number);
-                $criteria->compare('password', $this->password);
                 $criteria->compare('activation_link', $this->activation_link);
                 $criteria->compare('verification_code', $this->verification_code);
                 $criteria->compare('user_status', $this->user_status);

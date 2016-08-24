@@ -222,12 +222,26 @@
                                                                                 </div>
                                                                         </div>
                                                                 </div>
-                                                                <div class="sign-2 hidden-xs hidden-sm">
-                                                                        <?php echo CHtml::link('Sign Up', array('site/register'), array('class' => 'hd')); ?>
-                                                                </div>
-                                                                <div class="sign-3 hidden-xs hidden-sm">
-                                                                        <?php echo CHtml::link('Sign In', array('site/login'), array('class' => 'hd')); ?>
-                                                                </div>
+                                                                <?php if (isset(Yii::app()->session['user']) && Yii::app()->session['user'] != '') { ?>
+                                                                        <div class="sign-2 hidden-xs hidden-sm">
+                                                                                <?php echo CHtml::link('Logout', array('site/logout'), array('class' => 'hd')); ?>
+                                                                        </div>
+                                                                <?php } else { ?>
+                                                                        <div class="sign-2 hidden-xs hidden-sm">
+                                                                                <?php echo CHtml::link('Sign Up', array('site/UserRegister'), array('class' => 'hd')); ?>
+                                                                        </div>
+                                                                <?php } ?>
+                                                                <?php if (isset(Yii::app()->session['user']) && Yii::app()->session['user'] != '') { ?>
+                                                                        <div class="sign-3 hidden-xs hidden-sm">
+                                                                                <?php echo CHtml::link('My Account', array('Myaccount/index'), array('class' => 'hd')); ?>
+                                                                        </div>
+                                                                <?php } else { ?>
+                                                                        <div class="sign-3 hidden-xs hidden-sm">
+                                                                                <?php echo CHtml::link('Sign In', array('site/login'), array('class' => 'hd')); ?>
+                                                                        </div>
+                                                                <?php } ?>
+
+
 
                                                                 <div class="sign-2 visible-xs visible-sm">
                                                                         <div class="dropdown">
@@ -517,6 +531,7 @@
 
         <script src="<?= Yii::app()->baseUrl ?>/js/jquery.touchSwipe.min.js"></script>
         <script src="<?= Yii::app()->baseUrl ?>/js/paradise_slider_min.js"></script>
+        <script src="<?= Yii::app()->baseUrl ?>/js/classie.js"></script>
 
         <script>
                         var selectIds = $('#panel1,#panel2,#panel3,#panel4,#panel5,#panel6,#panel7,#panel8,#panel9,#panel10,#panel11,#panel12,#panel13,#panel14');

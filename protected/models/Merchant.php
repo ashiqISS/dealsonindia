@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'merchant':
  * @property integer $id
- * @property string $fullname
+ * @property string $first_name
  * @property string $email
  * @property string $phone_number
  * @property string $password
@@ -53,13 +53,13 @@ class Merchant extends CActiveRecord {
                 // NOTE: you should only define rules for those attributes that
                 // will receive user inputs.
                 return array(
-//            array('fullname, email, phone_number, password, email_verification, product_categories, merchant_type, product_count, shop_name, address, pincode, city, locality, district, state, country, status, CB, DOC, is_payment_done', 'required'),
-                    array('fullname, email, phone_number, password,  confirm, product_categories, merchant_type', 'required', 'on' => 'insert'),
+//            array('first_name,last_name, email, phone_number, password, email_verification, product_categories, merchant_type, product_count, shop_name, address, pincode, city, locality, district, state, country, status, CB, DOC, is_payment_done', 'required'),
+                    array('first_name,last_name, email, phone_number, password,  confirm, product_categories, merchant_type', 'required', 'on' => 'insert'),
                     // required fields on create
-                    array('fullname, email, phone_number, password, confirm_password, user_status', 'required', 'on' => 'admin_create'),
-                    array('fullname, email, phone_number, password, confirm, product_categories, merchant_type, address, pincode, city,  locality, district, state, country, status', 'required', 'on' => 'create'),
+                    array('first_name,last_name, email, phone_number, password, confirm_password, user_status', 'required', 'on' => 'admin_create'),
+                    array('first_name,last_name, email, phone_number, password, confirm, product_categories, merchant_type, address, pincode, city,  locality, district, state, country, status', 'required', 'on' => 'create'),
                     array('merchant_type, product_count, pincode, state, country, bad_attempts, CB, UB, is_payment_done', 'numerical', 'integerOnly' => true),
-                    array('fullname, email, phone_number, password, city, locality, vat_tin, status', 'length', 'max' => 100),
+                    array('first_name,last_name, email, phone_number, password, city, locality, vat_tin, status', 'length', 'max' => 100),
                     array('verification_code', 'length', 'max' => 50),
                     array('product_categories, shop_name, shop_logo, shop_banner', 'length', 'max' => 250),
                     array('district', 'length', 'max' => 200),
@@ -73,7 +73,7 @@ class Merchant extends CActiveRecord {
                     array('password, confirm', 'compare', 'compareAttribute' => 'confirm', 'message' => 'Password and Confirm Password should match.'),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
-                    array('id, fullname, email, phone_number, password, verification_code, email_verification, product_categories, merchant_type, product_count, shop_name, shop_logo, shop_banner, address, pincode, city, locality, district, state, country, vat_tin, status, last_login, bad_attempts, CB, UB, DOC, DOU, is_payment_done', 'safe', 'on' => 'search'),
+                    array('id, first_name,last_name, email, phone_number, password, verification_code, email_verification, product_categories, merchant_type, product_count, shop_name, shop_logo, shop_banner, address, pincode, city, locality, district, state, country, vat_tin, status, last_login, bad_attempts, CB, UB, DOC, DOU, is_payment_done', 'safe', 'on' => 'search'),
                 );
         }
 
@@ -93,7 +93,8 @@ class Merchant extends CActiveRecord {
         public function attributeLabels() {
                 return array(
                     'id' => 'ID',
-                    'fullname' => 'FullName',
+                    'first_name' => 'First Name',
+                    'last_name' => 'Last Name',
                     'email' => 'Email',
                     'phone_number' => 'Phone Number',
                     'password' => 'Password',
@@ -146,7 +147,8 @@ class Merchant extends CActiveRecord {
                 $criteria = new CDbCriteria;
 
                 $criteria->compare('id', $this->id);
-                $criteria->compare('fullname', $this->fullname, true);
+                $criteria->compare('first_name', $this->first_name, true);
+                $criteria->compare('last_name', $this->last_name, true);
                 $criteria->compare('email', $this->email, true);
                 $criteria->compare('phone_number', $this->phone_number, true);
                 $criteria->compare('password', $this->password, true);

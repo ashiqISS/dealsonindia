@@ -1,24 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "states".
+ * This is the model class for table "master_country".
  *
- * The followings are the available columns in table 'states':
- * @property integer $Id
- * @property integer $country_id
- * @property string $state_name
- *
- * The followings are the available model relations:
- * @property Countries $country
+ * The followings are the available columns in table 'master_country':
+ * @property integer $id
+ * @property string $country
+ * @property integer $status
+ * @property integer $cb
+ * @property integer $ub
+ * @property string $doc
+ * @property string $dou
  */
-class States extends CActiveRecord
+class MasterCountry extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'states';
+		return 'master_country';
 	}
 
 	/**
@@ -29,12 +30,12 @@ class States extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('country_id, state_name', 'required'),
-			array('country_id', 'numerical', 'integerOnly'=>true),
-			array('state_name', 'length', 'max'=>100),
+			array('country, status, cb, ub, doc, dou', 'required'),
+			array('status, cb, ub', 'numerical', 'integerOnly'=>true),
+			array('country', 'length', 'max'=>99),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, country_id, state_name', 'safe', 'on'=>'search'),
+			array('id, country, status, cb, ub, doc, dou', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,7 +47,6 @@ class States extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'country' => array(self::BELONGS_TO, 'Countries', 'country_id'),
 		);
 	}
 
@@ -56,9 +56,13 @@ class States extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'Id' => 'ID',
-			'country_id' => 'Country',
-			'state_name' => 'State Name',
+			'id' => 'ID',
+			'country' => 'Country',
+			'status' => 'Status',
+			'cb' => 'Cb',
+			'ub' => 'Ub',
+			'doc' => 'Doc',
+			'dou' => 'Dou',
 		);
 	}
 
@@ -80,9 +84,13 @@ class States extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('Id',$this->Id);
-		$criteria->compare('country_id',$this->country_id);
-		$criteria->compare('state_name',$this->state_name,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('country',$this->country,true);
+		$criteria->compare('status',$this->status);
+		$criteria->compare('cb',$this->cb);
+		$criteria->compare('ub',$this->ub);
+		$criteria->compare('doc',$this->doc,true);
+		$criteria->compare('dou',$this->dou,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -93,7 +101,7 @@ class States extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return States the static model class
+	 * @return MasterCountry the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
