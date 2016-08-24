@@ -188,6 +188,7 @@ class CartController extends Controller {
                         $model->product_id = $id;
                         $model->quantity = $qty;
 //                        $model->options = $product_option;
+                        date_default_timezone_set('Asia/Kolkata');
                         $model->date = date('Y-m-d H:i:s');
                         if ($model->save()) {
 
@@ -261,15 +262,30 @@ class CartController extends Controller {
 
         public function subtotal() {
                 if (isset(Yii::app()->session['user']['id'])) {
-                        $cart = cart::model()->findAllByAttributes(array('user_id' => Yii::app()->session['user']['id']));
+                        $cart_items = cart::model()->findAllByAttributes(array('user_id' => Yii::app()->session['user']['id']));
+                        $user_id = Yii::app()->session['user']['id'];
+                        $condition = "user_id = " . $user_id;
                 } else if (isset(Yii::app()->session['temp_user'])) {
-                        $cart = cart::model()->findAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+                        $cart_items = cart::model()->findAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+                        $user_id = Yii::app()->session['temp_user'];
+                        $condition = "session_id = " . $user_id;
                 }
-                foreach ($cart as $car) {
-                        $product_value = Products::model()->findByPk($car->product_id)->price;
-                        $subtotal = $subtotal + ($car->quantity * $product_value);
+                $coupon = CouponHistory::model()->find(array('condition' => $condition));
+                if (!empty($coupon)) {
+                        $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
+                        $coupon_amount = Coupons::model()->findByPk($coupon->coupon_id)->discount;
+                } else {
+                        $coupen_details = NULL;
+                        $coupon_amount = 0;
                 }
-                return $subtotal;
+
+
+                foreach ($cart_items as $cart_item) {
+                        $product = Products::model()->findByPk($cart_item->product_id);
+                        $price = Yii::app()->Discount->DiscountAmount($product);
+                        $subtotal += ($price * $cart_item->quantity);
+                }
+                return $subtotal + $coupon_amount;
         }
 
         public function granttotal() {
@@ -287,16 +303,6 @@ class CartController extends Controller {
 
         public function actionMycart() {
 
-// $gift_limit = Extras::model()->findByPk(1);
-//                if (!empty($gift_limit)) {
-//                        Yii::app()->session['gift_limit'] = $gift_limit;
-//                }
-//                $gift_rate = Extras::model()->findByPk(2);
-//                if (!empty($gift_rate)) {
-//                        Yii::app()->session['gift_rate'] = $gift_rate;
-//                }
-//                $gift_user = new TempUserGifts;
-//                $gift_options = Cart::model()->findAllByAttributes(array('gift_option' => 1));
                 if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
                         $model1 = new UserDetails();
                         $model = new UserDetails();
@@ -311,84 +317,6 @@ class CartController extends Controller {
 //  $coupen_details = CouponHistory::model()->findByAttributes(array('session_id' => Yii::app()->session['temp_user']));
                         Cart::model()->deleteAllByAttributes(array(), array('condition' => 'date < subdate(now(), 1)'));
                         $sessonid = Yii::app()->session['temp_user'];
-                }
-
-                if (isset($_POST["TempUserGifts"])) {
-
-                        $gift_user->attributes = $_POST["TempUserGifts"];
-                        $gift_user->session_id = $_POST["TempUserGifts"]['session_id'];
-                        $gift_user->status = 1;
-                        $gift_user->message = $_POST["TempUserGifts"]['message'];
-                        $gift_user->date = date('Y-m-d');
-
-                        $condition = TempUserGifts::model()->findByAttributes(array('session_id' => $_POST['TempUserGifts']['session_id'], 'cart_id' => $_POST['TempUserGifts']['cart_id']));
-
-                        $gift_exist = $condition;
-
-                        if (empty($gift_exist)) {
-
-
-                                $update_cart = Cart::model()->findByPk($_POST['TempUserGifts']['cart_id']);
-                                $products = Products::model()->findByPk($update_cart->product_id);
-                                $total = $update_cart->quantity * Yii::app()->Discount->DiscountAmount($products);
-                                if ($total < Yii::app()->session['gift_limit']['value']) {
-                                        if ($gift_user->validate()) {
-                                                if ($gift_user->save()) {
-                                                        $gift_user->unsetAttributes();
-                                                        $update_cart->gift_option = 1;
-                                                        $update_cart->rate = Yii::app()->session['gift_rate']['value'];
-                                                        if ($update_cart->save()) {
-                                                                $this->redirect(array('cart/MyCart'));
-                                                        }
-                                                }
-                                        }
-                                } else {
-                                        if ($gift_user->validate()) {
-                                                if ($gift_user->save()) {
-
-                                                        $gift_user->unsetAttributes();
-                                                        $update_cart->gift_option = 1;
-                                                        $update_cart->rate = 0;
-                                                        if ($update_cart->save()) {
-                                                                $this->redirect(array('cart/MyCart'));
-                                                        }
-                                                }
-                                        }
-                                }
-                        } else {
-
-                                $gift_exist->attributes = $_POST[$post];
-                                $gift_exist->status = 1;
-                                $gift_exist->message = $_POST[$post]['message'];
-                                $gift_exist->date = date('Y-m-d');
-
-                                $update_cart = Cart::model()->findByPk($_POST['TempUserGifts']['cart_id']);
-                                $products = Products::model()->findByPk($update_cart->product_id);
-                                $total = $update_cart->quantity * Yii::app()->Discount->DiscountAmount($products);
-                                if ($total < Yii::app()->session['gift_limit']['value']) {
-                                        if ($gift_user->validate()) {
-                                                if ($gift_user->save()) {
-                                                        $gift_user->unsetAttributes();
-                                                        $update_cart->gift_option = 1;
-                                                        $update_cart->rate = Yii::app()->session['gift_rate']['value'];
-                                                        if ($update_cart->save()) {
-                                                                $this->redirect(array('cart/MyCart'));
-                                                        }
-                                                }
-                                        }
-                                } else {
-                                        if ($gift_user->validate()) {
-                                                if ($gift_user->save()) {
-                                                        $gift_user->unsetAttributes();
-                                                        $update_cart->gift_option = 1;
-                                                        $update_cart->rate = 0;
-                                                        if ($update_cart->save()) {
-                                                                $this->redirect(array('cart/MyCart'));
-                                                        }
-                                                }
-                                        }
-                                }
-                        }
                 }
                 /*
                  * Login for checkout
@@ -502,27 +430,19 @@ class CartController extends Controller {
                                 Yii::app()->user->setFlash('email_verification1', "Invalid OTP.Try Again..");
                         }
                 }
-
-
                 if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
-
                         $user_details = UserDetails::model()->findByPk(Yii::app()->session['user']['id']);
-
                         $id = $user_details->id;
-
                         $cart_items = Cart::model()->findAllByAttributes(array('user_id' => $id));
-                } else {
-                        $temp_id = Yii::app()->session['temp_user'];
-                        $cart_items = Cart::model()->findAllByAttributes(array('session_id' => $temp_id));
-                }
-                if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
-
                         $user_id = Yii::app()->session['user']['id'];
                         $condition = "user_id = " . $user_id;
                 } else {
+                        $temp_id = Yii::app()->session['temp_user'];
+                        $cart_items = Cart::model()->findAllByAttributes(array('session_id' => $temp_id));
                         $user_id = Yii::app()->session['temp_user'];
                         $condition = "session_id = " . $user_id;
                 }
+
                 $coupon = CouponHistory::model()->find(array('condition' => $condition));
                 if (!empty($coupon)) {
                         $coupen_details = Coupons::model()->findByPk($coupon->coupon_id);
@@ -531,12 +451,7 @@ class CartController extends Controller {
                         $coupen_details = NULL;
                         $coupon_amount = 0;
                 }
-                foreach ($cart_items as $cart_item) {
-                        $product = Products::model()->findByPk($cart_item->product_id);
-                        $price = Yii::app()->Discount->DiscountAmount($product);
-                        $subtotal += ($price * $cart_item->quantity);
-                }
-                $subtotal += $coupon_amount;
+                $subtotal = $this->subtotal();
 
                 if (!empty($cart_items)) {
 // $this->render('new_buynow');
@@ -550,6 +465,247 @@ class CartController extends Controller {
                         unset(Yii::app()->session['couponamount']);
                         $this->render('empty_cart', array());
                 }
+        }
+
+        public function actionProceed() {
+
+                if (Yii::app()->session['user']['id'] != '' && Yii::app()->session['user']['id'] != NULL) {
+
+                        if (Yii::app()->session['orderid'] == '') {
+
+
+
+                                $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->session['user']['id']));
+                                if (!empty($cart)) {
+                                        $order_id = $this->addOrder($cart);
+//                                $select_coupon = Yii::app()->session['coupen_id'];
+//                                $this->addcoupens();
+                                        Yii::app()->session['orderid'] = $order_id;
+                                        $this->orderProducts($order_id, $cart);
+                                        $this->updatecoupenhistory($order_id);
+                                        $this->redirect(array('CheckOut/CheckOut'));
+                                } else {
+                                        $this->redirect(array('Cart/Mycart'));
+                                }
+                        } else {
+
+                                $cart = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->session['user']['id']));
+
+                                if (!empty($cart)) {
+
+                                        $order_id1 = $this->addOrder1($cart);
+
+//                                $select_coupon = Yii::app()->session['coupen_id'];
+//                                $this->addcoupens();
+                                        $order_id = Yii::app()->session['orderid'];
+                                        $this->updatecoupenhistory($order_id1);
+                                        $this->orderProducts($order_id, $cart);
+                                        $this->redirect(array('CheckOut/CheckOut'));
+                                } else {
+                                        $this->redirect(array('Cart/Mycart'));
+                                }
+                        }
+                } else if (Yii::app()->session['temp_user']) {
+
+                        if (Yii::app()->session['orderid'] == '') {
+
+
+
+                                $cart = Cart::model()->findAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+                                if (!empty($cart)) {
+                                        $order_id = $this->addOrder($cart);
+//                                $select_coupon = Yii::app()->session['coupen_id'];
+//                                $this->addcoupens();
+                                        Yii::app()->session['orderid'] = $order_id;
+                                        $this->orderProducts($order_id, $cart);
+                                        $this->updatecoupenhistory($order_id);
+                                        $this->redirect(array('CheckOut/CheckOut'));
+                                } else {
+                                        $this->redirect(array('Cart/Mycart'));
+                                }
+                        } else {
+
+                                $cart = Cart::model()->findAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+
+                                if (!empty($cart)) {
+
+                                        $order_id1 = $this->addOrder1($cart);
+
+//                                $select_coupon = Yii::app()->session['coupen_id'];
+//                                $this->addcoupens();
+                                        $order_id = Yii::app()->session['orderid'];
+                                        $this->updatecoupenhistory($order_id1);
+                                        $this->orderProducts($order_id, $cart);
+                                        $this->redirect(array('CheckOut/CheckOut'));
+                                } else {
+                                        $this->redirect(array('Cart/Mycart'));
+                                }
+                        }
+
+
+                        //  $this->redirect(array('site/login'));
+                }
+        }
+
+        public function actionGetorderproduct() {
+
+                $order_id = $_POST['order_id'];
+                $option = $_POST['option'];
+                $product_id = $_POST['product_id'];
+                echo $product_id;
+                $order_product_id = OrderProducts::model()->findByAttributes(array('order_id' => $order_id, 'product_id' => $product_id, 'option_id' => $option));
+                echo $order_product_id->id;
+        }
+
+        public function addOrder($cart) {
+                $model = CouponHistory::model()->findByAttributes(array('session_id' => Yii::app()->session['user']['id']));
+                $coupen = Coupons::model()->findByPk($model->coupon_id);
+                $model1 = new Order;
+                if (Yii::app()->session['user']['id'] != '' && Yii::app()->session['user']['id'] != NULL) {
+                        $model1->user_id = Yii::app()->session['user']['id'];
+                }
+                $model1->session_id = Yii::app()->session['temp_user'];
+                $total_amt = $this->total($cart);
+                $model1->total_amount = $total_amt;
+                $model1->status = 0;
+                $model1->coupon_id = $model->coupon_id;
+                $model1->discount_rate = $model->total_amount;
+                date_default_timezone_set('Asia/Kolkata');
+                $model1->order_date = date('Y-m-d H:i:s');
+                $model1->DOC = date('Y-m-d');
+
+                if ($model1->save()) {
+                        return $model1->id;
+                }
+        }
+
+        public function addOrder1($cart) {
+
+                $model = CouponHistory::model()->findByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+                $coupen = Coupons::model()->findByPk($model->coupon_id);
+
+                $model1 = Order::model()->findByPk(Yii::app()->session['orderid']);
+                if (!empty($model1)) {
+                        $model1->user_id = Yii::app()->session['user']['id'];
+                        $total_amt = $this->total($cart);
+                        $model1->total_amount = $total_amt;
+                        $model1->coupon_id = $model->coupon_id;
+                        $model1->discount_rate = $model->total_amount;
+                        $model1->status = 0;
+                        $model1->coupon_id = $coupen->id;
+                        $model1->discount_rate = $coupen->discount;
+                        date_default_timezone_set('Asia/Kolkata');
+                        $model1->order_date = date('Y-m-d H:i:s');
+                        $model1->DOC = date('Y-m-d');
+
+                        if ($model1->save()) {
+                                return $model1->id;
+                        }
+                } else {
+                        $this->redirect(array('Cart/Mycart'));
+                }
+        }
+
+        public function orderProducts($orderid, $carts) {
+                foreach ($carts as $cart) {
+                        $prod_details = Products::model()->findByPk($cart->product_id);
+                        $check = OrderProducts::model()->findAllByAttributes(array('order_id' => $orderid, 'product_id' => $cart->product_id, 'option_id' => $cart->options));
+
+                        if (!empty($check)) {
+
+                        } else {
+                                $model_prod = new OrderProducts;
+                                $model_prod->order_id = $orderid;
+                                $model_prod->product_id = $cart->product_id;
+                                $model_prod->option_id = $cart->options;
+                                $model_prod->quantity = $cart->quantity;
+                                $model_prod->gift_option = $cart->gift_option;
+                                $model_prod->rate = $cart->rate;
+                                $price = Yii::app()->Discount->DiscountAmount($prod_details) * $cart->quantity;
+                                $model_prod->amount = ($cart->quantity) * ($price);
+                                if ($model_prod->save()) {
+
+                                }
+                        }
+                }
+        }
+
+        public function actionGetcarttotal() {
+
+                if (isset(Yii::app()->session['user']['id'])) {
+                        $cart_items = Cart::model()->findAllByAttributes(array('user_id' => Yii::app()->session['user']['id']));
+                        if (!empty($cart_items)) {
+                                foreach ($cart_items as $cart_item) {
+                                        $product = Products::model()->findByPk($cart_item->product_id);
+                                        $ptotal = Yii::app()->Discount->DiscountAmount($product) * $cart_item->quantity;
+//$subtotoal = $subtotoal + $total;
+                                        $carttotal += $ptotal;
+                                }
+                                echo Yii::app()->Currency->convert($carttotal);
+                        } else {
+                                echo Yii::app()->Currency->convert(0);
+                        }
+                } else {
+                        if (isset(Yii::app()->session['temp_user'])) {
+                                $cart_items = Cart::model()->findAllByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+
+                                if (!empty($cart_items)) {
+                                        foreach ($cart_items as $cart_item) {
+                                                $product = Products::model()->findByPk($cart_item->product_id);
+                                                $ptotal = Yii::app()->Discount->DiscountAmount($product) * $cart_item->quantity;
+                                                $carttotal += $ptotal;
+                                        }
+                                        echo Yii::app()->Currency->convert($carttotal);
+                                } else {
+                                        echo Yii::app()->Currency->convert(0);
+                                }
+                        } else {
+                                echo Yii::app()->Currency->convert(0);
+                        }
+                }
+        }
+
+        public function total($cart) {
+                foreach ($cart as $cart_item) {
+                        $product = Products::model()->findByPk($cart_item->product_id);
+                        $price = Yii::app()->Discount->DiscountAmount($product);
+                        $subtotal += ($price * $cart_item->quantity);
+                }
+                return $subtotal;
+        }
+
+        public function updatecoupenhistory($order_id) {
+                $model = CouponHistory::model()->findByAttributes(array('session_id' => Yii::app()->session['temp_user']));
+                if (!empty($model)) {
+                        $model->order_id = $order_id;
+                        $model->save();
+                }
+        }
+
+        public function actionDelete($id) {
+                $model = $this->loadModel($id);
+                $model->delete();
+                if (!isset($_GET['ajax'])) {
+                        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('Mycart'));
+                }
+        }
+
+        public function actionRemoveCoupon() {
+                if (isset(Yii::app()->session['couponid'])) {
+                        if (isset(Yii::app()->session['user']))
+                                $data = CouponHistory::model()->findByAttributes(array('user_id' => Yii::app()->session['user'], 'coupon_id' => Yii::app()->session['couponid']));
+                        elseif (isset(Yii::app()->session['temp_user']))
+                                $data = CouponHistory::model()->findByAttributes(array('session_id' => Yii::app()->session['temp_user'], 'coupon_id' => Yii::app()->session['couponid']));
+                        if ($data->delete())
+                                unset(Yii::app()->session['couponid']);
+                        $this->redirect(Yii::app()->request->urlReferrer);
+                }
+        }
+
+        public function siteURL() {
+                $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+                $domainName = $_SERVER['HTTP_HOST'];
+                return $protocol . $domainName;
         }
 
 }

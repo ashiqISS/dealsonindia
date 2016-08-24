@@ -107,6 +107,8 @@
                                                         <td>Shipping Charge</td>
                                                         <td><span class="colors1"><i class="fa rupee fa-rupee"></i>1,125. 00</span></td>
                                                 </tr>
+
+                                                <?php echo $coupon_amount; ?>
                                                 <?php if ($coupon_amount > 0) { ?>
                                                         <tr>
                                                                 <td>Coupon Code (<span style="font-size: 9px;"><?php echo $coupen_details->code; ?></span>)</td>$coupon
@@ -185,7 +187,7 @@
 
                                 </div>
                                 <div class="clearfix"></div>
-                                <button type="submit" class="btn new-btn1 btn-default"> Proceed to Checkout</button>
+                                <a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/cart/proceed"><button type="submit" class="btn new-btn1 btn-default"> Proceed to Checkout</button></a>
                                 <button type="submit" class="btn new-btn2 btn-default"> Continue Shopping</button>
                         </div>
 
