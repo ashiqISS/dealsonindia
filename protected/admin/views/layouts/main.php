@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <title><?php echo Yii::app()->name; ?></title>
                 <!-- Tell the browser to be responsive to screen width -->
-                <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                     ?>/css/admin.css">-->
+                <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                      ?>/css/admin.css">-->
                 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                 <!-- Bootstrap 3.3.5 -->
 
@@ -251,6 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <ul class="treeview-menu">
                                                                         <li class="<?php echo $action5 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/ProductCategory/admin"><i class="fa fa-circle-o"></i> Product Category</a></li>
                                                                         <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Products/admin"><i class="fa fa-circle-o"></i> Manage products</a></li>
+                                                                        <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/UserReviews/admin"><i class="fa fa-circle-o"></i> Manage Reviews</a></li>
                                                                 </ul>
                                                         </li>
                                                 <?php } ?>

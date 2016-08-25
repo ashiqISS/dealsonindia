@@ -1335,7 +1335,8 @@ input.cont{
 }
 .form-comment {
         display: block;
-        width: 514px;
+        /*width: 514px;*/
+        width: 240px;
         height: 39px;
         padding: 8px 12px;
         font-size: 14px;

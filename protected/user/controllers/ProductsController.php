@@ -106,8 +106,13 @@ class ProductsController extends Controller {
                 $time = $this->time_elapsed_string($prduct->DOC, false);
                 $you_may_also_like = Products::model()->findAll(array('condition' => 'status = 1 AND is_admin_approved = 1 AND (' . $condition . ')'));
                 $product_features = ProductFeatures::model()->findAllByAttributes(array('product_id' => $prduct->id));
+                $product_reviews = UserReviews::model()->findAllByAttributes(array('product_id' => $prduct->id, 'approvel' => 1));
+                foreach ($product_reviews as $product_review) {
+                        $rating += $product_review->rating;
+                }
+                $total_rating = ceil($rating / (count($product_reviews)));
                 if (!empty($prduct)) {
-                        $this->render('detailed', array('time' => $time, 'products' => $prduct, 'you_may_also_like' => $you_may_also_like, 'product_features' => $product_features));
+                        $this->render('detailed', array('time' => $time, 'products' => $prduct, 'you_may_also_like' => $you_may_also_like, 'product_features' => $product_features, 'product_reviews' => $product_reviews, 'total_rating' => $total_rating));
                 } else {
                         $this->redirect(array('Site/Error'));
                 }
