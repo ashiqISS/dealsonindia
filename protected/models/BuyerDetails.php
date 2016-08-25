@@ -47,11 +47,14 @@ class BuyerDetails extends CActiveRecord {
                 // NOTE: you should only define rules for those attributes that
                 // will receive user inputs.
                 return array(
-//                    array('first_name, last_name, username, password, pan_card, dob, gender, bank_accnt_number, bank_ifsc_code, company_name, phone_no_2,wallet_amt, CB, UB, DOC, DOU', 'required'),
+                    array('first_name, last_name, password, pan_card, dob, gender, bank_accnt_number, bank_ifsc_code, phone_no_2', 'required'),
                     array('user_id, newsletter, CB, UB, status, field3', 'numerical', 'integerOnly' => true),
                     array('first_name, last_name, phone_no_2', 'length', 'max' => 100),
                     array('email, password, bank_ifsc_code, company_name', 'length', 'max' => 250),
                     array('pan_card, bank_accnt_number', 'length', 'max' => 200),
+                    array('gender', 'length', 'max' => 50),
+                    array('password', 'length', 'max' => 15, 'min' => 5),
+                    array('wallet_amt', 'length', 'max' => 10),
                     array('gender', 'length', 'max' => 50),
                     array('wallet_amt', 'length', 'max' => 10),
 //                    array('first_name,last_name,phone_no_2,email,address', 'required', 'on' => 'settings'),

@@ -144,7 +144,7 @@ class MyaccountController extends Controller {
                 } else {
                         if (Yii::app()->session['user_type_usrid'] == 1) {
                                 $user_id = Yii::app()->session['user']['id'];
-                                $model = $this->loadModel($user_id);
+                                $model = $this->loadModelUser($user_id);
                                 $model->setScenario('settings');
                                 if (isset($_POST['btn_submit'])) {
                                         $model->attributes = $_POST['btn_submit'];
@@ -155,7 +155,7 @@ class MyaccountController extends Controller {
                                         $model->address = $_POST['address'];
                                         if ($model->validate()) {
                                                 if ($model->save(FALSE)) {
-                                                        Yii::app()->user->setFlash('success', "your account settings has been  successfully updated");
+                                                        Yii::app()->user->setFlash('success', "your account  has been  successfully updated");
                                                         $this->redirect(Yii::app()->request->urlReferrer);
                                                 }
                                         } else {

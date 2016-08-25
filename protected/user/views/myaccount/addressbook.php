@@ -65,30 +65,35 @@
                         </div>
 
                         <div class="col-lg-9 col-md-8 addressbook">
-                                <div class="accountsettings">
-                                        <?php foreach ($model as $address) { ?>
-                                                <div class="books">
-                                                        <div class="book-1">
-                                                                <h1><?= $address->name ?></h1>
-                                                                <h1><?= $address->email ?></h1>
-                                                                <p><?= $address->address_line_1 ?></p>
-                                                        </div>
-                                                        <div class="book-2">
-                                                                <?php echo CHtml::link('Edit', array('Myaccount/EditAddressBook', 'id' => CHtml::encode($address->id)), array('class' => 'outs-1 hvr-radial-out')); ?>
-                                                                <a href="#" onclick="deleteaddress(<?php echo $address->id; ?>);" class="outs-2 hvr-radial-out">Delete</a>
-                                                        </div>
 
-                                                </div>
+                                <div class="accountsettings">
+                                        <?php if (!empty($model)) { ?>
+                                                <?php foreach ($model as $address) { ?>
+                                                        <div class="books">
+                                                                <div class="book-1">
+                                                                        <h1><?= $address->name ?></h1>
+                                                                        <h1><?= $address->email ?></h1>
+                                                                        <p><?= $address->address_line_1 ?></p>
+                                                                </div>
+                                                                <div class="book-2">
+                                                                        <?php echo CHtml::link('Edit', array('Myaccount/EditAddressBook', 'id' => CHtml::encode($address->id)), array('class' => 'outs-1 hvr-radial-out')); ?>
+                                                                        <a href="#" onclick="deleteaddress(<?php echo $address->id; ?>);" class="outs-2 hvr-radial-out">Delete</a>
+                                                                </div>
+
+                                                        </div>
+                                                <?php } ?>
+
+                                        <?php } else { ?>
+                                                <?php echo 'No Address Found!!!!!' ?>
                                         <?php } ?>
 
-
-
-
-
-
-
-
                                 </div>
+
+
+
+
+
+
                                 <div class="btn-place-1">
                                         <a href="#" class="reward hvr-shutter-in-horizontal left-btns">Back</a>
                                 </div>
