@@ -169,4 +169,116 @@ class ProductsController extends Controller {
                 $this->render('salesreport');
         }
 
+        public function actionAddProducts() {
+                $model = new Products('vendor_create');
+                if (isset($_POST['Products'])) {
+                        $model->attributes = $_POST['Products'];
+                        $model->description = $_POST['Products']['description'];
+                        $model->meta_description = $_POST['Products']['meta_description'];
+                        $model->new_from = $_POST['Products']['new_from'];
+                        $model->new_to = $_POST['Products']['new_to'];
+                        $model->sale_from = $_POST['Products']['sale_from'];
+                        $model->sale_to = $_POST['Products']['sale_to'];
+                        $model->special_price_from = $_POST['Products']['special_price_from'];
+                        $model->special_price_to = $_POST['Products']['special_price_to'];
+                        $model->DOC = date('Y-m-d');
+                        $model->is_admin_approved = $_POST['Products']['DOU'];
+
+                        $image = CUploadedFile::getInstance($model, 'main_image');
+                        $images = CUploadedFile::getInstancesByName('gallery_images');
+                        $model->main_image = $image->extensionName;
+
+                        $model->merchant_id = Yii::app()->session['user']['id'];
+                        $model->merchant_type = Yii::app()->session['user_type_usrid'];
+
+                        if ($model->related_products != "") {
+                                $model->related_products = implode(",", $model->related_products);
+                        } else {
+                                $model->related_products = "";
+                        }
+
+                        if ($_POST['Products']['new_from'] != "")
+                                $model->new_from = date("Y-m-d", strtotime($_POST['Products']['new_from']));
+                        else
+                                $model->new_from = '';
+
+                        if ($_POST['Products']['new_to'] != "")
+                                $model->new_to = date("Y-m-d", strtotime($_POST['Products']['new_to']));
+                        else
+                                $model->new_to = '';
+
+                        if ($_POST['Products']['sale_from'] != "")
+                                $model->sale_from = date("Y-m-d", strtotime($_POST['Products']['sale_from']));
+                        else
+                                $model->sale_from = '';
+
+                        if ($_POST['Products']['sale_to'] != "")
+                                $model->sale_to = date("Y-m-d", strtotime($_POST['Products']['sale_to']));
+                        else
+                                $model->sale_to = '';
+
+                        if ($_POST['Products']['special_price_from'] != "")
+                                $model->special_price_from = date("Y-m-d", strtotime($_POST['Products']['special_price_from']));
+                        else
+                                $model->special_price_from = '';
+
+                        if ($_POST['Products']['special_price_to'] != "")
+                                $model->special_price_to = date("Y-m-d", strtotime($_POST['Products']['special_price_to']));
+                        else
+                                $model->special_price_to = '';
+
+
+                        if ($model->canonical_name == '') {
+                                $model->canonical_name = preg_replace('#[ -]+#', '-', $model->product_name);
+                                $model->canonical_name = $model->canonical_name . '_' . $model->id;
+                        }
+
+                        $model->CB = Yii::app()->session['user']['id'];
+                        $model->UB = 0;
+                        $model->DOC = date('Y-m-d H:i:s');
+//
+//                        var_dump($model);
+//                        exit;
+//                        if ($model->validate()) {
+
+
+                        if ($model->save(false)) {
+                                if ($image != "") {
+                                        $id = $model->id;
+                                        $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                        $dimension[1] = array('width' => '322', 'height' => '500', 'name' => 'medium');
+                                        $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
+                                        $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                        Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
+                                }
+
+                                if ($images != "") {
+                                        $id = $model->id;
+                                        $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                        $dimension[1] = array('width' => '580', 'height' => '775', 'name' => 'big');
+                                        $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                        Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
+                                }
+
+                                $this->redirect(array('MyProducts'));
+                        }
+//                        }
+                }
+
+                $this->render('add_products', array(
+                    'model' => $model,
+                ));
+        }
+
+        public function actionMyProducts() {
+                if (!isset(Yii::app()->session['user'])) {
+                        $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
+                } else {
+                        if (Yii::app()->session['user_type_usrid'] != 1) {
+                                $model = Products::model()->findAllByAttributes(array('merchant_id' => Yii::app()->session['user']['id'], 'merchant_type' => Yii::app()->session['user_type_usrid']), array('order' => 'DOC DESC'));
+                                $this->render('my_products', array('model' => $model));
+                        }
+                }
+        }
+
 }

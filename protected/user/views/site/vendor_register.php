@@ -43,15 +43,6 @@
                                                         </span>
                                                         <?php echo $form->error($model, 'merchant_type'); ?>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-12">
-                                                        <span class="field-span input input--ruri">
-                                                                <?php echo $form->textField($model, 'fullname', array('class' => 'input-field input-field-ruri input__field input__field--ruri')); ?>
-                                                                <label class="label-field label-field-ruri input__label input__label--ruri" for="input-1">
-                                                                        <span class="content-filed content-filed-ruri">Full Name</span>
-                                                                </label>
-                                                        </span>
-                                                        <?php echo $form->error($model, 'fullname'); ?>
-                                                </div>
 
                                                 <div class="col-xs-12 col-sm-12">
                                                         <span class="field-span input input--ruri">

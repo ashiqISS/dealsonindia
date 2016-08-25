@@ -19,9 +19,6 @@
 
                 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
                 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,400italic,700,100italic,300italic,700italic,900' rel='stylesheet' type='text/css'>
-
-                <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
-                <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
                 <script>
                         var baseurl = "<?php print Yii::app()->request->baseUrl . "/index.php/"; ?>";
                         var basepath = "<?php print Yii::app()->basePath; ?>";
