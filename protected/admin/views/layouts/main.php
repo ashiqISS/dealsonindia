@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <title><?php echo Yii::app()->name; ?></title>
                 <!-- Tell the browser to be responsive to screen width -->
-                <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                 ?>/css/admin.css">-->
+                <!--<link rel="stylesheet" href="<?php // echo Yii::app()->baseUrl;                     ?>/css/admin.css">-->
                 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
                 <!-- Bootstrap 3.3.5 -->
 
@@ -207,6 +207,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         $action21 = "active";
                                                         $actionn6 = "active";
                                                         break;
+                                                case "MasteCity":
+                                                        $action21 = "active";
+                                                        $actionn6 = "active";
+                                                        break;
                                                 case "site":
                                                         if (Yii::app()->controller->action->id == "home") {
                                                                 $action18 = "active";
@@ -246,7 +250,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                 <a href="#"><i class="fa fa-bars"></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i></a>
                                                                 <ul class="treeview-menu">
                                                                         <li class="<?php echo $action5 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/ProductCategory/admin"><i class="fa fa-circle-o"></i> Product Category</a></li>
-                                                                        <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Products/admin"><i class="fa fa-circle-o"></i> All Products</a></li>
+                                                                        <li class="<?php echo $action6 ?>"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/products/Products/admin"><i class="fa fa-circle-o"></i> Manage products</a></li>
                                                                 </ul>
                                                         </li>
                                                 <?php } ?>
@@ -274,6 +278,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                         <li class="<?php echo $action11 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/users/UserAddress/admin"><i class="fa fa-circle-o"></i> User Address</a></li>
                                                                         <li class="<?php echo $action12 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Countries/admin"><i class="fa fa-circle-o"></i> Countries</a></li>
                                                                         <li class="<?php echo $action13 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/Districts/admin"><i class="fa fa-circle-o"></i> Districts</a></li>
+                                                                        <li class="<?php echo $action13 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MasterCity/admin"><i class="fa fa-circle-o"></i> City</a></li>
                                                                         <li class="<?php echo $action14 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/States/admin"><i class="fa fa-circle-o"></i> States</a></li>
                                                                         <li class="<?php echo $action19 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MastersSize/admin"><i class="fa fa-circle-o"></i> Size</a></li>
                                                                         <li class="<?php echo $action20 ?> treeview"><a href="<?php echo Yii::app()->baseUrl ?>/admin.php/masters/MastersBrand/admin"><i class="fa fa-circle-o"></i> Brand</a></li>

@@ -90,7 +90,7 @@ class Products extends CActiveRecord {
                     array('category_id, main_image, gallery_images, canonical_name', 'length', 'max' => 200),
                     array('product_name, product_code, meta_title, meta_keywords, discount_type, video_link, status, search_tag, related_products', 'length', 'max' => 225),
                     array('product_type', 'length', 'max' => 50),
-                    array('hover_image, deal_location, video', 'length', 'max' => 150),
+                    array('hover_image,  video', 'length', 'max' => 150),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
                     array('id, category_id, product_name, product_code, product_type, brand_id, merchant, merchant_type, description, main_image, gallery_images, hover_image, canonical_name, vendor, deal_location, meta_title, meta_description, meta_keywords, header_visibility, sort_order, display_category_name, brand, size, price, wholesale_price, is_discount_available, discount, discount_type, discount_rate, deal_price, quantity, requires_shipping, shipping_rate, enquiry_sale, new_from, new_to, sale_from, sale_to, special_price_from, special_price_to, tax, gift_option, stock_availability, video_link, video, weight, weight_class, status, exchange, search_tag, related_products, is_cod_available, is_available, is_featured, is_admin_approved, CB, UB, DOC, DOU ,deal_link', 'safe', 'on' => 'search'),

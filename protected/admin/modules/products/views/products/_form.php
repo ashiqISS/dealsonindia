@@ -155,19 +155,19 @@
                                                 $i = 1;
                                                 foreach ($prod_features as $prod_feature) {
                                                         ?>
-                                                        <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
+                                                        <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location2" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
                                                         <?php
                                                         $i++;
                                                 }
                                         } else {
                                                 ?>
-                                                <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
+                                                <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location1" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
 
                                                 <?php
                                         }
                                 } else {
                                         ?>
-                                        <div class = "featured_details" id = "f1"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"></textarea></div></div>
+                                        <div class = "featured_details" id = "f1"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" id = "Products_deal_location4" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"></textarea></div></div>
                                 <?php } ?>
                                 <div class="" id="file_tools"> </div>
                         </div>
@@ -197,7 +197,7 @@ if (!$model->isNewRecord) {
                         $('#add_file').click(function () {
                                 if (counter < 50)
                                 {
-                                        $('#file_tools').before('<div class="featured_details" id="f' + counter + '"><div class="col-sm-6 col-xs-12 "><input size="60" maxlength="150" class="form-control" name="ProductFeatures[feature_heading][]" placeholder="Feature Heading" id="Products_deal_location" type="text"></div><div class="col-sm-6 col-xs-12 bot"><textarea rows="2" cols="50" class="form-control" name="ProductFeatures[feature_disc][]" placeholder="Feature Descritpion" id="Products_meta_description"></textarea></div></div>');
+                                        $('#file_tools').before('<div class="featured_details" id="f' + counter + '"><div class="col-sm-6 col-xs-12 "><input size="60" maxlength="150" class="form-control" name="ProductFeatures[feature_heading][]" placeholder="Feature Heading" id="Products_deal_location6" type="text"></div><div class="col-sm-6 col-xs-12 bot"><textarea rows="2" cols="50" class="form-control" name="ProductFeatures[feature_disc][]" placeholder="Feature Descritpion" id="Products_meta_description"></textarea></div></div>');
                                         $('#del_file').fadeIn(0);
                                         counter++;
                                 }
@@ -281,11 +281,28 @@ if (!$model->isNewRecord) {
                 <div class="col-sm-2 control-label">
                         <?php echo $form->labelEx($model, 'deal_location'); ?>
                 </div>
+                <?php echo $form->hiddenField($model, 'deal_location'); ?>
                 <div class="col-sm-10">
-                        <?php echo $form->textField($model, 'deal_location', array('size' => 60, 'maxlength' => 150, 'class' => 'form-control')); ?>
-                        <?php echo $form->error($model, 'deal_location'); ?>
+                        <?php
+                        $this->widget('application.admin.components.Location', array(
+                            'type' => 'location',
+                            'field_val' => $model->deal_location,
+                            'category_tag_id' => 'Products_deal_location', /* id of hidden field */
+                            'form_id' => 'products-form',
+                        ));
+                        ?>
+                        <?php echo $form->error($model, 'search_tag'); ?>
                 </div>
         </div>
+        <!--        <div class="form-group">
+                        <div class="col-sm-2 control-label">
+        <?php echo $form->labelEx($model, 'deal_location'); ?>
+                        </div>
+                        <div class="col-sm-10">
+        <?php echo $form->textField($model, 'deal_location', array('size' => 60, 'maxlength' => 150, 'class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'deal_location'); ?>
+                        </div>
+                </div>-->
 
         <div class="form-group">
                 <div class="col-sm-2 control-label">

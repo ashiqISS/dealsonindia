@@ -10,9 +10,8 @@
         if ($this->field_val != '') {
                 $arrs = explode(',', $this->field_val);
                 foreach ($arrs as $val) {
-                        $cat = Districts::model()->findByPk($val)->district_name;
                         if ($val != '')
-                                echo '<div class="' . $this->type . '_tagedd">' . $cat . '<i class="fa fa-close ' . $this->type . '_closee" id="' . $val . '"></i></div>';
+                                echo '<div class="' . $this->type . '_tagedd">' . $val . '<i class="fa fa-close ' . $this->type . '_closee"></i></div>';
                 }
         }
         ?>
@@ -114,10 +113,10 @@
                 });
 
                 /* $('#category_tag_select').live('click',function(){
-                 var cat= $('#<?php //echo $this->category_id;                                                                          ?>').val();
+                 var cat= $('#<?php //echo $this->category_id;                                               ?>').val();
                  if(cat==''){
                  alert('Select a Category first.');
-                 $('#<?php //echo $this->category_id;                                                                          ?>').focus();
+                 $('#<?php //echo $this->category_id;                                               ?>').focus();
                  }
 
                  });*/
@@ -183,7 +182,7 @@
 
                 $("#<?php echo $this->type; ?>_new_tag").on('click', '.<?php echo $this->type; ?>_tag-sub', function () {
                         $('.<?php echo $this->type; ?>_reciverr').append('<div class="<?php echo $this->type; ?>_tagedd">' + $(this).html() + '<i class="fa fa-close <?php echo $this->type; ?>_closee"></i></div>')
-                        $('#<?php echo $this->category_tag_id; ?>').val($('#<?php echo $this->category_tag_id; ?>').val() + this.id + ',');
+                        $('#<?php echo $this->category_tag_id; ?>').val($('#<?php echo $this->category_tag_id; ?>').val() + $(this).html() + ',');
                         $('#<?php echo $this->type; ?>_tag_select').val('');
                         $(".<?php echo $this->type; ?>_tagss").html('');
                         $(".<?php echo $this->type; ?>_tagss").hide();
@@ -191,13 +190,10 @@
 
 
                 $('#<?php echo $this->type; ?>_close').on('click', '.<?php echo $this->type; ?>_closee', function () {
-                        var value = $(this).attr('id');
                         var parent = $(this).parent().html();
                         var parent_res = parent.replace('<i class="fa fa-close <?php echo $this->type; ?>_closee"></i>', "");
                         var str = $('#<?php echo $this->category_tag_id; ?>').val();
-
-                        var res = str.replace(value + ",", "");
-
+                        var res = str.replace(parent_res + ",", "");
                         $('#<?php echo $this->category_tag_id; ?>').val(res);
                         $(this).parent().remove();
                 });
@@ -214,7 +210,7 @@
         function <?php echo $this->type; ?>SelectTag(val) {
                 var cat = $('#<?php echo $this->category_tag_id; ?>').val();
                 $.ajax({
-                        'url': baseurl + 'site/<?php echo $this->type; ?>Cat',
+                        'url': baseurl + 'site/<?php echo $this->type; ?>Tag',
                         'async': false,
                         'type': "POST",
                         'global': false,
@@ -225,7 +221,7 @@
                                         $('.<?php echo $this->type; ?>_tagss').html(result);
                                         $('.<?php echo $this->type; ?>_tagss').show();
                                 } else {
-                                        $('.<?php echo $this->type; ?>_tagss').html('<div>This category is not available in our list</div>');
+                                        $('.<?php echo $this->type; ?>_tagss').html('<div class="<?php echo $this->type; ?>_need_add" id="' + val + '">This City is not in our database. Click to add " ' + val + ' " to Cities?</div>');
                                         $('.<?php echo $this->type; ?>_tagss').show();
                                 }
                         }

@@ -130,6 +130,7 @@ class ProductsController extends Controller {
                         $model->deal_link = $_POST['Products']['deal_link'];
                         $model->special_price_from = $_POST['Products']['special_price_from'];
                         $model->special_price_to = $_POST['Products']['special_price_to'];
+                        $model->deal_location = $_POST['Products']['deal_location'];
                         $model->DOC = $_POST['Products']['DOC'];
                         $model->DOU = $_POST['Products']['DOU'];
                         $model->DOC = date('Y-m-d H:i:s');
@@ -288,6 +289,7 @@ class ProductsController extends Controller {
                         $model->sale_from = $_POST['Products']['sale_from'];
                         $model->sale_to = $_POST['Products']['sale_to'];
                         $model->deal_link = $_POST['Products']['deal_link'];
+                        $model->deal_location = $_POST['Products']['deal_location'];
                         $model->special_price_from = $_POST['Products']['special_price_from'];
                         $model->special_price_to = $_POST['Products']['special_price_to'];
                         $model->DOC = $doc;
