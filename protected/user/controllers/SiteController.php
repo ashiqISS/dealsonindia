@@ -69,6 +69,9 @@ class SiteController extends Controller {
                                         $user = BuyerDetails::model()->findByAttributes(array('email' => $_POST['BuyerDetails']['email'], 'password' => $_POST['BuyerDetails']['password']));
                                         if ($user != '' && $user !== NULL) {
                                                 Yii::app()->session['user'] = $user;
+                                                Cart::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
+                                                CouponHistory::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
+                                                Order::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
                                                 $this->redirect(array('Myaccount/index'));
                                         } else {
                                                 $login->addError('email', '');
@@ -79,7 +82,7 @@ class SiteController extends Controller {
                                         $login = new Merchant();
                                         $user = Merchant::model()->findByAttributes(array('email' => $_REQUEST['Merchant']['email'], 'password' => $_REQUEST['Merchant']['password']));
                                         if ($user != '' && $user !== NULL) {
-                                                Yii::app()->session['user'] = $user;
+                                                Yii::app()->session['merchent'] = $user;
                                                 $this->redirect(array('Myaccount/index'));
                                         } else {
                                                 $login->addError('email', '');

@@ -3974,6 +3974,14 @@ section.deals-ads {
         text-align: left;
         margin-bottom: 13px;
         margin-top: 9px;
+        min-height: 42px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        /* line-height: 22px; */
+        /* max-height: 110px; */
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
 }
 .deals-products h3 {
         font-size: 16px;
@@ -4059,7 +4067,14 @@ i.fa.fa-youtube:hover {
         background-color: #bb0000;
 
 }
+.deals-effects h2 a{
+        text-decoration: none;
+        color: #333;
+}
 .deals-effects:hover h2 {
+        color: #e2320a;
+}
+.deals-effects:hover h2 a {
         color: #e2320a;
 }
 .deals-effects:hover h3{

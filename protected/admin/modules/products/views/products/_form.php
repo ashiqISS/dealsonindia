@@ -481,7 +481,7 @@ if (!$model->isNewRecord) {
                             'attribute' => 'new_from',
                             'value' => 'new_from',
                             'options' => array(
-                                'dateFormat' => 'dd-mm-yy',
+                                'dateFormat' => 'yy-mm-dd',
                                 'changeYear' => true, // can change year
                                 'changeMonth' => true, // can change month
                                 'yearRange' => $from . ':' . $to, // range of year
@@ -511,7 +511,7 @@ if (!$model->isNewRecord) {
                             'attribute' => 'new_to',
                             'value' => 'new_to',
                             'options' => array(
-                                'dateFormat' => 'dd-mm-yy',
+                                'dateFormat' => 'yy-mm-dd',
                                 'changeYear' => true, // can change year
                                 'changeMonth' => true, // can change month
                                 'yearRange' => $from . ':' . $to, // range of year
@@ -542,7 +542,7 @@ if (!$model->isNewRecord) {
                             'attribute' => 'sale_from',
                             'value' => 'sale_from',
                             'options' => array(
-                                'dateFormat' => 'dd-mm-yy',
+                                'dateFormat' => 'yy-mm-dd',
                                 'changeYear' => true, // can change year
                                 'changeMonth' => true, // can change month
                                 'yearRange' => $from . ':' . $to, // range of year
@@ -572,7 +572,7 @@ if (!$model->isNewRecord) {
                             'attribute' => 'sale_to',
                             'value' => 'sale_to',
                             'options' => array(
-                                'dateFormat' => 'dd-mm-yy',
+                                'dateFormat' => 'yy-mm-dd',
                                 'changeYear' => true, // can change year
                                 'changeMonth' => true, // can change month
                                 'yearRange' => $from . ':' . $to, // range of year
@@ -602,7 +602,7 @@ if (!$model->isNewRecord) {
                             'attribute' => 'special_price_from',
                             'value' => 'special_price_from',
                             'options' => array(
-                                'dateFormat' => 'dd-mm-yy',
+                                'dateFormat' => 'yy-mm-dd',
                                 'changeYear' => true, // can change year
                                 'changeMonth' => true, // can change month
                                 'yearRange' => $from . ':' . $to, // range of year
@@ -632,7 +632,7 @@ if (!$model->isNewRecord) {
                             'attribute' => 'special_price_to',
                             'value' => 'special_price_to',
                             'options' => array(
-                                'dateFormat' => 'dd-mm-yy',
+                                'dateFormat' => 'yy-mm-dd',
                                 'changeYear' => true, // can change year
                                 'changeMonth' => true, // can change month
                                 'yearRange' => $from . ':' . $to, // range of year

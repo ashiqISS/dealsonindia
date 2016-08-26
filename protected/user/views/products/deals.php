@@ -17,7 +17,7 @@
 
                         <div class="rows">
                                 <div class="col-md-12">
-                                        <h6>Daily Deals</h6>
+                                        <h6><?php echo $heading; ?></h6>
                                         <div class="listed">
                                                 <!--                        <form>
                                                                             <div class="form-group">

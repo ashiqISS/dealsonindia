@@ -257,9 +257,14 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
                                         <div class="clearfix"></div>
                                         <div class="wishlist">
                                                 <ul>
-                                                        <input type = "hidden" value = "<?= $products->canonical_name; ?>" id="cano_name_<?= $products->id; ?>" name="cano_name">
-                                                        <li><a class="cart1 add_to_cart"  id="<?= $products->id; ?>">Add to cart</a></li>
-                                                        <li><a class="cart2 add_to_wishlist" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products/Wishlist/id/<?= $products->id; ?>">Add to wish list</a></li>
+                                                        <?php if ($products->product_type == 2) { ?>
+                                                                <input type = "hidden" value = "<?= $products->canonical_name; ?>" id="cano_name_<?= $products->id; ?>" name="cano_name">
+                                                                <li><a class="cart1 add_to_cart"  id="<?= $products->id; ?>">Add to cart</a></li>
+                                                                <li><a class="cart2 add_to_wishlist" href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/products/Wishlist/id/<?= $products->id; ?>">Add to wish list</a></li>
+                                                        <?php } else { ?>
+                                                                <input type = "hidden" value = "<?= $products->canonical_name; ?>" id="cano_name_<?= $products->id; ?>" name="cano_name">
+                                                                <li><a class="cart2" target="_blank" href="<?php echo $products->deal_link; ?>">Buy Now</a></li>
+                                                        <?php } ?>
                                                 </ul>
                                         </div>
 
@@ -500,8 +505,8 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
                         autoplaySpeed: 2000,
                         slidesToScroll: 1,
                         pauseOnHover: true,
-//            prevArrow: '<i id="prev_slide_3" class="fa fa-chevron-left"></i>',
-//            nextArrow: '<i id="next_slide_3" class="fa fa-chevron-right"></i>',
+                        //            prevArrow: '<i id="prev_slide_3" class="fa fa-chevron-left"></i>',
+                        //            nextArrow: '<i id="next_slide_3" class="fa fa-chevron-right"></i>',
                         responsive: [
                                 {
                                         breakpoint: 1000,

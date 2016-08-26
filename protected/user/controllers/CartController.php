@@ -304,8 +304,8 @@ class CartController extends Controller {
         public function actionMycart() {
 
                 if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
-                        $model1 = new UserDetails();
-                        $model = new UserDetails();
+                        $model1 = new BuyerDetails();
+                        $model = new BuyerDetails();
 //$current_coupon = explodeYii::app()->session['couponid'];
                         $coupen_details = CouponHistory::model()->findByAttributes(array('user_id' => Yii::app()->session['user']['id']));
                         $user_id = Yii::app()->session['user']['id'];
@@ -321,9 +321,9 @@ class CartController extends Controller {
                 /*
                  * Login for checkout
                  */
-                if (isset($_REQUEST['UserDetails']['log'])) {
+                if (isset($_REQUEST['BuyerDetails']['log'])) {
 
-                        $modell = UserDetails::model()->findByAttributes(array('email' => $_REQUEST['UserDetails']['log']['email'], 'password' => $_REQUEST['UserDetails']['log']['password']));
+                        $modell = BuyerDetails::model()->findByAttributes(array('email' => $_REQUEST['BuyerDetails']['log']['email'], 'password' => $_REQUEST['BuyerDetails']['log']['password']));
 
                         if (!empty($modell)) {
 
@@ -359,16 +359,16 @@ class CartController extends Controller {
                 /*
                  * Refister for checkout
                  */
-                if (isset($_POST['UserDetails']['reg'])) {
+                if (isset($_POST['BuyerDetails']['reg'])) {
 
-                        $model = new UserDetails('create');
-                        $model->attributes = $_POST['UserDetails']['reg'];
-                        $date1 = $_POST['UserDetails']['reg']['dob'];
+                        $model = new BuyerDetails('create');
+                        $model->attributes = $_POST['BuyerDetails']['reg'];
+                        $date1 = $_POST['BuyerDetails']['reg']['dob'];
                         $newDate = date("Y-m-d", strtotime($date1));
                         $model->dob = $newDate;
-                        $model->gender = $_POST['UserDetails']['reg']['gender'];
-                        $model->phone_no_1 = $_POST['UserDetails']['reg']['phone_no_1'];
-                        $model->phone_no_2 = $_POST['UserDetails']['reg']['phone_no_2'];
+                        $model->gender = $_POST['BuyerDetails']['reg']['gender'];
+                        $model->phone_no_1 = $_POST['BuyerDetails']['reg']['phone_no_1'];
+                        $model->phone_no_2 = $_POST['BuyerDetails']['reg']['phone_no_2'];
                         $model->email_verification = 0;
                         if ($model->validate()) {
                                 $model->status = 1;
@@ -412,7 +412,7 @@ class CartController extends Controller {
 
                 if (isset($_POST['verify_email'])) {
 
-                        $unverified_user = UserDetails::model()->findByPk(Yii::app()->session['user_email_verify']);
+                        $unverified_user = BuyerDetails::model()->findByPk(Yii::app()->session['user_email_verify']);
 
                         if ($unverified_user->verify_code == $_POST['verify_code']) {
                                 $unverified_user->email_verification = 1;
@@ -431,7 +431,7 @@ class CartController extends Controller {
                         }
                 }
                 if (Yii::app()->session['user'] != '' && Yii::app()->session['user'] != NULL) {
-                        $user_details = UserDetails::model()->findByPk(Yii::app()->session['user']['id']);
+                        $user_details = BuyerDetails::model()->findByPk(Yii::app()->session['user']['id']);
                         $id = $user_details->id;
                         $cart_items = Cart::model()->findAllByAttributes(array('user_id' => $id));
                         $user_id = Yii::app()->session['user']['id'];
