@@ -99,13 +99,13 @@
                         <?php echo $form->labelEx($model, 'product_type'); ?>
                 </div>
                 <div class="col-sm-10">
-                        <?php echo $form->dropDownList($model, 'product_type', array('' => "---Select Type---", '1' => "Deal Product", '2' => "Normal Product"), array('class' => 'form-control type_change')); ?>
+                        <?php echo $form->dropDownList($model, 'product_type', array('' => "---Select Type---", '1' => "Deal Product", '2' => "Normal Product", '3' => "Coupon"), array('class' => 'form-control type_change')); ?>
                         <?php echo $form->error($model, 'product_type'); ?>
                 </div>
         </div>
         <div class="form-group deal_link" >
 
-                <?php echo $form->labelEx($model, 'deal_link', array('class' => 'col-sm-2 control-label')); ?>
+                <?php echo $form->labelEx($model, 'Deal/Coupon Link', array('class' => 'col-sm-2 control-label')); ?>
                 <div class="col-sm-10"><?php echo $form->textArea($model, 'deal_link', array('size' => 60, 'maxlength' => 225, 'class' => 'form-control')); ?>
                 </div>
                 <?php echo $form->error($model, 'deal_link'); ?>
@@ -828,7 +828,7 @@ if (!$model->isNewRecord) {
         });
         $(document).ready(function () {
                 var name1 = $(".type_change").val();
-                if (name1 == 1) {
+                if (name1 == 1 || name1 == 3) {
                         $(".deal_link").show();
                 } else {
                         $(".deal_link").hide();
@@ -836,12 +836,13 @@ if (!$model->isNewRecord) {
                 }
                 $(".type_change").change(function () {
                         var name = $(this).val();
-                        if (name == 1) {
+                        if (name == 1 || name == 3) {
                                 $(".deal_link").show();
                         } else {
                                 $(".deal_link").hide();
 
                         }
+
                 });
 
 

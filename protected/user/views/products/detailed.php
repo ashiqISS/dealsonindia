@@ -478,7 +478,7 @@ $folder = Yii::app()->Upload->folderName(0, 1000, $products->id);
                                                                                      <?php } ?>
                                                                                 <div class="overlay"></div>
                                                                                 <div class="buy">
-                                                                                        <?php if ($product->product_type == 2) { ?>
+                                                                                        <?php if ($product->product_type == 2 || $product->product_type == 3) { ?>
                                                                                                 <?php echo CHtml::link('Buy Now', array('products/Detail/', 'name' => $product->canonical_name), array('class' => 'buybtn')); ?>
                                                                                         <?php } else { ?>
                                                                                                 <a class="buybtn" target="_blank" href="<?php echo $product->deal_link; ?>">Buy Now</a>
