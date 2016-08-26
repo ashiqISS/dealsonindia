@@ -591,21 +591,21 @@ class ProductsController extends Controller {
                 if ((isset($_POST['sort_by'])) && ($_POST['sort_by'] != '')) {
                         $sort = $_POST['sort_by'];
                         switch ($sort) {
-                                case 'new_first' : echo $criteria->order = 'id desc';
+                                case 'new_first' : $criteria->order = 'id desc';
                                         break;
-                                case 'old_first' : echo $criteria->order = 'id asc';
+                                case 'old_first' : $criteria->order = 'id asc';
                                         break;
-                                case 'price_low' : echo $criteria->order = 'price asc';
+                                case 'price_low' : $criteria->order = 'price asc';
                                         break;
-                                case 'price_low' : echo $criteria->order = 'price desc';
+                                case 'price_high' : $criteria->order = 'price desc';
                                         break;
                                 default : $criteria->order = 'id desc';
                         }
                 } else {
-                        echo $criteria->order = 'id desc';
+                        $criteria->order = 'id desc';
                 }
 
-                $criteria->order = 'id desc';
+                //$criteria->order = 'id desc';
                 $total = Products::model()->count($criteria);
 
                 $pages = new CPagination($total);
