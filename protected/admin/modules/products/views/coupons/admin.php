@@ -1,53 +1,51 @@
 <?php
-/* @var $this UserReviewsController */
-/* @var $model UserReviews */
+/* @var $this CouponsController */
+/* @var $model Coupons */
 ?>
 
 <section class="content-header">
         <h1>
-                UserReviews    </h1>
+                Coupons    </h1>
         <ol class="breadcrumb">
                 <li><a href="<?php echo Yii::app()->request->baseurl . '/site/home'; ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-                <li class="active">UserReviews</li>
+                <li class="active">Coupons</li>
         </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-        <a href="<?php echo Yii::app()->request->baseurl . '/admin.php/products/userReviews/create'; ?>" class='btn  btn-laksyah'>Add New UserReviews</a>
+        <a href="<?php echo Yii::app()->request->baseurl . '/admin.php/products/coupons/create'; ?>" class='btn  btn-laksyah'>Add New Coupons</a>
         <div class="col-xs-12 form-page" style="margin-top: .5em;">
                 <div class="box">
 
                         <?php
                         $this->widget('booster.widgets.TbGridView', array(
                             'type' => ' bordered condensed hover',
-                            'id' => 'user-reviews-grid',
+                            'id' => 'coupons-grid',
                             'dataProvider' => $model->search(),
                             'filter' => $model,
                             'columns' => array(
 //                                'id',
-                                array('name' => 'user_id',
-                                    'value' => function($data) {
-                                            if ($data->user_id == 0) {
-                                                    return 'Admin';
-                                            } else {
-                                                    return 'User';
-                                            }
-                                    },
-                                ),
-                                'author',
-//                                'user_image',
-                                array('name' => 'product_id',
-                                    'value' => function($data) {
-                                            $product_name = Products::model()->findByPk($data->product_id);
-                                            return $product_name->product_name . '(' . $product_name->product_code . ')';
-                                    },
-                                ),
-                                'review',
+//                                'user_id',
+//                                'cash_limit',
+//                                'gift_card_amount',
+                                'discount',
+                                'code',
+                                'starting_date',
+                                'expiry_date',
+//                                'gift_card_id',
                                 /*
-                                  'approvel',
-                                  'date',
-                                  'rating',
+                                  'starting_date',
+                                  'expiry_date',
+                                  'discount',
+                                  'discount_type',
+                                  'unique',
+                                  'type',
+                                  'status',
+                                  'DOC',
+                                  'DOU',
+                                  'session_id',
+                                  'product_id',
                                  */
                                 array(
                                     'header' => '<font color="#61625D">Edit</font>',

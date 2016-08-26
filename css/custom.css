@@ -20,3 +20,7 @@ button.btn-primary.empty_cart {
         padding: 8px 15px;
 }
 
+img.zoom {
+        height: 141px;
+        overflow-y: hidden;
+}

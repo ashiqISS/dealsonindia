@@ -41,7 +41,7 @@ class Coupons extends CActiveRecord {
                     // array('product_id, user_id, cash_limit, gift_card_amount, code, gift_card_id, starting_date, expiry_date, discount, discount_type, unique, type, status, DOC, DOU, session_id', 'required'),
                     array('cash_limit, gift_card_amount, discount, unique, type, status', 'numerical', 'integerOnly' => true),
                     array('session_id', 'numerical'),
-                    array('product_id, user_id', 'length', 'max' => 20),
+//                    array('product_id, user_id', 'length', 'max' => 20),
                     array('code, discount_type', 'length', 'max' => 50),
                     array('gift_card_id', 'length', 'max' => 100),
                     // The following rule is used by search().
