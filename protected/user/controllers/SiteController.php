@@ -128,7 +128,7 @@ class SiteController extends Controller {
                                         $model->status = 1;
                                         if ($model->save(FALSE)) {
                                                 $this->SuccessMail($model);
-                                                Yii::app()->user->setFlash('success', " You are registered successfully");
+                                                Yii::app()->user->setFlash('success', " You are registered successfully!!! Verify your mail");
                                                 $this->redirect('UserRegister');
                                         } else {
                                                 Yii::app()->user->setFlash('error', "Error Occured");
