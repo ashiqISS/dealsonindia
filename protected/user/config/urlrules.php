@@ -19,6 +19,8 @@ return array(
     'category' => 'products/Category',
     'dailydeals' => 'products/Daily',
     'hotdeals' => 'products/Hot',
+    'my-products' => 'Products/MyProducts',
+    'Discount-coupon-generation' => 'Myaccount/CouponGeneration',
 //    'ss' => '?name',
     'merchant-registration' => 'registration/merchantDetails/create',
 //    'merchant-activation' => 'registration/merchantDetails/UserActivation',

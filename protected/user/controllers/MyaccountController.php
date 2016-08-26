@@ -184,4 +184,8 @@ class MyaccountController extends Controller {
                 return $model;
         }
 
+        public function actionCouponGeneration() {
+                
+        }
+
 }

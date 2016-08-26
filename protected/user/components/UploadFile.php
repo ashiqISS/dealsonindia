@@ -5,12 +5,10 @@ class UploadFile extends CApplicationComponent {
         public function folderName($min, $max, $id) {
                 if ($id > $min && $id < $max) {
                         return $max;
-                }
-                else {
+                } else {
                         $xy = $this->folderName($min + 1000, $max + 1000, $id);
                         return $xy;
                 }
-
         }
 
         public function fileExists($path, $name, $file, $sufix) {
@@ -18,18 +16,15 @@ class UploadFile extends CApplicationComponent {
                 if (file_exists($path . $name)) {
                         $name = basename($path . $file->name, '.' . $file->extensionName) . '_' . $sufix . '.' . $file->extensionName;
                         return $this->fileExists($path, $name, $file, $sufix + 1);
-                }
-                else {
+                } else {
                         return $name;
                 }
-
         }
 
         public function uploadImage($uploadfile, $id, $foldername = false) {
                 if ($foldername) {
                         $folder = $this->folderName(0, 1000, $id) . '/';
-                }
-                else {
+                } else {
                         $folder = "";
                 }
 
@@ -45,19 +40,17 @@ class UploadFile extends CApplicationComponent {
                                                 mkdir(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id);
                                         chmod(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/', 0777);
                                 }
-                                if ($uploadfile->saveAs(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/' . $id . '.' . $uploadfile->extensionName)) {
+                                if ($uploadfile->saveAs(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/main.' . $uploadfile->extensionName)) {
                                         chmod(Yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/', 0777);
                                 }
                         }
                 }
-
         }
 
         public function uploadMultipleImage($uploadfile, $id, $foldername = false) {
                 if ($foldername) {
                         $folder = $this->folderName(0, 1000, $id) . '/';
-                }
-                else {
+                } else {
                         $folder = "";
                 }
                 foreach ($uploadfile as $upload) {
@@ -87,7 +80,6 @@ class UploadFile extends CApplicationComponent {
                                 }
                         }
                 }
-
         }
 
 }

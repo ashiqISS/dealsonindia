@@ -176,6 +176,187 @@ class ProductsController extends Controller {
 
         public function actionAddProducts() {
                 $model = new Products('vendor_create');
+                $features = new ProductFeatures;
+                if (isset($_POST['Products'])) {
+                        $model->attributes = $_POST['Products'];
+                        $model->description = $_POST['Products']['description'];
+                        $model->meta_description = $_POST['Products']['meta_description'];
+                        $model->new_from = $_POST['Products']['new_from'];
+                        $model->new_to = $_POST['Products']['new_to'];
+                        $model->sale_from = $_POST['Products']['sale_from'];
+                        $model->sale_to = $_POST['Products']['sale_to'];
+                        $model->special_price_from = $_POST['Products']['special_price_from'];
+                        $model->special_price_to = $_POST['Products']['special_price_to'];
+                        $model->DOC = date('Y-m-d');
+                        $model->is_admin_approved = $_POST['Products']['DOU'];
+
+                        $image = CUploadedFile::getInstance($model, 'main_image');
+                        $images = CUploadedFile::getInstancesByName('gallery_images');
+                        $model->main_image = $image->extensionName;
+
+                        $model->merchant_id = Yii::app()->session['user']['id'];
+                        $model->merchant_type = Yii::app()->session['user_type_usrid'];
+
+                        if ($model->related_products != "") {
+                                $model->related_products = implode(",", $model->related_products);
+                        } else {
+                                $model->related_products = "";
+                        }
+
+                        if ($_POST['Products']['new_from'] != "")
+                                $model->new_from = date("Y-m-d", strtotime($_POST['Products']['new_from']));
+                        else
+                                $model->new_from = '';
+
+                        if ($_POST['Products']['new_to'] != "")
+                                $model->new_to = date("Y-m-d", strtotime($_POST['Products']['new_to']));
+                        else
+                                $model->new_to = '';
+
+                        if ($_POST['Products']['sale_from'] != "")
+                                $model->sale_from = date("Y-m-d", strtotime($_POST['Products']['sale_from']));
+                        else
+                                $model->sale_from = '';
+
+                        if ($_POST['Products']['sale_to'] != "")
+                                $model->sale_to = date("Y-m-d", strtotime($_POST['Products']['sale_to']));
+                        else
+                                $model->sale_to = '';
+
+                        if ($_POST['Products']['special_price_from'] != "")
+                                $model->special_price_from = date("Y-m-d", strtotime($_POST['Products']['special_price_from']));
+                        else
+                                $model->special_price_from = '';
+
+                        if ($_POST['Products']['special_price_to'] != "")
+                                $model->special_price_to = date("Y-m-d", strtotime($_POST['Products']['special_price_to']));
+                        else
+                                $model->special_price_to = '';
+
+
+                        if ($model->canonical_name == '') {
+                                $model->canonical_name = preg_replace('#[ -]+#', '-', $model->product_name);
+                                $model->canonical_name = $model->canonical_name . '_' . $model->id;
+                        }
+
+                        $model->CB = Yii::app()->session['user']['id'];
+                        $model->UB = 0;
+                        $model->DOC = date('Y-m-d H:i:s');
+                        $model->status = 1;
+//
+//                        var_dump($model);
+//                        exit;
+//                        if ($model->validate()) {
+
+
+                        if ($model->save(false)) {
+                                if (isset($_POST['ProductFeatures'])) {
+                                        if (isset($_POST['ProductFeatures'])) {
+                                                $desc = $_POST['ProductFeatures']['feature_disc'];
+                                                $heading = $_POST['ProductFeatures']['feature_heading'];
+                                                for ($i = 0; $i < count($desc); $i++) {
+                                                        $features = new ProductFeatures;
+                                                        $features->product_id = $model->id;
+                                                        $features->feature_disc = $desc[$i];
+                                                        $features->feature_heading = $heading[$i];
+                                                        $features->save(false);
+                                                }
+                                        }
+                                }
+                                if ($image != "") {
+                                        $id = $model->id;
+                                        $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                        $dimension[1] = array('width' => '322', 'height' => '500', 'name' => 'medium');
+                                        $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
+                                        $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                        Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
+                                }
+
+                                if ($images != "") {
+                                        $id = $model->id;
+                                        $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
+                                        $dimension[1] = array('width' => '580', 'height' => '775', 'name' => 'big');
+                                        $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                        Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
+                                }
+                                $model->canonical_name = $model->canonical_name . '-' . $model->id;
+                                $model->save();
+                                $this->redirect(array('MyProducts'));
+                        }
+//                        }
+                }
+
+                $this->render('add_products', array(
+                    'model' => $model,
+                ));
+        }
+
+        public function actionMyProducts() {
+                if (!isset(Yii::app()->session['user'])) {
+                        $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
+                } else {
+                        if (Yii::app()->session['user_type_usrid'] != 1) {
+//                                $dataProvider = new CActiveDataProvider('Products', array(
+//                                    'criteria' => array(
+//                                        'condition' => 'user_id=' . Yii::app()->session['user']['id'],
+//                                        'condition' => 'merchant_type=' . Yii::app()->session['user_type_usrid'],
+//                                        'order' => 'DOC  desc',
+//                                    ),
+//                                    'pagination' => array(
+//                                        'pageSize' => 4,
+//                                    ),
+//                                        )
+//                                );
+                                $model = Products::model()->findAllByAttributes(array('merchant_id' => Yii::app()->session['user']['id'], 'merchant_type' => Yii::app()->session['user_type_usrid']), array('order' => 'DOC DESC'));
+                                $this->render('my_products', array('model' => $model));
+                        }
+                }
+        }
+
+        public function recurse_copy($src, $dst) {
+                $dir = opendir($src);
+                @mkdir($dst);
+                while (false !== ( $file = readdir($dir))) {
+                        if (( $file != '.' ) && ( $file != '..' )) {
+                                if (is_dir($src . '/' . $file)) {
+                                        $this->recurse_copy($src . '/' . $file, $dst . '/' . $file);
+                                } else {
+                                        copy($src . '/' . $file, $dst . '/' . $file);
+                                }
+                        }
+                }
+                closedir($dir);
+        }
+
+        public function actionCloneProduct($id) {
+                $model = new Products;
+                $model1 = Products::model()->findByPk($id);
+                $model->attributes = $model1->attributes;
+                $model->DOC = date('Y-m-d H:i:s');
+                $model->status = 1;
+                $model->merchant_id = Yii::app()->session['user']['id'];
+
+                if ($model->save(FALSE)) {
+                        $model->canonical_name = str_replace(" ", "-", $model->product_name) . '-' . $model->id;
+                        $model->save();
+                        $folder = Yii::app()->Upload->folderName(0, 1000, $model->id) . '/';
+                        $src = yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $id . '/';
+                        $dst = yii::app()->basePath . '/../uploads/products/' . $folder . '/' . $model->id;
+                        var_dump($dst);
+//                        exit;
+                        $this->recurse_copy($src, $dst);
+                        $this->redirect('MyProducts');
+                }
+        }
+
+        public function actionEditProduct($id) {
+                $model = $this->loadModel($id);
+                $model->setScenario('update');
+                $features = new ProductFeatures;
+                $image1 = $model->main_image;
+                $image0 = $model->gallery_images;
+                $image2 = $model->hover_image;
+                $doc = $model->DOC;
                 if (isset($_POST['Products'])) {
                         $model->attributes = $_POST['Products'];
                         $model->description = $_POST['Products']['description'];
@@ -248,13 +429,28 @@ class ProductsController extends Controller {
 
 
                         if ($model->save(false)) {
+                                if (isset($_POST['ProductFeatures'])) {
+                                        if (isset($_POST['ProductFeatures'])) {
+                                                $desc = $_POST['ProductFeatures']['feature_disc'];
+                                                $heading = $_POST['ProductFeatures']['feature_heading'];
+                                                for ($i = 0; $i < count($desc); $i++) {
+                                                        $features = new ProductFeatures;
+                                                        $features->product_id = $model->id;
+                                                        $features->feature_disc = $desc[$i];
+                                                        $features->feature_heading = $heading[$i];
+                                                        $features->save(false);
+                                                }
+                                        }
+                                }
                                 if ($image != "") {
                                         $id = $model->id;
-                                        $dimension[0] = array('width' => '116', 'height' => '155', 'name' => 'small');
-                                        $dimension[1] = array('width' => '322', 'height' => '500', 'name' => 'medium');
-                                        $dimension[2] = array('width' => '580', 'height' => '775', 'name' => 'big');
-                                        $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
+                                        $dimension[0] = array('width' => '38', 'height' => '75', 'name' => 'small');
+                                        $dimension[1] = array('width' => '250', 'height' => '141', 'name' => 'medium');
+                                        $dimension[2] = array('width' => '159', 'height' => '312', 'name' => 'big');
+                                        $dimension[3] = array('width' => '635', 'height' => '1248', 'name' => 'zoom');
                                         Yii::app()->Upload->uploadImage($image, $id, true, $dimension);
+                                } else {
+                                        $model->main_image = $image1;
                                 }
 
                                 if ($images != "") {
@@ -263,27 +459,31 @@ class ProductsController extends Controller {
                                         $dimension[1] = array('width' => '580', 'height' => '775', 'name' => 'big');
                                         $dimension[3] = array('width' => '3016', 'height' => '4030', 'name' => 'zoom');
                                         Yii::app()->Upload->uploadMultipleImage($images, $id, true, $dimension);
+                                } else {
+                                        $model->gallery_images = $image0;
                                 }
-
+                                $model->canonical_name = $model->canonical_name . '-' . $model->id;
+                                $model->save();
                                 $this->redirect(array('MyProducts'));
                         }
 //                        }
                 }
-
                 $this->render('add_products', array(
                     'model' => $model,
                 ));
         }
 
-        public function actionMyProducts() {
-                if (!isset(Yii::app()->session['user'])) {
-                        $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
-                } else {
-                        if (Yii::app()->session['user_type_usrid'] != 1) {
-                                $model = Products::model()->findAllByAttributes(array('merchant_id' => Yii::app()->session['user']['id'], 'merchant_type' => Yii::app()->session['user_type_usrid']), array('order' => 'DOC DESC'));
-                                $this->render('my_products', array('model' => $model));
-                        }
-                }
+        public function actionDeleteProduct($id) {
+                $this->loadModel($id)->delete();
+                if (!isset($_GET['ajax']))
+                        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('MyProducts'));
+        }
+
+        public function loadModel($id) {
+                $model = Products::model()->findByPk($id);
+                if ($model === null)
+                        throw new CHttpException(404, 'The requested page does not exist.');
+                return $model;
         }
 
 }

@@ -155,6 +155,39 @@
                                                         </div>
                                                 </div>
                                         </div>
+                                        <div class="ui-set ">
+                                                <div class="settings1">
+                                                        <div class="form-group">
+                                                                <label class="set"> <?php echo $form->labelEx($model, 'product_type'); ?></label>
+                                                        </div>
+                                                </div>
+                                                <div class="settings2">
+                                                        <span>:</span>
+                                                </div>
+                                                <div class="settings3">
+                                                        <div class="form-group">
+                                                                <?php echo $form->dropDownList($model, 'product_type', array('' => "---Select Type---", '1' => "Deal Product", '2' => "Normal Product", '3' => "Coupon"), array('class' => 'form-select type_change')); ?>
+                                                                <?php echo $form->error($model, 'product_type'); ?>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="ui-set deal_link">
+                                                <div class="settings1">
+                                                        <div class="form-group">
+                                                                <label class="set"><?php echo $form->labelEx($model, 'deal_link'); ?></label>
+                                                        </div>
+                                                </div>
+                                                <div class="settings2">
+                                                        <span>:</span>
+                                                </div>
+                                                <div class="settings3">
+                                                        <div class="form-group">
+                                                                <?php echo $form->textArea($model, 'deal_link', array('size' => 60, 'maxlength' => 225, 'class' => 'form-acc')); ?>
+                                                                <?php echo $form->error($model, 'deal_link'); ?>
+                                                        </div>
+                                                </div>
+                                        </div>
+
                                         <div class="ui-set">
                                                 <div class="settings1">
                                                         <div class="form-group">
@@ -167,7 +200,8 @@
                                                 <div class="settings3">
                                                         <div class="form-group">
                                                                 <?php echo $form->textField($model, 'price', array('class' => 'form-set')); ?>
-                                                                <?php echo $form->error($model, 'price', array('class' => 'red')); ?>                                                        </div>
+                                                                <?php echo $form->error($model, 'price', array('class' => 'red')); ?>
+                                                        </div>
                                                 </div>
                                         </div>
                                         <div class="ui-set">
@@ -221,7 +255,7 @@
                                                                 <?php
                                                                 if ($model->main_image != '' && $model->id != "") {
                                                                         $folder = Yii::app()->Upload->folderName(0, 1000, $model->id);
-                                                                        echo '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/' . $model->id . '.' . $model->main_image . '" />';
+                                                                        echo '<img width="125" style="border: 2px solid #d2d2d2;" src="' . Yii::app()->baseUrl . '/uploads/products/' . $folder . '/' . $model->id . '/main.' . $model->main_image . '" />';
                                                                 }
                                                                 ?>
                                                                 <?php echo $form->error($model, 'main_image', array('class' => 'red')); ?>
@@ -840,30 +874,31 @@
                                                         <span>:</span>
                                                 </div>
                                                 <div class="settings3">
-                                                        <div class="form-group">
-                                                                <?php if (!$model->isNewRecord) { ?>
-                                                                        <?php $prod_features = ProductFeatures::model()->findAllByAttributes(array('product_id' => $model->id)); ?>
-                                                                        <?php if (!empty($prod_features)) { ?>
-                                                                                <?php
-                                                                                $i = 1;
-                                                                                foreach ($prod_features as $prod_feature) {
-                                                                                        ?>
-                                                                                        <div class = "featured_details" id = "f<?php echo $i; ?>"><div ><input size = "60" maxlength = "150"  name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
-                                                                                        <?php
-                                                                                        $i++;
-                                                                                }
-                                                                        } else {
-                                                                                ?>
-                                                                                <div class = "featured_details" id = "f<?php echo $i; ?>"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
 
+                                                        <?php if (!$model->isNewRecord) { ?>
+                                                                <?php $prod_features = ProductFeatures::model()->findAllByAttributes(array('product_id' => $model->id)); ?>
+                                                                <?php if (!empty($prod_features)) { ?>
+                                                                        <?php
+                                                                        $i = 1;
+                                                                        foreach ($prod_features as $prod_feature) {
+                                                                                ?>
+                                                                                <div class = "featured_details" id = "f<?php echo $i; ?>"><div class="form-group"><input size = "60" class="form-set" maxlength = "150"  name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "bot"><textarea  class="form-acc" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
                                                                                 <?php
+                                                                                $i++;
                                                                         }
                                                                 } else {
                                                                         ?>
-                                                                        <div class = "featured_details" id = "f1"><div class = "col-sm-6 col-xs-12 "><input size = "60" maxlength = "150" class = "form-control" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" id = "Products_deal_location" type = "text"></div><div class = "col-sm-6 col-xs-12 bot"><textarea rows = "2" cols = "50" class = "form-control" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"></textarea></div></div>
-                                                                <?php } ?>
-                                                                <div class="" id="file_tools"> </div>
-                                                        </div>
+                                                                        <div class = "featured_details" id = "f<?php echo $i; ?>"><div class="form-group"><input size = "60" maxlength = "150" class="form-set" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" value="<?php echo $prod_feature->feature_heading; ?>" id = "Products_deal_location" type = "text"></div><div class = "bot"><textarea class="form-acc"   name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"><?php echo $prod_feature->feature_disc; ?></textarea></div></div>
+
+                                                                        <?php
+                                                                }
+                                                        } else {
+                                                                ?>
+                                                                <div class = "featured_details" id = "f1"><div class="form-group"><input size = "60" maxlength = "150" class = "form-set" name = "ProductFeatures[feature_heading][]" placeholder = "Feature Heading" id = "Products_deal_location" type = "text"></div><div class = " bot"><textarea class="
+                                                                                                                                                                                                                form-acc" name = "ProductFeatures[feature_disc][]" placeholder = "Feature Descritpion" id = "Products_meta_description"></textarea></div></div>
+                                                                                                                                                                                                                                                                                                                                                      <?php } ?>
+                                                        <div class="" id="file_tools"> </div>
+
                                                 </div>
                                                 <div class="col-sm-2 col-xs-12 ">
                                                         <i class="fa fa-plus-circle" id="add_file" style="font-size: 18px; margin-top: 20px; cursor: pointer;"></i>
@@ -923,3 +958,28 @@ if (!$model->isNewRecord) {
                 </div>
         </div>
 </section>
+
+
+<script>
+        $(document).ready(function () {
+                var name1 = $(".type_change").val();
+                if (name1 == 1 || name1 == 3) {
+                        $(".deal_link").show();
+                } else {
+                        $(".deal_link").hide();
+
+                }
+                $(".type_change").change(function () {
+                        var name = $(this).val();
+                        if (name == 1 || name == 3) {
+                                $(".deal_link").show();
+                        } else {
+                                $(".deal_link").hide();
+
+                        }
+                });
+
+
+        });
+
+</script>
