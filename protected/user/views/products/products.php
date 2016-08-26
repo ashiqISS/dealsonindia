@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="<?= Yii::app()->baseUrl ?>/css/bootstrap-slider.css">
 <section class="banner">
     <div class="container">
@@ -15,7 +16,7 @@
     <div class="container">
         <div class="row">
 
-            <?php echo $this->renderPartial('_left_menu',array('price'=>$price,'category'=>$category)); ?>
+            <?php echo $this->renderPartial('_left_menu', array('price' => $price, 'category' => $category)); ?>
 
 
             <div class="clearfix visible-sm visible-xs"></div>
@@ -33,18 +34,22 @@
                         ?>
                     </h6>
                     <div class="listed">
-                        <form class="form-inline" role="form">
-                            <label class="sortby">Sort By</label>
-                            <div class="form-group">
+                        <label class="sortby">Sort By</label>
+                        <div class="form-group">
+                            <form id="products_sort" method="POST" action="<?= Yii::app()->request->baseUrl . "/index.php/products/list"; ?>" class="form-inline" role="form">
+                                <input type="hidden" name="category" value="<?= $category ?>">
+                                <input type="hidden" name="sort_by" id='sort_by'>
+                                <select class="chris-select animated fadeInUp" name="product_sort" id="sel_sort" form="product_sort" onchange='sort()' selected='<?= $sort ?>' >
+                                    <option value="">Sort</option>
+                                    <option value="new_first">Newest First</option>
+                                    <option value="old_first">Oldest First</option>
+                                    <option value="price_low">Price - low to high</option>
+                                    <option value="price_high">Price - high to low</option>
 
-                                <select class="chris-select animated fadeInUp" name="carlist" form="carform">
-                                    <option value="volvo">Default</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
                                 </select>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
 
@@ -73,7 +78,19 @@
 
 
 </section>
+<script>
+    function sort()
+    {
+        var e = document.getElementById("sel_sort");
+        var sort = e.options[e.selectedIndex].value;
+        alert(sort)
+        $("#sort_by").val(sort);
+//        $('#products_sort').submit();
+    }
+</script>
 <script src="<?= Yii::app()->baseUrl ?>/js/jquery.min.js"></script>
+
+
 
 <script src="<?= Yii::app()->baseUrl ?>/js/jquery.infinitescroll.min.js"></script>
 <?php $jquery = Yii::app()->request->baseUrl . '/js/jquery-1.11.3.min.js'; ?>
@@ -93,12 +110,10 @@
 
 <script src="<?= Yii::app()->baseUrl ?>/js/bootstrap-slider.js"></script>
 
+
+
 <script>
-    $( document ).ready(function() {
-    $( "#asdfff" ).click(function() {
-  
-});
-});
+
     $("#ex16b").slider({
         min: 1000,
         max: 15000,
@@ -116,11 +131,11 @@
         max: 15000,
         value: [1000, 15000],
         focus: true,
-         slide: function( event, ui ) {
-      alert();
-      }
+        slide: function (event, ui) {
+            alert();
+        }
     });
-    
+
 
 </script>
 <script>
