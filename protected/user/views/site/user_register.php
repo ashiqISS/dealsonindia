@@ -57,7 +57,7 @@
                                                         <span class="field-span input input--ruri">
                                                                 <?php echo $form->textField($model, 'email', array('size' => 60, 'maxlength' => 100, 'class' => 'input-field input-field-ruri input__field input__field--ruri')); ?>
                                                                 <label class="label-field label-field-ruri input__label input__label--ruri" for="input-1">
-                                                                        <span class="content-filed content-filed-ruri">Email<?php echo $form->error($model, 'email', array('class' => 'form_error')); ?></span>
+                                                                        <span class="content-filed content-filed-ruri">Email</span>
                                                                 </label>
                                                         </span>
                                                         <?php echo $form->error($model, 'email', array('class' => 'form_error')); ?>

@@ -113,6 +113,8 @@ class SiteController extends Controller {
                                 $user->user_status = 1;
                                 $user->last_login = date('Y-m-d H:i:s');
                                 $user->DOC = date('Y-m-d');
+                                $ver_id = mt_rand(10000, 99999) . time();
+                                $user->activation_link = $ver_id;
                                 $user->verification_code = rand(1000, 9999);
                                 if ($user->save(FALSE)) {
                                         $model->attributes = $_POST['BuyerDetails'];
@@ -125,8 +127,9 @@ class SiteController extends Controller {
                                         $model->CB = $user->id;
                                         $model->status = 1;
                                         if ($model->save(FALSE)) {
+                                                $this->SuccessMail($model);
                                                 Yii::app()->user->setFlash('success', " You are registered successfully");
-                                                $this->redirect(array('Myaccount/index'));
+                                                $this->redirect('UserRegister');
                                         } else {
                                                 Yii::app()->user->setFlash('error', "Error Occured");
                                                 $this->redirect('UserRegister');
@@ -135,6 +138,32 @@ class SiteController extends Controller {
                         }
                 }
                 $this->render('user_register', array('model' => $model));
+        }
+
+        public function SuccessMail($model) {
+                Yii::import('user.extensions.yii-mail.YiiMail');
+                $message = new YiiMailMessage;
+                $message->view = "_registration_activation_mail";
+                $params = array('model' => $model);
+                $message->subject = 'Welcome To Dealsonindia';
+                $message->setBody($params, 'text/html');
+                $message->addTo($model->email);
+                $message->from = 'dealsonindia@intersmart.in';
+                if (Yii::app()->mail->send($message)) {
+//            echo 'message send';
+//            exit;
+                } else {
+                        echo 'message not send';
+                        exit;
+                }
+        }
+
+        public function actionUserActivation($id) {
+                $user_model = Users::model()->findByAttributes(array('activation_link' => $id));
+                $user_model->user_status = 3;
+                $user_model->update();
+                $model = BuyerDetails::model()->findByAttributes(array('user_id' => $user_model->id));
+                $this->render('user_activation', array('model' => $model));
         }
 
         public function actionVendorRegister() {
@@ -295,6 +324,12 @@ class SiteController extends Controller {
                         else
                                 $this->render('error', $error);
                 }
+        }
+
+        public static function siteURL() {
+                $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+                $domainName = $_SERVER['HTTP_HOST'];
+                return $protocol . $domainName . '/dealsonindia/';
         }
 
 }
