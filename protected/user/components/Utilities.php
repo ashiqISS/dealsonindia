@@ -18,7 +18,7 @@ class Utilities {
 //            echo count($childs).'<br>';
             if (count($childs) > 0) {
                 for ($j = 0; $j < count($childs); $j++) {
-                    
+
                     if ($parents[$i]["id"] != $childs[$j]["id"]) {
 
 
@@ -26,7 +26,7 @@ class Utilities {
                         $returnhtml[$childs[$j]["id"]] = $parents[$i]["category_name"] . "->" . $childs[$j]["category_name"];
                         $cat[$parents[$i]["category_name"]][$j] = $childs[$j]["category_name"];
 
-                        $returnhtml = self::CategoryTrees($childs[$j]["id"], $category, $returnhtml,$cat[$parents[$i]["category_name"]][$j]);
+                        $returnhtml = self::CategoryTrees($childs[$j]["id"], $category, $returnhtml, $cat[$parents[$i]["category_name"]][$j]);
                     }
                 }
             }
@@ -42,6 +42,10 @@ class Utilities {
             $html = self::CategoryTrees($child->id, $category1, $html);
         }
         return $html;
+    }
+
+    public static function getPriceList() {
+        return array('0 AND 1000' => '0 - 1000', '1001 AND 100000' => '10001 - 100000', '10001 AND 100000' => '10001 - 100000', '100001 AND 1000000' => '100001 - 1000000');
     }
 
 }

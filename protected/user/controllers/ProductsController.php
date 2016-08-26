@@ -485,5 +485,76 @@ class ProductsController extends Controller {
                         throw new CHttpException(404, 'The requested page does not exist.');
                 return $model;
         }
+          public function actionList() {
+  
+        $category = '';
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'status = 1 AND is_admin_approved = 1 AND `sale_to` >= CURDATE() ';
+
+        if ((isset($_GET['category'])) || (isset($_POST['category']))) {
+            $cat_id = '';
+            if (isset($_GET['category'])) {
+                $category = $_GET['category'];
+            }
+            else
+            if (isset($_POST['category'])) {
+                $category = $_POST['category'];
+            }
+            if ($category != '') {
+                $cat = ProductCategory::model()->findByAttributes(array('category_name' => $category));
+                 $cat_id = $cat->id;
+                 $find_in_set = " `category_id` LIKE '%" . $cat_id . "%' ";
+
+//                $find_in_set = rtrim($find_in_set, ' OR');
+                $criteria->addCondition($find_in_set);
+            }
+        }
+
+//        if (isset($_POST['brand_inputs'])) {
+//            $brands = $_POST['brand_inputs'];
+//            if ($brands != '') {
+//                $brs = explode(', ', $brands);
+//                foreach ($brs as $brand) {
+//                    $find_in_set .= "FIND_IN_SET('$brand',`brand_id`) OR ";
+//                }
+//                $find_in_set = rtrim($find_in_set, ' OR');
+//                $criteria->addCondition($find_in_set);
+//            }
+//        }
+        if (isset($_POST['priceRange'])) {
+            $price = $_POST['priceRange'];
+
+            if ($price != '') {
+                $prc = explode(', ', $price);
+                foreach ($prc as $price) {
+                    $price_condition .= "price BETWEEN $price OR ";
+                }
+                $price_condition = rtrim($price_condition, ' OR');
+                $criteria->addCondition($price_condition);
+            }
+        }
+
+        $criteria->order = 'id desc';
+        $total = Products::model()->count($criteria);
+
+        $pages = new CPagination($total);
+        $pages->pageSize = 1;
+        $pages->applyLimit($criteria);
+
+        $products = Products::model()->findAll($criteria);
+
+//
+        $this->render('products', array(
+            'products' => $products,
+            'pages' => $pages,
+            'category' => $category,
+//            'file_name' => '_searchresult',
+//            'parameter' => $_REQUEST['saerchterm'],
+//            'brandsel' => $brands,
+            'price' => $price,
+//            'searchterm' => $searchterm
+        ));
+//        $this->render('products');
+    }
 
 }
