@@ -272,10 +272,49 @@
                                                         <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary new-btn" data-target="#">
                                                                 <i class="fa fa-navicon"></i> ALL CATEGORIES
                                                         </a>
-                                                        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                                        <!--<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">-->
                                                                 <!--                                    <li><a href="#">Some action</a></li>-->
+                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                                <?php
+                                $e = Utilities::Categories();
+//                                print_r($e); 
+                                foreach ($e as $key => $value) {
+                                    ?>
+                                    <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="#">
+                                            <?php echo $key; ?>
+                                        </a> 
+                                        <?php if (!empty($value)) { ?>
+                                            <ul class="dropdown-menu menu-2">
+                                                <li>
+                                                    <?php
+                                                    foreach ($value as $key1 => $value1) {
+                                                            ?>
+                                                            <?php echo CHtml::link($value1, array('products/list')); ?>
+                                                            <?php
+                                                    }
+                                                    ?>
+                                                </li>
+                                                <!--                                            <li class="dropdown-submenu menu-3">
+                                                                                                <a href="#">Even More..</a>
+                                                                                                <ul class="dropdown-menu levels">
+                                                                                                    <li><a href="#">3rd level</a></li>
+                                                                                                    <li><a href="#">3rd level</a></li>
+                                                                                                </ul>
+                                                                                            </li>
+                                                                                            <li><a href="#">Second level</a></li>
+                                                                                            <li><a href="#">Second level</a></li>-->
+                                            </ul>
+                                        <?php } ?>
+                                    </li>
 
 
+
+                                    <?php
+                                } 
+                                ?>
+<!--
                                                                 <li class="dropdown-submenu">
                                                                         <a tabindex="-1" href="#">Baby Products</a>
                                                                         <ul class="dropdown-menu menu-2">
@@ -361,7 +400,7 @@
                                                                                 <li><a href="#">Second level</a></li>
                                                                         </ul>
                                                                 </li>
-
+-->
 
 
 
