@@ -54,26 +54,22 @@ class Merchant extends CActiveRecord {
                 // will receive user inputs.
                 return array(
 //            array('first_name,last_name, email, phone_number, password, email_verification, product_categories, merchant_type, product_count, shop_name, address, pincode, city, locality, district, state, country, status, CB, DOC, is_payment_done', 'required'),
-                    array('first_name,last_name, email, phone_number, password,  confirm, product_categories, merchant_type', 'required', 'on' => 'insert'),
-                    // required fields on create
-                    array('first_name,last_name, email, phone_number, password, confirm_password, user_status', 'required', 'on' => 'admin_create'),
-                    array('first_name,last_name, email, phone_number, password, confirm, product_categories, merchant_type, address, pincode, city,  locality, district, state, country, status', 'required', 'on' => 'create'),
-                    array('merchant_type, product_count, pincode, state, country, bad_attempts, CB, UB, is_payment_done', 'numerical', 'integerOnly' => true),
-                    array('first_name,last_name, email, phone_number, password, city, locality, vat_tin, status', 'length', 'max' => 100),
-                    array('verification_code', 'length', 'max' => 50),
-                    array('product_categories, shop_name, shop_logo, shop_banner', 'length', 'max' => 250),
-                    array('district', 'length', 'max' => 200),
-                    array('DOU', 'safe'),
+                    array('first_name, last_name, email, phone_number, password, confirm,  merchant_type,  address', 'required'),
+//                    array('merchant_type, product_count, pincode, district, state, country, bad_attempts, CB, UB, is_payment_done, merchant_point, merchant_badge, merchant_rating', 'numerical', 'integerOnly' => true),
+//                    array('first_name, email, phone_number, password, confirm, email_verification, city, locality, vat_tin, status', 'length', 'max' => 100),
+//                    array('last_name', 'length', 'max' => 200),
+//                    array('verification_code', 'length', 'max' => 50),
+//                    array('product_categories, shop_name, shop_logo, shop_banner', 'length', 'max' => 250),
                     // email and phone number is unique
-                    array('email, phone_number', 'unique'),
+                    array('email, phone_number', 'unique', 'on' => 'create'),
                     // check for email format
-                    array('email', 'email'),
+                    array('email', 'email', 'on' => 'create'),
                     // password validation
                     array('password, confirm', 'length', 'min' => 6, 'max' => 40),
                     array('password, confirm', 'compare', 'compareAttribute' => 'confirm', 'message' => 'Password and Confirm Password should match.'),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
-                    array('id, first_name,last_name, email, phone_number, password, verification_code, email_verification, product_categories, merchant_type, product_count, shop_name, shop_logo, shop_banner, address, pincode, city, locality, district, state, country, vat_tin, status, last_login, bad_attempts, CB, UB, DOC, DOU, is_payment_done', 'safe', 'on' => 'search'),
+                    array('first_name, last_name, email, phone_number, password, confirm, verification_code, email_verification, product_categories, merchant_type, product_count, shop_name, shop_logo, shop_banner, address, pincode, city, locality, district, state, country, vat_tin, status, last_login, bad_attempts, CB, UB, DOC, DOU, is_payment_done, merchant_point, merchant_badge, merchant_rating', 'safe', 'on' => 'search'),
                 );
         }
 
@@ -98,7 +94,7 @@ class Merchant extends CActiveRecord {
                     'email' => 'Email',
                     'phone_number' => 'Phone Number',
                     'password' => 'Password',
-                    'confirm' => 'Confirm Password',
+                    'confirm' => 'Confirm',
                     'verification_code' => 'Verification Code',
                     'email_verification' => 'Email Verification',
                     'product_categories' => 'Product Categories',
@@ -114,7 +110,7 @@ class Merchant extends CActiveRecord {
                     'district' => 'District',
                     'state' => 'State',
                     'country' => 'Country',
-                    'vat_tin' => 'VAT/TIN',
+                    'vat_tin' => 'Vat Tin',
                     'status' => 'Status',
                     'last_login' => 'Last Login',
                     'bad_attempts' => 'Bad Attempts',
@@ -152,6 +148,7 @@ class Merchant extends CActiveRecord {
                 $criteria->compare('email', $this->email, true);
                 $criteria->compare('phone_number', $this->phone_number, true);
                 $criteria->compare('password', $this->password, true);
+                $criteria->compare('confirm', $this->confirm, true);
                 $criteria->compare('verification_code', $this->verification_code, true);
                 $criteria->compare('email_verification', $this->email_verification, true);
                 $criteria->compare('product_categories', $this->product_categories, true);
@@ -164,7 +161,7 @@ class Merchant extends CActiveRecord {
                 $criteria->compare('pincode', $this->pincode);
                 $criteria->compare('city', $this->city, true);
                 $criteria->compare('locality', $this->locality, true);
-                $criteria->compare('district', $this->district, true);
+                $criteria->compare('district', $this->district);
                 $criteria->compare('state', $this->state);
                 $criteria->compare('country', $this->country);
                 $criteria->compare('vat_tin', $this->vat_tin, true);

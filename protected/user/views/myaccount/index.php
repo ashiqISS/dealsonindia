@@ -98,9 +98,8 @@
                                         <div class="infotech">
 
                                                 <div class="info-1">
-                                                        <span class="cap">Becky lynch</span>
-                                                        <span class="industry">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                                Lorem Ipsum has been the industry's standard .</span>
+                                                        <span class="cap"><?= $model->first_name ?></span>
+                                                        <span class="industry"><?= $model->email ?>.</span>
                                                         <div class="been">
 
                                                                 <a href="#"><i class="fa faces fa-facebook"></i></a>
@@ -114,9 +113,9 @@
                                                                         Lorem Ipsum has been the industry's standard .</span>
                                                         </div>
                                                         <div class="been">
-                                                                <a href="#"> <img src="images/g1.png"></a>
-                                                                <a href="#"> <img src="images/g2.png"></a>
-                                                                <a href="#"> <img src="images/g3.png"></a>
+                                                                <a href="#"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/g1.png"></a>
+                                                                <a href="#"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/g2.png"></a>
+                                                                <a href="#"> <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/g3.png"></a>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                         <div class="type">

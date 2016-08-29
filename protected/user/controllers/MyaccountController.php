@@ -10,7 +10,12 @@ class MyaccountController extends Controller {
                 if (!isset(Yii::app()->session['user'])) {
                         $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
                 } else {
-                        $this->render('index');
+                        if (Yii::app()->session['user_type_usrid'] == 1) {
+                                $model = BuyerDetails::model()->findByPk(Yii::app()->session['user']['id']);
+                        } else {
+                                $model = Merchant::model()->findByPk(Yii::app()->session['user']['id']);
+                        }
+                        $this->render('index', array('model' => $model));
                 }
         }
 
@@ -185,7 +190,7 @@ class MyaccountController extends Controller {
         }
 
         public function actionCouponGeneration() {
-                
+
         }
 
 }

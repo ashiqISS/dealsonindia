@@ -13,9 +13,6 @@
  * @property string $pan_card
  * @property string $dob
  * @property string $gender
- * @property string $bank_accnt_number
- * @property string $bank_ifsc_code
- * @property string $company_name
  * @property string $phone_no_2
  * @property integer $newsletter
  * @property string $wallet_amt
@@ -24,7 +21,7 @@
  * @property string $DOC
  * @property string $DOU
  * @property integer $status
- * @property integer $field3
+ * @property integer $terms
  *
  * The followings are the available model relations:
  * @property Users $user
@@ -47,26 +44,22 @@ class BuyerDetails extends CActiveRecord {
                 // NOTE: you should only define rules for those attributes that
                 // will receive user inputs.
                 return array(
-                    array('first_name, last_name, password, pan_card, dob, gender, bank_accnt_number, bank_ifsc_code, phone_no_2', 'required'),
-                    array('user_id, newsletter, CB, UB, status, field3', 'numerical', 'integerOnly' => true),
-                    array('first_name, last_name, phone_no_2', 'length', 'max' => 100),
-                    array('email, password, bank_ifsc_code, company_name', 'length', 'max' => 250),
-                    array('pan_card, bank_accnt_number', 'length', 'max' => 200),
-                    array('gender', 'length', 'max' => 50),
-                    array('password', 'length', 'max' => 15, 'min' => 5),
-                    array('wallet_amt', 'length', 'max' => 10),
-                    array('gender', 'length', 'max' => 50),
-                    array('wallet_amt', 'length', 'max' => 10),
+                    array('first_name, last_name, email, password,confirm, dob, gender, phone_number', 'required', 'on' => 'create'),
+                    array('newsletter, CB, UB, status, terms', 'numerical', 'integerOnly' => true),
+                    array('email', 'email', 'on' => 'create'),
+                    array('email', 'unique', 'on' => 'create'),
+                    array('phone_number', 'unique', 'on' => 'create'),
+//                    array('password', 'compare', 'compareAttribute' => 'confirm'),
+//                    array('password', 'legth', 'min' => 5, 'on' => 'create'),
+//                    array('password', 'legth', 'max' => 15, 'on' => 'create'),
 //                    array('first_name,last_name,phone_no_2,email,address', 'required', 'on' => 'settings'),
 //                    array('email', 'unique', 'on' => 'settings'),
 //                    array('email', 'email', 'on' => 'settings'),
-//                    array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements()),
+                    array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements()),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
-                    array('id, user_id, first_name, last_name,email, password, pan_card, dob, gender, bank_accnt_number, bank_ifsc_code, company_name, phone_no_2, newsletter, wallet_amt, CB, UB, DOC, DOU, status, field3', 'safe', 'on' => 'search'),
-                    array('first_name,last_name,dob,password,email,phone_no_2,gender', 'required', 'on' => 'create'),
-                    array('email', 'email', 'on' => 'create'),
-                    array('email', 'unique', 'on' => 'create'),
+                    array('first_name, last_name, email, password, dob, gender, phone_number, address, activation_link, email_verification, verification_code, newsletter, wallet_amt, user_status, CB, UB, DOC, DOU, status, terms', 'safe', 'on' => 'search'),
+                    array('first_name,last_name,dob,password,email,phone_number,gender', 'required', 'on' => 'create'),
                 );
         }
 
@@ -77,7 +70,7 @@ class BuyerDetails extends CActiveRecord {
                 // NOTE: you may need to adjust the relation name and the related
                 // class name for the relations automatically generated below.
                 return array(
-                    'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+//                    'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
                 );
         }
 
@@ -87,26 +80,26 @@ class BuyerDetails extends CActiveRecord {
         public function attributeLabels() {
                 return array(
                     'id' => 'ID',
-                    'user_id' => 'User',
                     'first_name' => 'First Name',
                     'last_name' => 'Last Name',
                     'email' => 'Email',
                     'password' => 'Password',
-                    'pan_card' => 'Pan Card',
                     'dob' => 'Dob',
                     'gender' => 'Gender',
-                    'bank_accnt_number' => 'Bank Accnt Number',
-                    'bank_ifsc_code' => 'Bank Ifsc Code',
-                    'company_name' => 'Company Name',
-                    'phone_no_2' => 'Phone No 2',
+                    'phone_number' => 'Phone Number',
+                    'address' => 'Address',
+                    'activation_link' => 'Activation Link',
+                    'email_verification' => 'Email Verification',
+                    'verification_code' => 'Verification Code',
                     'newsletter' => 'Newsletter',
                     'wallet_amt' => 'Wallet Amt',
+                    'user_status' => 'User Status',
                     'CB' => 'Cb',
                     'UB' => 'Ub',
                     'DOC' => 'Doc',
                     'DOU' => 'Dou',
                     'status' => 'Status',
-                    'field3' => 'Field3',
+                    'terms' => 'Terms',
                 );
         }
 
@@ -128,26 +121,26 @@ class BuyerDetails extends CActiveRecord {
                 $criteria = new CDbCriteria;
 
                 $criteria->compare('id', $this->id);
-                $criteria->compare('user_id', $this->user_id);
                 $criteria->compare('first_name', $this->first_name, true);
                 $criteria->compare('last_name', $this->last_name, true);
                 $criteria->compare('email', $this->email, true);
                 $criteria->compare('password', $this->password, true);
-                $criteria->compare('pan_card', $this->pan_card, true);
                 $criteria->compare('dob', $this->dob, true);
                 $criteria->compare('gender', $this->gender, true);
-                $criteria->compare('bank_accnt_number', $this->bank_accnt_number, true);
-                $criteria->compare('bank_ifsc_code', $this->bank_ifsc_code, true);
-                $criteria->compare('company_name', $this->company_name, true);
-                $criteria->compare('phone_no_2', $this->phone_no_2, true);
+                $criteria->compare('phone_number', $this->phone_number, true);
+                $criteria->compare('address', $this->address, true);
+                $criteria->compare('activation_link', $this->activation_link, true);
+                $criteria->compare('email_verification', $this->email_verification, true);
+                $criteria->compare('verification_code', $this->verification_code, true);
                 $criteria->compare('newsletter', $this->newsletter);
                 $criteria->compare('wallet_amt', $this->wallet_amt, true);
+                $criteria->compare('user_status', $this->user_status);
                 $criteria->compare('CB', $this->CB);
                 $criteria->compare('UB', $this->UB);
                 $criteria->compare('DOC', $this->DOC, true);
                 $criteria->compare('DOU', $this->DOU, true);
                 $criteria->compare('status', $this->status);
-                $criteria->compare('field3', $this->field3);
+                $criteria->compare('terms', $this->terms);
 
                 return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,

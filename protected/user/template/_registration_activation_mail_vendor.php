@@ -17,7 +17,7 @@
                                                         <br>
                                                         Hi User<br><br>
                                                         Thank you for signing up to our site. You are one step away. &nbsp;Please click on the following button to activate your account <br><br>
-                                                        <a style="display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;background-color: #C7702E;color: #ffffff;padding: .5em" href="<?php echo SiteController::siteURL() . "index.php/site/UserActivation?id=" . $model->activation_link; ?>" target="_blank">  <span style="font-size:16px;line-height:32px;">Activate your account</span>
+                                                        <a style="display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;background-color: #C7702E;color: #ffffff;padding: .5em" href="<?php echo SiteController::siteURL() . "index.php/site/VendorActivation?id=" . $vendor->activation_link; ?>" target="_blank">  <span style="font-size:16px;line-height:32px;">Activate your account</span>
                                                         </a>
                                                         <br><br>
                                                         Thanks & Regards<br>
