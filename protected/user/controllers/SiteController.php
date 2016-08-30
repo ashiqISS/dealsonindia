@@ -7,13 +7,13 @@ class SiteController extends Controller {
          */
         public function actions() {
                 return array(
-                    // captcha action renders the CAPTCHA image displayed on the contact page
+// captcha action renders the CAPTCHA image displayed on the contact page
                     'captcha' => array(
                         'class' => 'CCaptchaAction',
                         'backColor' => 0xFFFFFF,
                     ),
                     // page action renders "static" pages stored under 'protected/views/site/pages'
-                    // They can be accessed via: index.php?r=site/page&view=FileName
+// They can be accessed via: index.php?r=site/page&view=FileName
                     'page' => array(
                         'class' => 'CViewAction',
                     ),
@@ -29,7 +29,7 @@ class SiteController extends Controller {
         }
 
         public function actionIndex() {
-                // $model = Products::model()->findAll();
+// $model = Products::model()->findAll();
 
                 $criteria = new CDbCriteria;
                 $total = Products::model()->count();
@@ -54,47 +54,54 @@ class SiteController extends Controller {
         }
 
         public function actionLogin() {
-                Yii::app()->session['user_type_usrid'] = $_POST['user'];
                 if (isset(Yii::app()->session['user'])) {
                         $this->redirect($this->createUrl('index'));
                 } else {
-                        if ($_POST['user'] == 1) {
-                                $login = new BuyerDetails();
-                        } else {
-                                $login = new Merchant();
-                        }
-                        if (isset($_POST['login_submit'])) {
-                                if ($_POST['user'] == 1) {
-                                        $login = new BuyerDetails();
-                                        $user = BuyerDetails::model()->findByAttributes(array('email' => $_POST['BuyerDetails']['email'], 'password' => $_POST['BuyerDetails']['password']));
-                                        var_dump($_POST['BuyerDetails']['email']);
-                                        exit;
-                                        if ($user != '' && $user !== NULL) {
-                                                Yii::app()->session['user'] = $user;
-                                                Cart::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
-                                                CouponHistory::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
-                                                Order::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
+                        $model = new BuyerDetails();
+                        $vendor = new Merchant();
+                        if (isset($_POST['BuyerDetails'])) {
+                                Yii::app()->session['user_type_usrid'] = 1;
+                                $login = BuyerDetails::model()->findByAttributes(array('email' => $_POST['BuyerDetails']['email'], 'password' => $_POST['BuyerDetails']['password']));
+                                Yii::app()->session['user'] = $login;
+                                var_dump($login);
+                                exit;
+                                if (!empty($login)) {
+                                        if ($login->user_status == 0) {
+                                                Yii::app()->user->setFlash('login_list', "Access Denied.Contact Laksyah");
+                                        } else if ($login->email_verification == 0) {
+                                                Yii::app()->user->setFlash('emailverify', "Email verification needed...Please check your mail and activate your account");
+                                                Yii::app()->user->setFlash('verify_code', $login->id);
+                                                Yii::app()->session['user_email_verify'] = $login->id;
+                                        } else if ($login->email_verification == 1 && $login->status == 1) {
                                                 $this->redirect(array('Myaccount/index'));
-                                        } else {
-                                                $login->addError('email', '');
-                                                $login->addError('password', '');
-                                                Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
                                         }
                                 } else {
-                                        $login = new Merchant();
-                                        $user = Merchant::model()->findByAttributes(array('email' => $_REQUEST['Merchant']['email'], 'password' => $_REQUEST['Merchant']['password']));
-                                        if ($user != '' && $user !== NULL) {
-                                                Yii::app()->session['merchent'] = $user;
-                                                $this->redirect(array('Myaccount/index'));
-                                        } else {
-                                                $login->addError('email', '');
-                                                $login->addError('password', '');
-                                                Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
-                                        }
+                                        $login->addError('email', '');
+                                        $login->addError('password', '');
+                                        Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
                                 }
                         }
+                        if (isset($_POST['Merchant'])) {
+                                Yii::app()->session['user_type_usrid'] = 2;
+                                $login = Merchant::model()->findByAttributes(array('email' => $_REQUEST['Merchant']['email'], 'password' => $_REQUEST['Merchant']['password']));
+                                Yii::app()->session['merchant'] = $login;
+                                if (!empty($login)) {
+                                        if ($login->status == 0) {
+                                                Yii::app()->user->setFlash('login_list', "Access Denied.Contact Laksyah");
+                                        } else if ($login->email_verification == 0) {
+                                                Yii::app()->user->setFlash('emailverify', "Email verification needed...Please check your mail and activate your account");
+                                                Yii::app()->user->setFlash('verify_code', $login->id);
+                                                Yii::app()->session['user_email_verify'] = $login->id;
+                                        }
+                                } else {
+                                        $login->addError('email', '');
+                                        $login->addError('password', '');
+                                        Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
+                                }
+                                $this->redirect(array('Myaccount/index'));
+                        }
                 }
-                $this->render('login', array('login' => $login));
+                $this->render('login', array('model' => $model, 'vendor' => $vendor));
         }
 
         public function actionLogout() {
@@ -118,10 +125,10 @@ class SiteController extends Controller {
                         if ($model->save()) {
                                 $this->SuccessMail($model);
                                 Yii::app()->user->setFlash('success', " You are registered successfully!!! Check your mail and verify your account");
-                                $this->redirect('UserRegister');
+                                $this->redirect(array('site/UserRegister'));
                         } else {
                                 Yii::app()->user->setFlash('error', "Error Occured");
-                                $this->redirect('UserRegister');
+                                $this->redirect(array('site/UserRegister'));
                         }
                 }
                 if (isset($_POST['Merchant'])) {
@@ -198,49 +205,6 @@ class SiteController extends Controller {
                 $this->render('vendor_activation', array('model' => $model));
         }
 
-        public function actionVendorRegister() {
-                if (isset(Yii::app()->session['user'])) {
-                        $this->redirect($this->createUrl('index'));
-                } else {
-                        $model = new Merchant('create');
-                        $user = new Users;
-                        if (isset($_POST['Merchant'])) {
-                                $user->attributes = $_POST['Merchant'];
-                                $user->user_type = 2;
-                                $user->email = $_POST['Merchant']['email'];
-                                $user->phone_number = $_POST['Merchant']['phone_number'];
-                                $user->password = $_POST['Merchant']['password'];
-                                $user->user_status = 1;
-                                $user->last_login = date('Y-m-d H:i:s');
-                                $user->DOC = date('Y-m-d');
-                                $user->verification_code = rand(1000, 9999);
-                                if ($user->save()) {
-                                        $model->attributes = $_POST['Merchant'];
-                                        $model->password = $_POST['Merchant']['password'];
-                                        $model->confirm = $_POST['Merchant']['confirm'];
-                                        if ($model->password == $model->confirm) {
-                                                if ($model->save()) {
-                                                        if ($model->email_verification == 0) {
-                                                                Yii::app()->user->setFlash('emailverify', "One Time Password (OTP) has been sent to your email <b>" . $model->email . "</b>, please enter the same here to access your account.");
-                                                                Yii::app()->user->setFlash('verification_code', $model->id);
-                                                                Yii::app()->session['email_verification'] = $model->id;
-                                                                $this->VerificationMail($model);
-                                                        }
-
-                                                        $this->siteNavigator($model);
-                                                }
-                                        } else {
-                                                $model->addError('confirm', 'password mismatch');
-                                        }
-
-                                        $user->status = 3;
-                                        $user->last_login = date('Y-m-d H:i:s');
-                                }
-                        }
-                }
-                $this->render('vendor_register', array('model' => $model));
-        }
-
         public function VerificationMail($user) {
                 $message = new YiiMailMessage;
                 $message->view = "_verify_user_mail";  // view file name
@@ -264,7 +228,7 @@ class SiteController extends Controller {
                         $criteria = new CDbCriteria();
                         $criteria->addSearchCondition('category_name', $_REQUEST['tag'], 'AND');
 
-                        //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
+//$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
                         if ($_REQUEST['taged'] != '') {
 
                                 $arrs = explode(',', $_REQUEST['taged']);
@@ -276,7 +240,7 @@ class SiteController extends Controller {
                         foreach ($tags as $tag) {
                                 unset($_SESSION['category']);
                                 $cat_parent = $this->findParent(ProductCategory::model()->findByPk($tag->id));
-                                //echo $cat_parent;
+//echo $cat_parent;
 
                                 if ($_REQUEST['type'] == 'category') {
 
@@ -325,7 +289,7 @@ class SiteController extends Controller {
 
                         $criteria = new CDbCriteria();
                         $criteria->addSearchCondition('category_tag', $_REQUEST['tag'], 'AND');
-                        //$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
+//$criteria->compare('category_id',$_REQUEST['category'],true,'AND');
                         if ($_REQUEST['taged'] != '') {
 
                                 $arrs = explode(',', $_REQUEST['taged']);
@@ -364,43 +328,43 @@ class SiteController extends Controller {
                 return $protocol . $domainName . '/dealsonindia/';
         }
 
-//        if (isset(Yii::app()->session['user'])) {
-//                        $this->redirect($this->createUrl('index'));
-//                } else {
-//                        $model = new BuyerDetails('create');
-//                        $user = new Users;
-//                        if (isset($_POST['BuyerDetails'])) {
-//                                $user->attributes = $_POST['BuyerDetails'];
-//                                $user->user_type = 1;
-//                                $user->email = $_POST['BuyerDetails']['email'];
-//                                $user->phone_number = $_POST['BuyerDetails']['phone_no_2'];
-//                                $user->user_status = 1;
-//                                $user->last_login = date('Y-m-d H:i:s');
-//                                $user->DOC = date('Y-m-d');
-//                                $ver_id = mt_rand(10000, 99999) . time();
-//                                $user->activation_link = $ver_id;
-//                                $user->verification_code = rand(1000, 9999);
-//                                if ($user->save(FALSE)) {
-//                                        $model->attributes = $_POST['BuyerDetails'];
-//                                        $model->user_id = $user->id;
-//                                        $date1 = $_POST['BuyerDetails']['dob'];
-//                                        $newDate = date("Y-m-d", strtotime($date1));
-//                                        $model->dob = $newDate;
-//                                        $model->address = $_POST['BuyerDetails']['address'];
-//                                        $model->DOC = date('Y-m-d');
-//                                        $model->CB = $user->id;
-//                                        $model->status = 1;
-//                                        if ($model->save(FALSE)) {
-//                                                $this->SuccessMail($model);
-//                                                Yii::app()->user->setFlash('success', " You are registered successfully!!! Check your mail and verify your account");
-//                                                $this->redirect('UserRegister');
+// if ($_POST['user'] == 1) {
+//                                $login = new BuyerDetails();
+//                                echo 'hiii';
+//                        } else {
+//                                $login = new Merchant();
+//                                echo 'hloo';
+//                        }
+//                        if (isset($_POST['login_submit'])) {
+//                                if ($_POST['user'] == 1) {
+//                                        $login = new BuyerDetails();
+//                                        $user = BuyerDetails::model()->findByAttributes(array('email' => $_REQUEST['BuyerDetails']['email'], 'password' => $_REQUEST['BuyerDetails']['password']));
+//                                        if ($user != '' && $user !== NULL) {
+//                                                Yii::app()->session['user'] = $user;
+//                                                Cart::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
+//                                                CouponHistory::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
+//                                                Order::model()->updateAll(array("user_id" => $user->id), 'session_id=' . Yii::app()->session['temp_user']);
+//                                                $this->redirect(array('Myaccount/index'));
 //                                        } else {
-//                                                Yii::app()->user->setFlash('error', "Error Occured");
-//                                                $this->redirect('UserRegister');
+//                                                $login->addError('email', '');
+//                                                $login->addError('password', '');
+//                                                Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
+//                                        }
+//                                }
+//                                if ($_POST['user'] == 2) {
+//                                        $login = new Merchant();
+//                                        $user = Merchant::model()->findByAttributes(array('email' => $_REQUEST['Merchant']['email'], 'password' => $_REQUEST['Merchant']['password']));
+////                                        var_dump($_REQUEST['Merchant']['password']);
+////                                        exit;
+//                                        if ($user != '' && $user !== NULL) {
+//                                                Yii::app()->session['merchent'] = $user;
+//                                                $this->redirect(array('Myaccount/index'));
+//                                        } else {
+//                                                $login->addError('email', '');
+//                                                $login->addError('password', '');
+//                                                Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
 //                                        }
 //                                }
 //                        }
 //                }
-//                $this->render('user_register', array('model' => $model));
-//}
 }

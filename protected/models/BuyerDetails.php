@@ -55,7 +55,7 @@ class BuyerDetails extends CActiveRecord {
 //                    array('first_name,last_name,phone_no_2,email,address', 'required', 'on' => 'settings'),
 //                    array('email', 'unique', 'on' => 'settings'),
 //                    array('email', 'email', 'on' => 'settings'),
-                    array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements()),
+                    array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements(), 'on' => 'create'),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
                     array('first_name, last_name, email, password, dob, gender, phone_number, address, activation_link, email_verification, verification_code, newsletter, wallet_amt, user_status, CB, UB, DOC, DOU, status, terms', 'safe', 'on' => 'search'),

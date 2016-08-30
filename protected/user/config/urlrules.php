@@ -3,7 +3,7 @@
 return array(
     '' => 'site/index',
     'login' => 'site/login',
-    'sign-up' => 'site/register',
+    'sign-up' => 'site/UserRegister',
     'coupons' => 'products/coupons',
 //    'daily-deals' => 'products/DailyDeals',
 //    'flash-deals' => 'products/FlsahDeals',
