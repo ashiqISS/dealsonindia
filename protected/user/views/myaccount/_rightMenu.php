@@ -2,7 +2,6 @@
 
         <?php
         $active_menu = Yii::app()->controller->id . '/' . Yii::app()->controller->action->id;
-        echo $active_menu;
         if ($active_menu == 'myaccount/index') {
                 $active1 = 'active';
         } else if ($active_menu == 'myaccount/ResetPassword') {
@@ -15,6 +14,10 @@
                 $active5 = 'active';
         } else if ($active_menu == 'products/MyProducts') {
                 $active6 = 'active';
+        } else if ($active_menu == 'myaccount/SubmitDeal') {
+                $active7 = 'active';
+        } else if ($active_menu == 'myaccount/Newsletter') {
+                $active8 = 'active';
         }
         ?>
         <li class="<?= $active1; ?>"><?php echo CHtml::link('My Profile', array('Myaccount/index')); ?></li>
@@ -28,10 +31,10 @@
                 <li class="<?= $active6; ?>"><?php echo CHtml::link('My Product', array('Products/MyProducts')); ?></li>
 
         <?php } ?>
-        <li><a href="#">Newsletter Subscription</a></li>
+        <li class="<?= $active8; ?>"><?php echo CHtml::link('Newsletter Subscription', array('Myaccount/Newsletter')); ?></li>
 
         <li><a href="#">Set interest deals/ wish listed deals</a></li>
-        <li><a href="#"> Submit a deal/ product </a></li>
+        <li class="<?= $active7; ?>"><?php echo CHtml::link('Submit a deal/ product', array('Myaccount/SubmitDeal')); ?></li>
         <li><a href="#">My sales Report </a></li>
         <li><a href="#"> Transaction</a></li>
         <li><a href="#"> Payment/Payout</a></li>

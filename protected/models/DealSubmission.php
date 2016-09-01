@@ -1,35 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "address_book".
+ * This is the model class for table "deal_submission".
  *
- * The followings are the available columns in table 'address_book':
+ * The followings are the available columns in table 'deal_submission':
  * @property integer $id
- * @property integer $user_type
  * @property integer $user_id
- * @property string $name
+ * @property string $full_name
  * @property string $email
- * @property string $phone
- * @property string $address_line_1
- * @property string $address_line_2
- * @property string $country
- * @property string $state
- * @property string $city
- * @property string $pincode
- * @property string $map
+ * @property string $product_name
+ * @property string $product_url
+ * @property string $message
  * @property string $doc
  * @property integer $cb
  * @property string $dou
  * @property integer $ub
- * @property integer $status
  */
-class AddressBook extends CActiveRecord {
+class DealSubmission extends CActiveRecord {
 
         /**
          * @return string the associated database table name
          */
         public function tableName() {
-                return 'address_book';
+                return 'deal_submission';
         }
 
         /**
@@ -39,14 +32,16 @@ class AddressBook extends CActiveRecord {
                 // NOTE: you should only define rules for those attributes that
                 // will receive user inputs.
                 return array(
-                    array('user_type, user_id, name, email, phone, address_line_1, address_line_2, country, state, city, pincode', 'required'),
-                    array('user_type,phone,pincode user_id, cb, ub, status', 'numerical', 'integerOnly' => true),
-                    array('name, email, phone, country, state, city, pincode', 'length', 'max' => 200),
+                    array('full_name, email, product_name, product_url', 'required'),
+                    array('user_id,  cb, ub', 'numerical', 'integerOnly' => true),
+                    array('full_name', 'length', 'max' => 250),
+                    array('email', 'length', 'max' => 200),
+                    array('product_name', 'length', 'max' => 300),
+                    array('dou', 'safe'),
                     array('email', 'email'),
-                    array('phone', 'unique'),
                     // The following rule is used by search().
                     // @todo Please remove those attributes that should not be searched.
-                    array('id, user_type, user_id, name, email,default_address, phone, address_line_1, address_line_2, country, state, city, pincode, map, doc, cb, dou, ub, status', 'safe', 'on' => 'search'),
+                    array('id, user_id,  full_name, email, product_name, product_url, message, doc, cb, dou, ub', 'safe', 'on' => 'search'),
                 );
         }
 
@@ -66,25 +61,16 @@ class AddressBook extends CActiveRecord {
         public function attributeLabels() {
                 return array(
                     'id' => 'ID',
-                    'user_type' => 'User Type',
                     'user_id' => 'User',
-                    'name' => 'Name',
+                    'full_name' => 'Full Name',
                     'email' => 'Email',
-                    'phone' => 'Phone',
-                    'address_line_1' => 'Address Line 1',
-                    'address_line_2' => 'Address Line 2',
-                    'country' => 'Country',
-                    'state' => 'State',
-                    'city' => 'City',
-                    'pincode' => 'Pincode',
-                    'map' => 'Map',
+                    'product_name' => 'Product Name',
+                    'product_url' => 'Product Url',
+                    'message' => 'Message',
                     'doc' => 'Doc',
                     'cb' => 'Cb',
                     'dou' => 'Dou',
                     'ub' => 'Ub',
-                    'status' => 'Status',
-                    'default_billing_address' => 'Default Billing Address',
-                    'default_shipping_address' => 'Default Shipping Address',
                 );
         }
 
@@ -106,23 +92,16 @@ class AddressBook extends CActiveRecord {
                 $criteria = new CDbCriteria;
 
                 $criteria->compare('id', $this->id);
-                $criteria->compare('user_type', $this->user_type);
                 $criteria->compare('user_id', $this->user_id);
-                $criteria->compare('name', $this->name, true);
+                $criteria->compare('full_name', $this->full_name, true);
                 $criteria->compare('email', $this->email, true);
-                $criteria->compare('phone', $this->phone, true);
-                $criteria->compare('address_line_1', $this->address_line_1, true);
-                $criteria->compare('address_line_2', $this->address_line_2, true);
-                $criteria->compare('country', $this->country, true);
-                $criteria->compare('state', $this->state, true);
-                $criteria->compare('city', $this->city, true);
-                $criteria->compare('pincode', $this->pincode, true);
-                $criteria->compare('map', $this->map, true);
+                $criteria->compare('product_name', $this->product_name, true);
+                $criteria->compare('product_url', $this->product_url, true);
+                $criteria->compare('message', $this->message, true);
                 $criteria->compare('doc', $this->doc, true);
                 $criteria->compare('cb', $this->cb);
                 $criteria->compare('dou', $this->dou, true);
                 $criteria->compare('ub', $this->ub);
-                $criteria->compare('status', $this->status);
 
                 return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -133,7 +112,7 @@ class AddressBook extends CActiveRecord {
          * Returns the static model of the specified AR class.
          * Please note that you should have this exact method in all your CActiveRecord descendants!
          * @param string $className active record class name.
-         * @return AddressBook the static model class
+         * @return DealSubmission the static model class
          */
         public static function model($className = __CLASS__) {
                 return parent::model($className);

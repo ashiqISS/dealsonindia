@@ -25,5 +25,12 @@ img.zoom {
         overflow-y: hidden;
 }
 .red{
-        color: #c1074a;
+        color: #f3153c;
+}
+.deals1{
+        width: 27%;
+}
+.deals2{
+        width: 46%;
+
 }

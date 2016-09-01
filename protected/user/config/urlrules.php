@@ -7,7 +7,7 @@ return array(
     'coupons' => 'products/coupons',
 //    'daily-deals' => 'products/DailyDeals',
 //    'flash-deals' => 'products/FlsahDeals',
-    'submit-deals' => 'products/SubmitDeal',
+    'submit-deals' => 'myaccount/SubmitDeal',
     'products' => 'products/Detail',
     'My-Account' => 'Myaccount/index',
     'My-Profile' => 'Myaccount/index',

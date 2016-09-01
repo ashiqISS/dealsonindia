@@ -345,15 +345,6 @@
                                         </div>
                                         <div class="clearfix"></div>
 
-
-
-
-
-
-
-
-
-
                                         <span class="recentorders">Recent sale report</span>
 
                                         <div class="comm">
@@ -404,6 +395,32 @@
                                                 </div>
 
                                         </div>
+                                        <div class="clearfix"></div>
+                                        <?php if (!empty($deal)) { ?>
+                                                <span class="recentorders">My Deal Products</span>
+                                                <div class="comm">
+
+                                                        <div class="commission-1">
+                                                                <div class="head-1 deals1"><h2>Product Name</h2></div>
+                                                                <div class="head-1 deals2"><h2>Product URL</h2></div>
+                                                                <div class="head-1 deals1"><h2>Date</h2></div>
+                                                        </div>
+
+                                                        <?php foreach ($deal as $deals) { ?>
+                                                                <div class="commission-2">
+                                                                        <div class="head-1 deals1"><h2><?= $deals->product_name; ?></h2></div>
+                                                                        <div class="head-1 deals2"><h2><?= $deals->product_url; ?></h2></div>
+                                                                        <div class="head-1 deals1"><h2><?= date("d/m/Y", strtotime($deals->doc)); ?></h2></div>
+
+                                                                </div>
+                                                        <?php } ?>
+
+                                                </div>
+                                                <?php
+                                        } else {
+
+                                        }
+                                        ?>
 
                                 </div>
                                 <div class="pull-right">

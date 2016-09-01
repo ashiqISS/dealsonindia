@@ -213,10 +213,6 @@ class ProductsController extends Controller {
                 $this->render('flashdeals');
         }
 
-        public function actionSubmitDeal() {
-                $this->render('submitdeal');
-        }
-
         public function actionHotDeal() {
                 $this->render('hotdeal');
         }

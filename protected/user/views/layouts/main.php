@@ -419,7 +419,7 @@
                                                                         <li><?php echo CHtml::link('DAILY DEALS', array('products/Daily')); ?></li>
                                                                         <li><?php echo CHtml::link('FLASH DEALS', array('products/Daily')); ?></li>
                                                                         <li><?php echo CHtml::link('HOT DEALS', array('products/hot')); ?></li>
-                                                                        <li><?php echo CHtml::link('SUBMIT A DEAL', array('products/SubmitDeal')); ?></li>
+                                                                        <li><?php echo CHtml::link('SUBMIT A DEAL', array('myaccount/SubmitDeal')); ?></li>
                                                                         <li><?php echo CHtml::link('WHOLESALE DEALS', array('products/wholesale')); ?></li>
 
                                                                 </ul>
@@ -571,12 +571,12 @@
         <script src="<?= Yii::app()->baseUrl ?>/js/classie.js"></script>
 
         <script>
-                    var selectIds = $('#panel1,#panel2,#panel3,#panel4,#panel5,#panel6,#panel7,#panel8,#panel9,#panel10,#panel11,#panel12,#panel13,#panel14');
-                    $(function ($) {
-                            selectIds.on('show.bs.collapse hidden.bs.collapse', function () {
-                                    $(this).prev().find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-                            });
-                    });
+                        var selectIds = $('#panel1,#panel2,#panel3,#panel4,#panel5,#panel6,#panel7,#panel8,#panel9,#panel10,#panel11,#panel12,#panel13,#panel14');
+                        $(function ($) {
+                                selectIds.on('show.bs.collapse hidden.bs.collapse', function () {
+                                        $(this).prev().find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                                });
+                        });
 
 
         </script>

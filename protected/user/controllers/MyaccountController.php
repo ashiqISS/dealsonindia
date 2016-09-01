@@ -7,15 +7,17 @@ class MyaccountController extends Controller {
         }
 
         public function actionIndex() {
-                if (!isset(Yii::app()->session['user'])) {
+                if (!isset(Yii::app()->session['user']) && !isset(Yii::app()->session['merchant'])) {
                         $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
                 } else {
                         if (Yii::app()->session['user_type_usrid'] == 1) {
                                 $model = BuyerDetails::model()->findByPk(Yii::app()->session['user']['id']);
+                                $deal = DealSubmission::model()->findAllByAttributes(array('user_id' => Yii::app()->session['user']['id']), array('order' => 'doc DESC'));
                         } else {
-                                $model = Merchant::model()->findByPk(Yii::app()->session['user']['id']);
+                                $model = Merchant::model()->findByPk(Yii::app()->session['merchant']['id']);
+                                $deal = DealSubmission::model()->findAllByAttributes(array('user_id' => Yii::app()->session['merchant']['id']), array('order' => 'doc DESC'));
                         }
-                        $this->render('index', array('model' => $model));
+                        $this->render('index', array('model' => $model, 'deal' => $deal));
                 }
         }
 
@@ -79,8 +81,8 @@ class MyaccountController extends Controller {
                                 $model->doc = date('Y-m-d');
                                 $model->cb = Yii::app()->session['user']['id'];
                                 $model->status = 1;
-                                $model = $this->checkDefault($model, 'default_address');
-                                $model = $this->checkDefault($model, 'default_address');
+                                $model = $this->checkDefault($model, 'default_billing_address');
+                                $model = $this->checkDefault($model, 'default_shipping_address');
                                 if ($model->validate()) {
                                         if ($model->save()) {
                                                 Yii::app()->user->setFlash('success', "your Address has been  successfully added");
@@ -123,8 +125,8 @@ class MyaccountController extends Controller {
                                 $model->user_type = Yii::app()->session['user_type_usrid'];
                                 $model->dou = date('Y-m-d');
                                 $model->ub = Yii::app()->session['user']['id'];
-                                $model = $this->checkDefault($model, 'default_address');
-                                $model = $this->checkDefault($model, 'default_address');
+                                $model = $this->checkDefault($model, 'default_billing_address');
+                                $model = $this->checkDefault($model, 'default_shipping_address');
                                 if ($model->save()) {
                                         Yii::app()->user->setFlash('success', "your Address has been  successfully updated");
                                         $this->redirect(array('Myaccount/Addressbook'));
@@ -144,7 +146,7 @@ class MyaccountController extends Controller {
         }
 
         public function actionSettings() {
-                if (!isset(Yii::app()->session['user'])) {
+                if (!isset(Yii::app()->session['user']) && !isset(Yii::app()->session['user'])) {
                         $this->redirect(Yii::app()->request->baseUrl . '/index.php/site/login');
                 } else {
                         if (Yii::app()->session['user_type_usrid'] == 1) {
@@ -156,7 +158,7 @@ class MyaccountController extends Controller {
                                         $model->first_name = $_POST['first_name'];
                                         $model->last_name = $_POST['last_name'];
                                         $model->email = $_POST['email'];
-                                        $model->phone_no_2 = $_POST['phone_number'];
+                                        $model->phone_number = $_POST['phone_number'];
                                         $model->address = $_POST['address'];
                                         if ($model->validate()) {
                                                 if ($model->save(FALSE)) {
@@ -191,6 +193,34 @@ class MyaccountController extends Controller {
 
         public function actionCouponGeneration() {
 
+        }
+
+        public function actionSubmitDeal() {
+                $model = new DealSubmission;
+                if (isset($_POST['DealSubmission'])) {
+                        $model->attributes = $_POST['DealSubmission'];
+                        $model->message = $_POST['DealSubmission']['message'];
+                        if (isset(Yii::app()->session['user'])) {
+                                $model->user_id = Yii::app()->session['user']['id'];
+                        } else if (isset(Yii::app()->session['merchant'])) {
+                                $model->user_id = Yii::app()->session['merchant']['id'];
+                        } else {
+                                $model->user_id = "";
+                        }
+                        $model->doc = date('Y-m-d');
+                        if ($model->validate()) {
+                                if ($model->save()) {
+                                        Yii::app()->user->setFlash('success', "Deal submission completed");
+                                        $this->redirect(array('myaccount/index'));
+                                }
+                        }
+                }
+                $this->render('submitdeal', array('model' => $model));
+        }
+
+        public function actionNewsletter() {
+                $model = new Newsletter;
+                $this->render('newsletter', array('model' => $model));
         }
 
 }

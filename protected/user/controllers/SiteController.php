@@ -63,8 +63,6 @@ class SiteController extends Controller {
                                 Yii::app()->session['user_type_usrid'] = 1;
                                 $login = BuyerDetails::model()->findByAttributes(array('email' => $_POST['BuyerDetails']['email'], 'password' => $_POST['BuyerDetails']['password']));
                                 Yii::app()->session['user'] = $login;
-                                var_dump($login);
-                                exit;
                                 if (!empty($login)) {
                                         if ($login->user_status == 0) {
                                                 Yii::app()->user->setFlash('login_list', "Access Denied.Contact Laksyah");
@@ -73,13 +71,13 @@ class SiteController extends Controller {
                                                 Yii::app()->user->setFlash('verify_code', $login->id);
                                                 Yii::app()->session['user_email_verify'] = $login->id;
                                         } else if ($login->email_verification == 1 && $login->status == 1) {
+                                                Yii::app()->user->setFlash('emailverify', null);
                                                 $this->redirect(array('Myaccount/index'));
                                         }
                                 } else {
-                                        $login->addError('email', '');
-                                        $login->addError('password', '');
                                         Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
                                 }
+                                $this->redirect(array('Myaccount/index'));
                         }
                         if (isset($_POST['Merchant'])) {
                                 Yii::app()->session['user_type_usrid'] = 2;
@@ -92,10 +90,10 @@ class SiteController extends Controller {
                                                 Yii::app()->user->setFlash('emailverify', "Email verification needed...Please check your mail and activate your account");
                                                 Yii::app()->user->setFlash('verify_code', $login->id);
                                                 Yii::app()->session['user_email_verify'] = $login->id;
+                                        } else if ($login->email_verification == 1 && $login->status == 1) {
+                                                $this->redirect(array('Myaccount/index'));
                                         }
                                 } else {
-                                        $login->addError('email', '');
-                                        $login->addError('password', '');
                                         Yii::app()->user->setFlash('login_error', "dealsonindia email or password invalid.Try again");
                                 }
                                 $this->redirect(array('Myaccount/index'));

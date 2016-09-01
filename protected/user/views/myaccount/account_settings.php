@@ -142,7 +142,7 @@
                                                         <div class="settings3">
                                                                 <div class="form-group">
                                                                         <?php if (Yii::app()->session['user_type_usrid'] == 1) { ?>
-                                                                                <input type="text" class="form-set" id="phone" name="phone_number" value="<?php echo $model->phone_no_2; ?>">
+                                                                                <input type="text" class="form-set" id="phone" name="phone_number" value="<?php echo $model->phone_number; ?>">
                                                                         <?php } else { ?>
                                                                                 <input type="text" class="form-set" id="phone" name="phone_number" value="<?php echo $model->phone_number; ?>">
                                                                         <?php } ?>

@@ -186,7 +186,7 @@
                                                 </div>
                                                 <div class="settings3">
                                                         <div class="form-group">
-                                                                <?php echo CHtml::activeDropDownList($model, 'country', CHtml::listData(MasterCountry::model()->findAllByAttributes(array('status' => 1)), 'id', 'country'), array('empty' => '--Please select--', 'class' => 'form-select', 'options' => array('id' => array('selected' => 'selected')))); ?>
+                                                                <?php echo CHtml::activeDropDownList($model, 'country', CHtml::listData(Countries::model()->findAll(), 'id', 'country_name'), array('empty' => '--Please select--', 'class' => 'form-select', 'options' => array('id' => array('selected' => 'selected')))); ?>
                                                                 <?php echo $form->error($model, 'country'); ?>
                                                         </div>
                                                 </div>
@@ -243,10 +243,11 @@
                                                 </div>
 
                                         </div>
+
                                         <div class="ui-set">
                                                 <div class="settings1">
                                                         <div class="form-group">
-                                                                <label class="set"><?php echo $form->labelEx($model, 'map'); ?></label>
+                                                                <label class="set"><?php echo $form->labelEx($model, 'default_billing_address'); ?></label>
                                                         </div>
                                                 </div>
                                                 <div class="settings2">
@@ -254,8 +255,8 @@
                                                 </div>
                                                 <div class="settings3">
                                                         <div class="form-group">
-                                                                <?php echo $form->textField($model, 'map', array('class' => 'form-set')); ?>
-                                                                <?php echo $form->error($model, 'map'); ?>
+                                                                <?php echo $form->dropDownList($model, 'default_billing_address', array('' => "Default Billing Address", '1' => "Yes", '0' => "No"), array('class' => 'form-select')); ?>
+                                                                <?php echo $form->error($model, 'default_billing_address'); ?>
                                                         </div>
                                                 </div>
 
@@ -263,7 +264,7 @@
                                         <div class="ui-set">
                                                 <div class="settings1">
                                                         <div class="form-group">
-                                                                <label class="set"><?php echo $form->labelEx($model, 'default_address'); ?></label>
+                                                                <label class="set"><?php echo $form->labelEx($model, 'default_shipping_address'); ?></label>
                                                         </div>
                                                 </div>
                                                 <div class="settings2">
@@ -271,8 +272,8 @@
                                                 </div>
                                                 <div class="settings3">
                                                         <div class="form-group">
-                                                                <?php echo $form->dropDownList($model, 'default_address', array('' => "Default Address", '1' => "Yes", '0' => "No"), array('class' => 'form-select')); ?>
-                                                                <?php echo $form->error($model, 'default_address'); ?>
+                                                                <?php echo $form->dropDownList($model, 'default_shipping_address', array('' => "Default Shipping Address", '1' => "Yes", '0' => "No"), array('class' => 'form-select')); ?>
+                                                                <?php echo $form->error($model, 'default_shipping_address'); ?>
                                                         </div>
                                                 </div>
 
